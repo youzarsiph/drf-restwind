@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "drf-app"
+version = "0.1.0"
+description = "A Django REST Framework app template with dependency management and DevOps best practices."
+authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "app" }]
+homepage = "https://github.com/youzarsiph/drf-app"
+repository = "https://github.com/youzarsiph/drf-app"
+documentation = "https://github.com/youzarsiph/drf-app"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.1.5"
+django-debug-toolbar = "^5.0.1"
+djangorestframework = "^3.15.2"
+drf-redesign = "^0.4.0"
+django-cors-headers = "^4.6.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.2"
+black = "^24.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

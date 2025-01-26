@@ -1,0 +1,44 @@
+# This workflow will upload a Python Package using Poetry when a commit is pushed to release branch
+# For more information see: 
+# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: CD
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+
+permissions:
+  contents: read
+
+jobs:
+
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+          python -m poetry install
+          python -m poetry build
+
+      - name: Publish package
+        run: |
+          source .venv/bin/activate
+          python -m poetry publish --username __token__ --password ${{ secrets.PYPI_API_TOKEN }}

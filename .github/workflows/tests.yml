@@ -1,0 +1,32 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+          python -m poetry install
+          python -m poetry run python -m django startproject core
+          mv app core
+          echo "AUTH_USER_MODEL = 'users.User'" >> core/settings.py
+          echo "INSTALLED_APPS += ['app', 'app.books', 'app.users']" >> core/settings.py
+          echo "from django.urls import include" >> core/urls.py
+          echo "urlpatterns += [path('', include('app.urls'))" >> core/urls.py
+
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          python -m poetry run python core/manage.py test
