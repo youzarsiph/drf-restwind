@@ -1,0 +1,39 @@
+{% load i18n rest_framework %}
+{% translate "No items to select." as no_items %}
+<div class="grid gap-4">
+  <div class="fieldset relative">
+    {% if field.label %}
+      <label for="{{ field.name }}" class="fieldset-legend{% if style.hide_label %} sr-only{% endif %}">
+        {{ field.label }}
+      </label>
+    {% endif %}
+    <select
+      multiple
+      id="{{ field.name }}"
+      name="{{ field.name }}"
+      class="select select-primary w-full min-h-56 overflow-auto"
+      {% if field.required %}required{% endif %}
+      {% if style.autofocus %}autofocus{% endif %}
+      {% if field.max_length %}maxlength="{{ field.max_length }}"{% endif %}
+      {% if style.placeholder %}placeholder="{{ style.placeholder }}"{% endif %}
+    >
+      {% for select in field.iter_options %}
+        {% if select.start_option_group %}
+          <optgroup label="{{ select.label }}">
+        {% elif select.end_option_group %}
+          </optgroup>
+        {% else %}
+          <option 
+            value="{{ select.value }}"
+            {% if select.value|as_string in field.value|as_list_of_strings %}selected{% endif %}
+            {% if select.disabled %}disabled{% endif %}
+          >{{ select.display_text }}</option>
+        {% endif %}
+      {% empty %}
+          <option>{{ no_items }}</option>
+      {% endfor %}
+    </select>
+    {% if field.help_text %}<p class="fieldset-label">{{ field.help_text|safe }}</p>{% endif %}
+  </div>
+  {% include 'rest_framework/components/field_errors.html' %}
+</div>

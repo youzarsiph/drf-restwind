@@ -1,0 +1,1 @@
+"""DRF RESTWind template tags"""

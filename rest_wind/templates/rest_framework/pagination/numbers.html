@@ -1,0 +1,83 @@
+{% load i18n %}
+
+<ol class="join flex-wrap">
+  {% if previous_url %}
+  <li class="tooltip tooltip-top tooltip-primary" data-tip="{% translate 'Previous' %}">
+    <a href="{{ previous_url }}" class="btn btn-soft btn-primary join-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-chevron-left">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+
+      <span class="sr-only">{% translate 'Previous' %}</span>
+    </a>
+  </li>
+  {% else %}
+  <li class="tooltip tooltip-top" data-tip="{% translate 'Previous' %}">
+    <button disabled class="btn btn-soft btn-primary join-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-chevron-left">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+
+      <span class="sr-only">{% translate 'Previous' %}</span>
+    </button>
+  </li>
+  {% endif %}
+
+  {% for page_link in page_links %}
+  {% if page_link.is_break %}
+  <li>
+    <button disabled class="btn btn-ghost join-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-ellipsis">
+        <circle cx="12" cy="12" r="1" />
+        <circle cx="19" cy="12" r="1" />
+        <circle cx="5" cy="12" r="1" />
+      </svg>
+
+      <span class="sr-only">...</span>
+    </button>
+  </li>
+  {% else %}
+  {% if page_link.is_active %}
+  <li class="tooltip tooltip-top tooltip-accent" data-tip="{% translate 'Current - Page' %} {{ page_link.number }}">
+    <a href="{{ page_link.url }}" class="btn btn-soft btn-accent join-item">{{ page_link.number }}</a>
+  </li>
+  {% else %}
+  <li class="tooltip tooltip-top" data-tip="{% translate 'Page' %} {{ page_link.number }}">
+    <a href="{{ page_link.url }}" class="btn btn-ghost join-item">{{ page_link.number }}</a>
+  </li>
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+
+  {% if next_url %}
+  <li class="tooltip tooltip-top tooltip-primary" data-tip="{% translate 'Next' %}">
+    <a href="{{ next_url }}" class="btn btn-soft btn-primary join-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-chevron-right">
+        <path d="m9 18 6-6-6-6" />
+      </svg>
+
+      <span class="sr-only">{% translate 'Next' %}</span>
+    </a>
+  </li>
+  {% else %}
+  <li class="tooltip tooltip-top" data-tip="{% translate 'Next' %}">
+    <button disabled class="btn btn-soft btn-primary join-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-chevron-right">
+        <path d="m9 18 6-6-6-6" />
+      </svg>
+
+      <span class="sr-only">{% translate 'Next' %}</span>
+    </button>
+  </li>
+  {% endif %}
+</ol>

@@ -1,6 +1,6 @@
 # Code of Conduct
 
-**`drf-app`** template values the participation of every member of our community and is dedicated to providing a welcoming, friendly, and respectful environment. To uphold this commitment, we have established the following code of conduct that all contributors, users, and participants must adhere to.
+**`drf-restwind`** template values the participation of every member of our community and is dedicated to providing a welcoming, friendly, and respectful environment. To uphold this commitment, we have established the following code of conduct that all contributors, users, and participants must adhere to.
 
 ## Our Pledge
 
@@ -29,7 +29,7 @@ In the interest of fostering an open and welcoming environment, we as contributo
 
 ## Enforcing Our Standards
 
-**Violations** of the community standards may result in a warning, temporary or permanent suspension, or ban from all `drf-app`-related communities, including repositories, discussion boards, and other platforms.
+**Violations** of the community standards may result in a warning, temporary or permanent suspension, or ban from all `drf-restwind`-related communities, including repositories, discussion boards, and other platforms.
 
 - **Reporting Violations**: If you witness behavior that violates our standards or feel unsafe, please report it to the maintainers by opening an issue in the appropriate repository or contacting the maintainers directly. Your report will be treated with confidentiality.
 
@@ -39,7 +39,7 @@ This Code of Conduct is adapted from the [Contributor Covenant](https://www.cont
 
 ## Contact Information
 
-For any inquiries regarding the Code of Conduct or concerns that are not addressed within our guidelines, please contact the maintainers of the `drf-app` through the [GitHub Issues](https://github.com/youzarsiph/drf-app/issues) page or by reaching out via email.
+For any inquiries regarding the Code of Conduct or concerns that are not addressed within our guidelines, please contact the maintainers of the `drf-restwind` through the [GitHub Issues](https://github.com/youzarsiph/drf-restwind/issues) page or by reaching out via email.
 
 ---
 

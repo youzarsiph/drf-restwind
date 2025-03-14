@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<h2>{% translate 'Field filters' %}</h2>
+
+<form class="grid gap-4" action="" method="get">
+  {{ filter.form.as_p }}
+
+  <button type="submit" class="btn btn-primary">{% translate 'Submit' %}</button>
+</form>
+
+<script>
+  document.querySelectorAll('#filtersDialog main form > p').forEach(e => e.classList.add('fieldset'))
+  document.querySelectorAll('#filtersDialog main form > p > input').forEach(e => e.classList.add('input', 'input-primary', 'w-full'))
+  document.querySelectorAll('#filtersDialog main form > p > select').forEach(e => e.classList.add('select', 'select-primary', 'w-full'))
+</script>

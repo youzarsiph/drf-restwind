@@ -1,0 +1,31 @@
+{% load i18n rest_framework %}
+
+<h2>{% trans "Ordering" %}</h2>
+
+<ul class="list">
+  {% for key, label in options %}
+  <li class="list-row relative items-center">
+    <a href="{% add_query_param request param key %}" class="absolute inset-0">
+      <span class="sr-only">{{ label }}</span>
+    </a>
+    <div class="avatar avatar-placeholder">
+      <div
+        class="size-8 rounded-full {% if key == current %}bg-primary text-primary-content{% else %}bg-neutral text-neutral-content{% endif %}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-chevron-right {% cycle '-rotate-90' 'rotate-90' %}">
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </div>
+    </div>
+
+    <p>
+      {{ label }}
+    </p>
+
+    {% if key == current %}
+    <span class="badge badge-success">{% translate 'Applied' %}</span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>

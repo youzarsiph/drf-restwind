@@ -62,6 +62,7 @@ db.sqlite3
 db.sqlite3-journal
 core/
 manage.py
+static
 
 # Flask stuff:
 instance/

@@ -1,0 +1,22 @@
+<div class="grid gap-4">
+  <div class="fieldset">
+    {% if field.label %}
+      <label for="{{ field.name }}" class="fieldset-legend{% if style.hide_label %} sr-only{% endif %}">
+        {{ field.label }}
+      </label>
+    {% endif %}
+    <label class="flex items-center gap-4">
+      <input
+        type="checkbox"
+        id="{{ field.name }}"
+        name="{{ field.name }}"
+        class="checkbox checkbox-primary"
+        {% if field.required %}required{% endif %}
+        {% if field.value is not None %}checked{% endif %}
+      />
+      {{ field.label }}
+    </label>
+    {% if field.help_text %}<p class="fieldset-label">{{ field.help_text|safe }}</p>{% endif %}
+  </div>
+  {% include 'rest_framework/components/field_errors.html' %}
+</div>

@@ -1,0 +1,24 @@
+<div class="grid gap-4">
+  <div class="fieldset relative">
+    {% if field.label %}
+      <label for="{{ field.name }}" class="fieldset-legend{% if style.hide_label %} sr-only{% endif %}">
+        {{ field.label }}
+      </label>
+    {% endif %}
+    <label class="textarea textarea-primary w-full">
+      <span class="label">{{ field.label }}</span>
+      <textarea
+        class="w-full"
+        id="{{ field.name }}"
+        name="{{ field.name }}"
+        {% if field.required %}required{% endif %}
+        {% if style.autofocus %}autofocus{% endif %}
+        {% if style.rows %}rows="{{ style.rows }}"{% endif %}
+        {% if field.max_length %}maxlength="{{ field.max_length }}"{% endif %}
+        {% if style.placeholder %}placeholder="{{ style.placeholder }}"{% endif %}
+      >{% if field.value %}{{ field.value }}{% endif %}</textarea>
+      {% if field.help_text %}<p class="fieldset-label">{{ field.help_text|safe }}</p>{% endif %}
+    </label>
+  </div>
+  {% include 'rest_framework/components/field_errors.html' %}
+</div>

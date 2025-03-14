@@ -1,0 +1,32 @@
+{% extends "rest_framework/base.html" %}
+{% load i18n %}
+{% block title %}{{ block.super }} | {% translate 'Login' %}{% endblock %}
+
+{% block content %}
+<section class="flex h-full w-full items-center justify-center rounded-box bg-base-100 lg:p-40">
+  <div class="card gap-4 mx-2 max-w-md card-body w-full rounded-box bg-base-200">
+    <h1 class="text-ptimary text-3xl font-black">
+      {% translate 'Login' %}
+    </h1>
+
+    <p>{% translate 'Welcome, please login to continue.' %}</p>
+
+    {% if next %}
+      {% if user.is_authenticated %}
+        <p>
+          {% blocktranslate %}
+          Your account doesn't have access to this page. To proceed,
+          please login with an account that has access.
+          {% endblocktranslate %}
+        </p>
+      {% else %}
+        <p>
+          {% translate 'Please login to see this page.' %}
+        </p>
+      {% endif %}
+    {% endif %}
+
+    {% include 'rest_framework/components/form.html' %}
+  </div>
+</section>
+{% endblock %}

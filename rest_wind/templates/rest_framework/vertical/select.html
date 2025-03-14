@@ -1,0 +1,42 @@
+{% load rest_framework %}
+<div class="grid gap-4">
+  <div class="fieldset relative">
+    {% if field.label %}
+      <label for="{{ field.name }}" class="fieldset-legend{% if style.hide_label %} sr-only{% endif %}">
+        {{ field.label }}
+      </label>
+    {% endif %}
+    <select
+      id="{{ field.name }}"
+      name="{{ field.name }}"
+      class="select select-primary w-full"
+      {% if field.required %}required{% endif %}
+      {% if style.autofocus %}autofocus{% endif %}
+      {% if field.max_length %}maxlength="{{ field.max_length }}"{% endif %}
+      {% if style.placeholder %}placeholder="{{ style.placeholder }}"{% endif %}
+    >
+      {% if field.allow_null or field.allow_blank %}
+        <option value="" {% if not field.value %}selected{% endif %}>
+          Select an item (Optional)
+        </option>
+      {% endif %}
+      {% for select in field.iter_options %}
+        {% if select.start_option_group %}
+          <optgroup label="{{ select.label }}">
+        {% elif select.end_option_group %}
+          </optgroup>
+        {% else %}
+          <option 
+            value="{{ select.value }}"
+            {% if select.disabled %}disabled{% endif %}
+            {% if select.value|as_string == field.value|as_string %}selected{% endif %}
+          >
+            {{ select.display_text }}
+          </option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    {% if field.help_text %}<p class="fieldset-label">{{ field.help_text|safe }}</p>{% endif %}
+  </div>
+  {% include 'rest_framework/components/field_errors.html' %}
+</div>

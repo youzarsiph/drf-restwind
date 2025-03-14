@@ -1,0 +1,894 @@
+{% load i18n static rest_framework rest_wind %}
+<!DOCTYPE html>
+<html lang="en" data-theme="{% block theme %}dracula{% endblock %}">
+
+<head>
+  {% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block meta %}
+  <meta name="robots" content="NONE,NOARCHIVE" />
+  {% endblock %}
+  <title>{% block title %}{% if name %}{{ name }} - {% endif %}Django REST framework{% endblock %}</title>
+  <!-- Themes -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.2/themes.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap">
+  <!-- Copy -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+  <!-- Code Highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/http.min.js"></script>
+  {% block highlight_theme %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  {% endblock %}
+  <script>hljs.highlightAll();</script>
+
+  <!-- Style overrides -->
+  <style>
+    body {
+      font-family: 'Noto Sans';
+    }
+
+    h1#title {
+      font-family: 'Noto Serif';
+    }
+
+    pre code.hljs,
+    code.hljs,
+    .hljs {
+      padding: 0px;
+      font-family: 'Jetbrains Mono';
+      background-color: transparent;
+    }
+  </style>
+  {% endblock %}
+</head>
+
+<body class="flex h-screen bg-base-300 overflow-hidden">
+  {% block body %}
+  <section id="nav" class="h-full z-20">
+    <header class="h-full">
+      {% block navbar %}
+      <nav class="menu menu-vertical h-full items-center justify-between gap-4 lg:w-auto">
+        <ul class="menu menu-vertical items-center gap-1 p-0 lg:gap-2">
+          {% block branding %}
+          <li class="tooltip tooltip-right tooltip-primary" data-tip="{% translate 'Django REST Framework' %}">
+            <a href="https://www.django-rest-framework.org/" class="btn btn-square btn-primary lg:btn-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-braces lg:size-8">
+                <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1" />
+                <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1" />
+              </svg>
+
+              <span class="sr-only">{% translate 'Django REST Framework' %}</span>
+            </a>
+          </li>
+          {% endblock %}
+          {% block userlinks %}
+          <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'Home' %}">
+            <a href="https://www.django-rest-framework.org/" class="btn btn-square btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-house size-5 lg:size-6">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+                <path
+                  d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              </svg>
+
+              <span class="sr-only">{% translate 'Home' %}</span>
+            </a>
+          </li>
+          <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'Docs' %}">
+            <a href="https://www.django-rest-framework.org/api-guide/requests/" class="btn btn-square btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-book-text size-5 lg:size-6">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
+                <path d="M8 11h8" />
+                <path d="M8 7h6" />
+              </svg>
+
+              <span class="sr-only">{% translate 'Docs' %}</span>
+            </a>
+          </li>
+          <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'Tutorial' %}">
+            <a href="https://www.django-rest-framework.org/tutorial/quickstart/" class="btn btn-square btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-graduation-cap size-5 lg:size-6">
+                <path
+                  d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+                <path d="M22 10v6" />
+                <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+              </svg>
+
+              <span class="sr-only">{% translate 'Tutorial' %}</span>
+            </a>
+          </li>
+          <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'DRF Repo' %}">
+            <a href="https://github.com/encode/django-rest-framework/" class="btn btn-square btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-folder-git-2 size-5 lg:size-6">
+                <path
+                  d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5" />
+                <circle cx="13" cy="12" r="2" />
+                <path d="M18 19c-2.8 0-5-2.2-5-5v8" />
+                <circle cx="20" cy="19" r="2" />
+              </svg>
+
+              <span class="sr-only">{% translate 'DRF Repo' %}</span>
+            </a>
+          </li>
+          <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'DRF RestWind Repo' %}">
+            <a href="https://github.com/youzarsiph/drf-restwind/" class="btn btn-square btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-github size-5 lg:size-6">
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+              </svg>
+
+              <span class="sr-only">{% translate 'DRF RestWind Repo' %}</span>
+            </a>
+          </li>
+          {% endblock %}
+        </ul>
+
+        <ul class="menu menu-vertical items-center gap-1 p-0 lg:gap-2">
+          {% include 'rest_framework/components/theme.html' %}
+          <li class="tooltip tooltip-right tooltip-accent" data-tip="{% translate 'Profile' %}">
+            <button popovertarget="profile" style="anchor-name:--profile-anchor"
+              class="btn btn-square {% if request.path == profile %}btn-soft btn-primary{% else %}btn-ghost{% endif %}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-user size-5 lg:size-6">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+
+              <span class="sr-only">{% translate 'Profile' %}</span>
+            </button>
+
+            <ul popover id="profile" style="position-anchor:--profile-anchor"
+              class="menu dropdown dropdown-top dropdown-right bg-base-200 rounded-box shadow-lg">
+              <li class="menu-title">{% translate 'Welcome' %}, {{ request.user }}</li>
+              <li>
+                <button class="flex items-center gap-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-circle-user size-4">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="10" r="3" />
+                    <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
+                  </svg>
+
+                  <span>{% translate 'Profile' %}</span>
+                </button>
+              </li>
+              {% if request.user.is_authenticated %}
+              {% optional_logout request user csrf_token %}
+              {% else %}
+              {% optional_login request %}
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      {% endblock %}
+    </header>
+  </section>
+
+  <main class="relative flex h-screen w-full flex-col gap-4 py-2 pr-2 overflow-y-auto lg:overflow-hidden">
+    {% block content %}
+    <div class="grid gap-4 w-full grid-cols-12 rounded-box bg-base-100 lg:h-full lg:gap-0">
+      <section id="sidebar" class="col-span-12 h-full lg:max-h-screen lg:col-span-3 lg:h-full lg:pb-4">
+        <section id="sidebar-content" class="relative h-full">
+          <header class="absolute inset-x-0 top-0 z-10">
+            <nav class="flex items-center justify-between p-4 gap-4 backdrop-blur-3xl rounded-t-box">
+              <div class="flex items-center gap-4">
+                {% block request_forms %}
+                {% if 'GET' in allowed_methods %}
+                <form class="join" id="get-form">
+                  {% if api_settings.URL_FORMAT_OVERRIDE %}
+                  <div class="tooltip tooltip-right tooltip-primary" data-tip="{% translate 'GET request' %}">
+                    <a href="{{ request.get_full_path }}" rel="nofollow"
+                      class="btn join-item btn-sm btn-square btn-primary lg:btn-md">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-refresh-ccw size-4 lg:size-5">
+                        <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                        <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+                        <path d="M16 16h5v5" />
+                      </svg>
+
+                      <span class="sr-only">{% translate 'Get' %}</span>
+                    </a>
+                  </div>
+
+                  <div>
+                    <button type="button" class="btn join-item btn-sm btn-square btn-soft btn-primary lg:btn-md"
+                      popovertarget="formats" style="anchor-name:--formats-anchor">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevron-down size-4  lg:size-5">
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </button>
+
+                    <ul id="formats" popover style="position-anchor:--formats-anchor"
+                      class="menu dropdown dropdown-center dropdown-bottom bg-base-200 rounded-box shadow-lg overflow-visible">
+                      <li class="menu-title">{% translate 'Formats' %}</li>
+                      {% for format in available_formats %}
+                      <li class="tooltip tooltip-right"
+                        data-tip="{% translate 'GET request with format of' %} `{{ format|upper }}`">
+                        <a href="{% add_query_param request api_settings.URL_FORMAT_OVERRIDE format %}" rel="nofollow">
+                          {{ format|upper }}
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% else %}
+                  <div class="tooltip tooltip-right tooltip-primary" data-tip="{% translate 'GET request' %}">
+                    <a href="{{ request.get_full_path }}" rel="nofollow"
+                      class="btn join-item btn-sm btn-square btn-ghost lg:btn-md">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-refresh-ccw size-4 lg:size-5">
+                        <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                        <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+                        <path d="M16 16h5v5" />
+                      </svg>
+
+                      <span class="sr-only">{% translate 'Get' %}</span>
+                    </a>
+                  </div>
+                  {% endif %}
+                </form>
+                {% endif %}
+
+                {% if options_form %}
+                <div class="tooltip tooltip-right tooltip-info" data-tip="{% translate 'OPTIONS request' %}">
+                  <form action="{{ request.get_full_path }}" data-method="OPTIONS">
+                    <button type="submit" class="btn btn-sm btn-square btn-info lg:btn-md">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-info size-4 lg:size-5">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4" />
+                        <path d="M12 8h.01" />
+                      </svg>
+
+                      <span class="sr-only">{% translate 'Options' %}</span>
+                    </button>
+                  </form>
+                </div>
+                {% endif %}
+                {% endblock %}
+              </div>
+
+              <div class="tooltip tooltip-bottom tooltip-primary" data-tip="{% translate 'Usage' %}">
+                <button type="button" class="btn btn-sm btn-square btn-soft btn-primary lg:btn-md"
+                  onclick="usageDialog.showModal()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-badge-info size-4 lg:size-5">
+                    <path
+                      d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                    <line x1="12" x2="12" y1="16" y2="12" />
+                    <line x1="12" x2="12.01" y1="8" y2="8" />
+                  </svg>
+
+                  <span class="sr-only">{% translate 'Usage' %}</span>
+                </button>
+              </div>
+            </nav>
+          </header>
+
+          <main class="flex flex-col gap-4 gap-4 h-full px-4 py-20 lg:max-h-screen lg:overflow-y-auto">
+            {% if display_edit_forms %}
+            <div role="tablist" class="tabs tabs-sm tabs-border lg:tabs-md">
+              {% if post_form or raw_data_post_form %}
+              <label class="tab" role="tab">
+                <input type="radio" name="form_tabs" checked />
+                <span>{% translate 'HTML Form' %}</span>
+              </label>
+              <div class="tab-content" id="post-object-form">
+                {% with form=post_form %}
+                <form action="{{ request.get_full_path }}" method="POST" enctype="multipart/form-data"
+                  class="grid gap-4">
+                  {% csrf_token %}
+
+                  {{ post_form }}
+
+                  <div class="tooltip tooltip-top tooltip-primary" data-tip="{% translate 'POST request' %}">
+                    <button class="btn btn-primary w-full">
+                      <span>{% translate 'Send' %}</span>
+
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-send-horizontal">
+                        <path
+                          d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
+                        <path d="M6 12h16" />
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+                {% endwith %}
+              </div>
+
+              <label class="tab" role="tab">
+                <input type="radio" name="form_tabs" />
+                <span>{% translate 'Raw data' %}</span>
+              </label>
+              <div class="tab-content" id="post-generic-content-form">
+                {% with form=raw_data_post_form %}
+                <form action="{{ request.get_full_path }}" method="POST" class="grid gap-4">
+                  {% include "rest_framework/raw_data_form.html" %}
+
+                  <div class="tooltip tooltip-top tooltip-primary" data-tip="{% translate 'POST request' %}">
+                    <button class="btn btn-primary w-full">
+                      <span>{% translate 'Send' %}</span>
+
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-send-horizontal size-4 lg:size-5">
+                        <path
+                          d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
+                        <path d="M6 12h16" />
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+                {% endwith %}
+              </div>
+              {% endif %}
+
+              {% if put_form or raw_data_put_form or raw_data_patch_form %}
+              <label class="tab" role="tab">
+                <input type="radio" name="form_tabs" checked />
+                <span>{% translate 'HTML Form' %}</span>
+              </label>
+              <div class="tab-content" id="put-object-form">
+                {% with form=post_form %}
+                <form action="{{ request.get_full_path }}" data-method="PUT" enctype="multipart/form-data"
+                  class="grid gap-4">
+                  {{ put_form }}
+
+                  <div class="tooltip tooltip-top" data-tip="{% translate 'PUT request' %}">
+                    <button class="btn btn-primary w-full">
+                      <span>{% translate 'Send' %}</span>
+
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-send-horizontal size-4 lg:size-5">
+                        <path
+                          d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
+                        <path d="M6 12h16" />
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+                {% endwith %}
+              </div>
+
+              <label class="tab" role="tab">
+                <input type="radio" name="form_tabs" />
+                <span>{% translate 'Raw data' %}</span>
+              </label>
+              <div class="tab-content" id="put-generic-content-form">
+                {% with form=raw_data_put_or_patch_form %}
+                <form action="{{ request.get_full_path }}" data-method="PUT" class="grid gap-4">
+                  {% include "rest_framework/raw_data_form.html" %}
+
+                  <div class="flex items-center gap-4">
+                    {% if raw_data_put_form %}
+                    <div class="tooltip tooltip-top tooltip-primary grow" data-tip="{% translate 'PUT request' %}">
+                      <button class="btn btn-primary w-full">
+                        <span>{% translate 'Send' %}</span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="lucide lucide-send-horizontal size-4 lg:size-5">
+                          <path
+                            d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
+                          <path d="M6 12h16" />
+                        </svg>
+                      </button>
+                    </div>
+                    {% endif %}
+
+                    {% if raw_data_patch_form %}
+                    <div class="tooltip tooltip-top tooltip-secondary grow" data-tip="{% translate 'PATCH request' %}">
+                      <button class="btn btn-secondary w-full" data-method="PATCH">
+                        <span>{% translate 'Send' %}</span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="lucide lucide-send-horizontal size-4 lg:size-5">
+                          <path
+                            d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
+                          <path d="M6 12h16" />
+                        </svg>
+                      </button>
+                    </div>
+                    {% endif %}
+                  </div>
+                </form>
+                {% endwith %}
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+          </main>
+
+          {% if paginator %}
+          <footer class="absolute inset-x-0 bottom-0 z-10">
+            <nav class="p-4 gap-4 backdrop-blur-3xl rounded-b-box">
+              {% get_pagination_html paginator %}
+            </nav>
+          </footer>
+          {% endif %}
+        </section>
+      </section>
+
+      <section id="content" class="col-span-12 h-full lg:max-h-screen lg:col-span-9 lg:h-full lg:pb-4">
+        <section id="main-content" class="relative h-full">
+          <header class="absolute inset-x-0 top-0 z-10">
+            <nav class="navbar items-center justify-between gap-4 rounded-t-box backdrop-blur-3xl px-4">
+              {% block breadcrumbs %}
+              <div class="breadcrumbs text-sm">
+                <ol>
+                  {% for breadcrumb_name, breadcrumb_url in breadcrumblist %}
+                  {% if forloop.last %}
+                  <li>{{ breadcrumb_name }}</li>
+                  {% else %}
+                  <li>
+                    <a href="{{ breadcrumb_url }}">
+                      {{ breadcrumb_name }}
+                    </a>
+                  </li>
+                  {% endif %}
+                  {% endfor %}
+                </ol>
+              </div>
+              {% endblock %}
+
+              <div class="flex items-center gap-4">
+                {% if delete_form %}
+                <div class="tooltip tooltip-left tooltip-error" data-tip="{% translate 'DELETE request' %}">
+                  <button type="button" class="btn btn-sm btn-square btn-error lg:btn-md"
+                    onclick="deleteDialog.showModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="lucide lucide-trash-2 size-4 lg:size-5">
+                      <path d="M3 6h18" />
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                      <line x1="10" x2="10" y1="11" y2="17" />
+                      <line x1="14" x2="14" y1="11" y2="17" />
+                    </svg>
+
+                    <span class="sr-only">{% translate 'Delete' %}</span>
+                  </button>
+                </div>
+
+                <dialog id="deleteDialog" class="modal rounded-box">
+                  <section class="modal-box grid gap-4">
+                    <header class="flex items-center justify-between gap-4">
+                      <h1 class="text-2xl font-semibold">{% translate 'Delete' %} {{ name }}</h1>
+
+                      <div class="tooltip tooltip-left" data-tip="{% translate 'Close' %}">
+                        <button class="btn btn-square btn-ghost" onclick="deleteDialog.close()">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-x">
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                          </svg>
+
+                          <span class="sr-only">{% translate 'Close' %}</span>
+                        </button>
+                      </div>
+                    </header>
+
+                    <main class="grid gap-4">
+                      <form id="delete-form" action="{{ request.get_full_path }}" data-method="DELETE">
+                        <p>{% translate 'Are you sure you want to delete this' %} {{ name }}?</p>
+                      </form>
+
+                      <div role="alert" class="alert alert-error">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="lucide lucide-octagon-x">
+                          <path d="m15 9-6 6" />
+                          <path
+                            d="M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z" />
+                          <path d="m9 9 6 6" />
+                        </svg>
+                        <p>{% translate 'This action is irreversible!' %}</p>
+                      </div>
+                    </main>
+
+                    <footer class="modal-action gap-4">
+                      <button type="submit" form="delete-form" class="btn btn-error grow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="lucide lucide-trash-2">
+                          <path d="M3 6h18" />
+                          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                          <line x1="10" x2="10" y1="11" y2="17" />
+                          <line x1="14" x2="14" y1="11" y2="17" />
+                        </svg>
+
+                        <span>{% translate 'Delete' %}</span>
+                      </button>
+
+                      <button class="btn btn-secondary grow" onclick="deleteDialog.close()">
+                        {% translate 'Close' %}
+                      </button>
+                    </footer>
+                  </section>
+                </dialog>
+                {% endif %}
+
+                {% if extra_actions %}
+                <div>
+                  <button type="button" popovertarget="extra-actions" style="anchor-name:--extra-actions"
+                    class="btn btn-sm btn-square btn-ghost lg:btn-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="lucide lucide-ellipsis-vertical size-4 lg:size-5">
+                      <circle cx="12" cy="12" r="1" />
+                      <circle cx="12" cy="5" r="1" />
+                      <circle cx="12" cy="19" r="1" />
+                    </svg>
+
+                    <span class="sr-only">{% translate 'Extra actions' %}</span>
+                  </button>
+
+                  <ul id="extra-actions" popover style="position-anchor:--extra-actions"
+                    class="menu dropdown dropdown-left dropdown-bottom bg-base-200 rounded-box shadow-lg">
+                    <li class="menu-title">{% translate 'Extra actions' %}</li>
+                    {% for action_name, url in extra_actions|items %}
+                    <li><a href="{{ url }}">{{ action_name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+
+                {% if filter_form %}
+                <div class="tooltip tooltip-left" data-tip="{% translate 'Filters' %}">
+                  <button type="button" class="btn btn-sm btn-square btn-ghost lg:btn-md"
+                    onclick="filtersDialog.showModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="lucide lucide-list-filter size-4 lg:size-5">
+                      <path d="M3 6h18" />
+                      <path d="M7 12h10" />
+                      <path d="M10 18h4" />
+                    </svg>
+
+                    <span class="sr-only">{% translate 'Filters' %}</span>
+                  </button>
+                </div>
+
+                {{ filter_form }}
+                {% endif %}
+              </div>
+            </nav>
+          </header>
+
+          <main class="flex flex-col gap-4 h-full p-4 pt-20 lg:max-h-screen lg:overflow-y-auto">
+            <section id="title-description" class="grid gap-4">
+              <h1 id="title" class="text-primary text-3xl font-black lg:text-6xl">
+                {{ name }}
+              </h1>
+              <div class="font-light">
+                {% block description %}{{ description }}{% endblock %}
+              </div>
+            </section>
+
+            <section id="response" class="card rounded-box bg-base-200">
+              <header class="flex items-center justify-between gap-4 px-4 py-2 rounded-t-box bg-base-300">
+                <div class="flex items-center gap-2">
+                  <div class="tooltip tooltip-right tooltip-error" data-tip="{% translate 'We love Django' %}">
+                    <div class="size-5 rounded-full bg-red-400 lg:size-6"></div>
+                  </div>
+                  <div class="tooltip tooltip-right tooltip-warning" data-tip="{% translate 'DRF rocks' %}">
+                    <div class="size-5 rounded-full bg-yellow-400 lg:size-6"></div>
+                  </div>
+                  <div class="tooltip tooltip-right tooltip-success" data-tip="{% translate 'Made by youzarsiph' %}">
+                    <div class="size-5 rounded-full bg-green-400 lg:size-6"></div>
+                  </div>
+                </div>
+
+                <div class="tooltip tooltip-left" data-tip="{% translate 'Copy' %}">
+                  <button type="button" class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
+                    data-clipboard-text="{{ content }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="lucide lucide-copy size-4 lg:size-5">
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                    </svg>
+
+                    <span class="sr-only">{% translate 'Copy' %}</span>
+                  </button>
+                </div>
+              </header>
+
+              <main class="card-body py-4 gap-4 overflow-auto">
+                <pre><code class="language-http">{{ request.method }} {{ request.get_full_path }}
+HTTP {{ response.status_code }} {{ response.status_text }}
+{% for key, val in response_headers|items %}
+{{ key }}: {{ val|break_long_headers|urlize }}{% endfor %}</code></pre>
+
+                <pre><code class="language-json">{{ content|urlize }}</code></pre>
+              </main>
+            </section>
+          </main>
+        </section>
+      </section>
+    </div>
+    {% endblock %}
+  </main>
+
+  <dialog id="usageDialog" class="modal rounded-box">
+    <section class="modal-box grid gap-4 max-w-4xl">
+      <header class="flex items-center justify-between gap-4">
+        <h1 class="text-2xl font-semibold">{% translate 'Examples' %}</h1>
+
+        <div class="tooltip tooltip-left" data-tip="{% translate 'Close' %}">
+          <button class="btn btn-square btn-ghost" onclick="usageDialog.close()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-x">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+
+            <span class="sr-only">{% translate 'Close' %}</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="overflow-hidden">
+        <div role="tablist" class="tabs tabs-box">
+          <input type="radio" name="usage_tabs" role="tab" class="tab" aria-label="Curl" checked />
+          <div class="tab-content">
+            <section class="relative card max-h-96">
+              <main class="card-body p-2 gap-4 overflow-auto">
+                <div class="absolute top-0 right-4">
+                  <div class="tooltip tooltip-left" data-tip="{% translate 'Copy' %}">
+                    <button type="button" class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
+                      data-clipboard-target="#curl">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-copy size-4 lg:size-5">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+
+                      <span class="sr-only">{% translate 'Copy' %}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <pre><code id="curl" class="language-bash">{% if 'GET' in allowed_methods %}# GET Request
+curl -X GET {{ request.build_absolute_uri }}
+{% endif %}{% if 'POST' in allowed_methods %}
+# POST Request
+curl -X POST {{ request.build_absolute_uri }} \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+{% endif %}{% if 'PUT' in allowed_methods %}
+# PUT Request
+curl -X PUT {{ request.build_absolute_uri }} \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+{% endif %}{% if 'PATCH' in allowed_methods %}
+# PATCH Request
+curl -X PATCH {{ request.build_absolute_uri }} \
+  -H "Content-Type: application/json" \
+  -d '{...}'
+{% endif %}{% if 'DELETE' in allowed_methods %}
+# DELETE Request
+curl -X DELETE {{ request.build_absolute_uri }}
+{% endif %}</code></pre>
+              </main>
+            </section>
+          </div>
+
+          <input type="radio" name="usage_tabs" role="tab" class="tab" aria-label="Python" />
+          <div class="tab-content">
+            <section class="relative card max-h-96">
+              <main class="card-body p-2 gap-4 overflow-auto">
+                <div class="absolute top-0 right-4">
+                  <div class="tooltip tooltip-left" data-tip="{% translate 'Copy' %}">
+                    <button type="button" class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
+                      data-clipboard-target="#python">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-copy size-4 lg:size-5">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+
+                      <span class="sr-only">{% translate 'Copy' %}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <pre><code id="python" class="language-python">import requests
+
+
+url = "{{ request.build_absolute_uri }}"
+
+{% if 'GET' in allowed_methods %}# GET Request
+response = requests.get(url)
+
+if response.status_code == 200:
+    items = response.json()
+    print("Items retrieved:", items)
+else:
+    print("Failed to retrieve items:", response.status_code, response.text)
+{% endif %}
+{% if 'POST' in allowed_methods %}# POST Request
+response = requests.post(url, json={...})
+
+if response.status_code == 201:
+    print("Item created:", response.json())
+else:
+    print("Failed to create item:", response.status_code, response.text)
+{% endif %}
+{% if 'PUT' in allowed_methods %}# PUT Request
+response = requests.put(url, json={...})
+
+if response.status_code == 201:
+    print("Item created:", response.json())
+else:
+    print("Failed to create item:", response.status_code, response.text)
+{% endif %}
+{% if 'PATCH' in allowed_methods %}# PATCH Request
+response = requests.patch(url, json={...})
+
+if response.status_code == 200:
+    print("Item updated:", response.json())
+else:
+    print("Failed to update item:", response.status_code, response.text)
+{% endif %}
+{% if 'DELETE' in allowed_methods %}# DELETE Request
+response = requests.delete(url)
+
+if response.status_code == 204:
+    print("Item deleted successfully")
+else:
+    print("Failed to delete item:", response.status_code, response.text)
+{% endif %}</code></pre>
+              </main>
+            </section>
+          </div>
+
+          <input type="radio" name="usage_tabs" role="tab" class="tab" aria-label="Javascript" />
+          <div class="tab-content">
+            <section class="relative card max-h-96">
+              <main class="card-body p-2 gap-4 overflow-auto">
+                <div class="absolute top-0 right-4">
+                  <div class="tooltip tooltip-left" data-tip="{% translate 'Copy' %}">
+                    <button type="button" class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
+                      data-clipboard-target="#javascript">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-copy size-4 lg:size-5">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+
+                      <span class="sr-only">{% translate 'Copy' %}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <pre><code id="javascript" class="language-javascript">const url = '{{ request.build_absolute_uri }}'
+{% if 'GET' in allowed_methods %}
+// GET Request
+fetch(url)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error))
+{% endif %}
+{% if 'POST' in allowed_methods %}// POST Request
+fetch(url, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({...}),
+})
+  .then(response => response.json())
+  .then(data => console.log('Success:', data))
+  .catch(error => console.error('Error:', error))
+{% endif %}
+{% if 'PUT' in allowed_methods %}// PUT Request
+fetch(url, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({...}),
+})
+  .then(response => response.json())
+  .then(data => console.log('Success:', data))
+  .catch(error => console.error('Error:', error))
+{% endif %}
+{% if 'PATCH' in allowed_methods %}// PATCH Request
+fetch(url, {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({...}),
+})
+  .then(response => response.json())
+  .then(data => console.log('Success:', data))
+  .catch(error => console.error('Error:', error))
+{% endif %}
+{% if 'DELETE' in allowed_methods %}// DELETE Request
+fetch(url, { method: 'DELETE' })
+  .then(response => console.log('Item deleted:', response))
+  .catch(error => console.error('Error:', error))
+{% endif %}</code></pre>
+              </main>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <footer class="modal-action">
+        <button class="btn btn-primary grow" onclick="usageDialog.close()">
+          {% translate 'Close' %}
+        </button>
+      </footer>
+    </section>
+  </dialog>
+
+  {% block script %}
+  <script type="application/json" id="drf_csrf">
+    {
+      "csrfHeaderName": "{{ csrf_header_name|default:'X-CSRFToken' }}",
+      "csrfToken": "{% if request %}{{ csrf_token }}{% endif %}"
+    }
+  </script>
+  <script src="{% static 'rest_framework/js/jquery-3.7.1.min.js' %}"></script>
+  <script src="{% static 'rest_framework/js/ajax-form.js' %}"></script>
+  <script src="{% static 'rest_framework/js/csrf.js' %}"></script>
+  <script src="{% static 'rest_framework/js/prettify-min.js' %}"></script>
+  <script src="{% static 'rest_framework/js/default.js' %}"></script>
+  <script src="{% static 'rest_framework/js/load-ajax-form.js' %}"></script>
+  <script>
+    // Copy buttons
+    const copyBtns = new ClipboardJS('.btn-copy')
+
+    // Make all links in response section clickable
+    setTimeout(() =>
+      document.querySelectorAll('#response .language-json .hljs-string').forEach(e => {
+        if (e.innerHTML.startsWith('"http')) {
+          e.innerHTML = `<a href="${e.innerHTML.slice(1, e.innerHTML.length - 1)}">${e.innerHTML}</a>`
+        }
+      }), 100);
+  </script>
+  {% endblock %}
+  {% endblock %}
+</body>
+
+</html>

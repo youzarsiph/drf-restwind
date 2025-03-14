@@ -104,36 +104,6 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "django-cors-headers"
-version = "4.6.0"
-description = "django-cors-headers is a Django application for handling the server headers required for Cross-Origin Resource Sharing (CORS)."
-optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "django_cors_headers-4.6.0-py3-none-any.whl", hash = "sha256:8edbc0497e611c24d5150e0055d3b178c6534b8ed826fb6f53b21c63f5d48ba3"},
-    {file = "django_cors_headers-4.6.0.tar.gz", hash = "sha256:14d76b4b4c8d39375baeddd89e4f08899051eeaf177cb02a29bd6eae8cf63aa8"},
-]
-
-[package.dependencies]
-asgiref = ">=3.6"
-django = ">=4.2"
-
-[[package]]
-name = "django-debug-toolbar"
-version = "5.0.1"
-description = "A configurable set of panels that display various debug information about the current request/response."
-optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "django_debug_toolbar-5.0.1-py3-none-any.whl", hash = "sha256:7456cc2e951db37dab335686db7803c4a0ecb6736d120705f6668db9548bf49f"},
-    {file = "django_debug_toolbar-5.0.1.tar.gz", hash = "sha256:296f6f18a80710e84fbb8361538ae5ec522a75ebe9ab67db34bcf1026cbeb420"},
-]
-
-[package.dependencies]
-django = ">=4.2.9"
-sqlparse = ">=0.2"
-
-[[package]]
 name = "djangorestframework"
 version = "3.15.2"
 description = "Web APIs for Django, made easy."
@@ -146,21 +116,6 @@ files = [
 
 [package.dependencies]
 django = ">=4.2"
-
-[[package]]
-name = "drf-redesign"
-version = "0.4.0"
-description = "Redesign of the browse-able api of Django REST Framework with Bootstrap 5"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "drf_redesign-0.4.0-py3-none-any.whl", hash = "sha256:87e6b9084c4945b7ed7c73602fe3becd85915e98bef41aeb4bda8f8c762acf57"},
-    {file = "drf_redesign-0.4.0.tar.gz", hash = "sha256:6906f4af72baf941aac7f637abb1a858356ca782cadda58edf41e2e67b9550ad"},
-]
-
-[package.dependencies]
-django = ">=3.0"
-djangorestframework = ">=3.14"
 
 [[package]]
 name = "mypy-extensions"
@@ -267,4 +222,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "daba5720da4e60e44a1a12ecb46f99083199952d49b126f523f45d9abc67b26a"
+content-hash = "8521895e73d196b36a14e4539de7c0b8e337ded2c2d93d1befae15d7a5ad957b"

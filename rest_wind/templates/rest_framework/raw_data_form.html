@@ -1,0 +1,15 @@
+{% load rest_framework %}
+
+{{ form.non_field_errors }}
+
+{% for field in form %}
+<fieldset class="fieldset">
+  {{ field.label_tag|add_class:"fieldset-label-text" }}
+
+  <div class="grid gap-2">
+    {{ field|add_class:"input w-full" }}
+
+    <span class="fieldset-help-text">{{ field.help_text|safe }}</span>
+  </div>
+</fieldset>
+{% endfor %}

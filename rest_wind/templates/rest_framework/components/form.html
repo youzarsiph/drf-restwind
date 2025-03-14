@@ -1,0 +1,31 @@
+{% load i18n %}
+<form method="post" class="grid gap-4">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit" class="btn btn-primary">
+    {% translate 'Submit' %}
+  </button>
+</form>
+<script>
+  // Style containers and labels
+  document.querySelectorAll('form > div').forEach(e => e.classList.add('fieldset'))
+  document.querySelectorAll('form > div > label').forEach(e => e.classList.add('fieldset-legend'))
+  document.querySelectorAll('form > div > .helptext').forEach(e => e.classList.add('fieldset-label'))
+
+  // Style inputs
+  document.querySelectorAll('input').forEach(e => e.classList.add('input', 'input-primary', 'w-full'))
+  document.querySelectorAll('input[type=checkbox]').forEach(e => {
+    e.classList.remove('input', 'w-full')
+    e.classList.add('checkbox', 'checkbox-primary')
+  })
+  document.querySelectorAll('input[type=radio]').forEach(e => {
+    e.classList.remove('input', 'w-full')
+    e.classList.add('radio', 'radio-primary')
+  })
+  document.querySelectorAll('input[type=file]').forEach(e => {
+    e.classList.remove('input')
+    e.classList.add('file-input')
+  })
+  document.querySelectorAll('textarea').forEach(e => e.classList.add('textarea', 'textarea-primary', 'w-full'))
+  document.querySelectorAll('select').forEach(e => e.classList.add('select', 'select-primary', 'w-full'))
+</script>

@@ -1,0 +1,51 @@
+{% load i18n rest_framework %}
+{% translate "None" as none_choice %}
+<div class="grid gap-4">
+  <div class="fieldset">
+    {% if field.label %}
+      <label for="{{ field.name }}" class="fieldset-legend{% if style.hide_label %} sr-only{% endif %}">
+        {{ field.label }}
+      </label>
+    {% endif %}
+    <label class="fieldset-label flex items-center gap-4">
+      <input
+        type="radio"
+        id="{{ field.name }}"
+        name="{{ field.name }}"
+        class="radio radio-primary"
+        {% if field.required %}required{% endif %}
+        {% if field.value is not None %}checked{% endif %}
+      />
+
+      {% if field.allow_null or field.allow_blank %}
+        {{ none_choice }}
+      {% else %}
+        {{ field.label }}
+      {% endif %}
+    </label>
+    {% for key, text in field.choices|items %}
+      <div class="form-check">
+        <label class="fieldset-label flex items-center gap-4">
+          <input
+            type="radio"
+            value="{{ key }}"
+            id="{{ field.name }}_{{ key }}"
+            name="{{ field.name }}"
+            class="radio radio-primary"
+            {% if key|as_string == field.value|as_string %}checked{% endif %}
+          />
+        </label>
+        {% if field.label %}
+          <label
+            for="{{ field.name }}_{{ key }}"
+            {% if style.hide_label %}class="sr-only"{% endif %}
+          >
+            {{ text }}
+          </label>
+        {% endif %}
+      </div>
+    {% endfor %}
+    {% if field.help_text %}<p class="fieldset-label">{{ field.help_text|safe }}</p>{% endif %}
+  </div>
+  {% include 'rest_framework/components/field_errors.html' %}
+</div>
