@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "drf-restwind"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Django REST Framework app template with dependency management and DevOps best practices."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
