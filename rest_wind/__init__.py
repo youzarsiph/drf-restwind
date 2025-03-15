@@ -1,1 +1,1 @@
-""" DRF RestWind """
+"""DRF RestWind"""

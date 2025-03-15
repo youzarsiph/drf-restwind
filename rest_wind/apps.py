@@ -1,4 +1,4 @@
-""" App configuration for drf_restwind """
+"""App configuration for drf_restwind"""
 
 from django.apps import AppConfig
 

@@ -1,6 +1,6 @@
 {% load i18n static rest_framework rest_wind %}
 <!DOCTYPE html>
-<html lang="en" data-theme="{% block theme %}dracula{% endblock %}">
+<html lang="en" data-theme="{% block theme %}{% endblock %}">
 
 <head>
   {% block head %}
@@ -12,7 +12,7 @@
   <title>{% block title %}{% if name %}{{ name }} - {% endif %}Django REST framework{% endblock %}</title>
   <!-- Themes -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.2/themes.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <!-- Fonts -->
@@ -27,7 +27,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/http.min.js"></script>
   {% block highlight_theme %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
   {% endblock %}
   <script>hljs.highlightAll();</script>
 
@@ -146,7 +146,9 @@
         </ul>
 
         <ul class="menu menu-vertical items-center gap-1 p-0 lg:gap-2">
+          {% block theme_selector %}
           {% include 'rest_framework/components/theme.html' %}
+          {% endblock %}
           <li class="tooltip tooltip-right tooltip-accent" data-tip="{% translate 'Profile' %}">
             <button popovertarget="profile" style="anchor-name:--profile-anchor"
               class="btn btn-square {% if request.path == profile %}btn-soft btn-primary{% else %}btn-ghost{% endif %}">
@@ -690,27 +692,29 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                   </div>
                 </div>
 
-                <pre><code id="curl" class="language-bash">{% if 'GET' in allowed_methods %}# GET Request
-curl -X GET {{ request.build_absolute_uri }}
-{% endif %}{% if 'POST' in allowed_methods %}
+                <div id="curl" class="grid gap-4">
+                  <pre data-request-method="get" class="hidden"><code class="language-bash">
+# GET Request
+curl -X GET {{ request.build_absolute_uri }}</code></pre>
+                  <pre data-request-method="post" class="hidden"><code class="language-bash">
 # POST Request
 curl -X POST {{ request.build_absolute_uri }} \
   -H "Content-Type: application/json" \
-  -d '{...}'
-{% endif %}{% if 'PUT' in allowed_methods %}
+  -d '{...}'</code></pre>
+                  <pre data-request-method="put" class="hidden"><code class="language-bash">
 # PUT Request
 curl -X PUT {{ request.build_absolute_uri }} \
   -H "Content-Type: application/json" \
-  -d '{...}'
-{% endif %}{% if 'PATCH' in allowed_methods %}
+  -d '{...}'</code></pre>
+                  <pre data-request-method="patch" class="hidden"><code class="language-bash">
 # PATCH Request
 curl -X PATCH {{ request.build_absolute_uri }} \
   -H "Content-Type: application/json" \
-  -d '{...}'
-{% endif %}{% if 'DELETE' in allowed_methods %}
+  -d '{...}'</code></pre>
+                  <pre data-request-method="delete" class="hidden"><code class="language-bash">
 # DELETE Request
-curl -X DELETE {{ request.build_absolute_uri }}
-{% endif %}</code></pre>
+curl -X DELETE {{ request.build_absolute_uri }}</code></pre>
+                </div>
               </main>
             </section>
           </div>
@@ -735,52 +739,53 @@ curl -X DELETE {{ request.build_absolute_uri }}
                   </div>
                 </div>
 
-                <pre><code id="python" class="language-python">import requests
+                <div id="python" class="grid gap-4">
+                  <pre><code class="language-python">import requests
 
 
-url = "{{ request.build_absolute_uri }}"
-
-{% if 'GET' in allowed_methods %}# GET Request
+url = "{{ request.build_absolute_uri }}"</code></pre>
+                  <pre data-request-method="get" class="hidden"><code class="language-python">
+# GET Request
 response = requests.get(url)
 
 if response.status_code == 200:
     items = response.json()
     print("Items retrieved:", items)
 else:
-    print("Failed to retrieve items:", response.status_code, response.text)
-{% endif %}
-{% if 'POST' in allowed_methods %}# POST Request
+    print("Failed to retrieve items:", response.status_code, response.text)</code></pre>
+                  <pre data-request-method="post" class="hidden"><code class="language-python">
+# POST Request
 response = requests.post(url, json={...})
 
 if response.status_code == 201:
     print("Item created:", response.json())
 else:
-    print("Failed to create item:", response.status_code, response.text)
-{% endif %}
-{% if 'PUT' in allowed_methods %}# PUT Request
+    print("Failed to create item:", response.status_code, response.text)</code></pre>
+                  <pre data-request-method="put" class="hidden"><code class="language-python">
+# PUT Request
 response = requests.put(url, json={...})
 
-if response.status_code == 201:
-    print("Item created:", response.json())
+if response.status_code == 200:
+    print("Item updated:", response.json())
 else:
-    print("Failed to create item:", response.status_code, response.text)
-{% endif %}
-{% if 'PATCH' in allowed_methods %}# PATCH Request
+    print("Failed to update item:", response.status_code, response.text)</code></pre>
+                  <pre data-request-method="patch" class="hidden"><code class="language-python">
+# PATCH Request
 response = requests.patch(url, json={...})
 
 if response.status_code == 200:
     print("Item updated:", response.json())
 else:
-    print("Failed to update item:", response.status_code, response.text)
-{% endif %}
-{% if 'DELETE' in allowed_methods %}# DELETE Request
+    print("Failed to update item:", response.status_code, response.text)</code></pre>
+                  <pre data-request-method="delete" class="hidden"><code class="language-python">
+# DELETE Request
 response = requests.delete(url)
 
 if response.status_code == 204:
     print("Item deleted successfully")
 else:
-    print("Failed to delete item:", response.status_code, response.text)
-{% endif %}</code></pre>
+    print("Failed to delete item:", response.status_code, response.text)</code></pre>
+                </div>
               </main>
             </section>
           </div>
@@ -805,15 +810,16 @@ else:
                   </div>
                 </div>
 
-                <pre><code id="javascript" class="language-javascript">const url = '{{ request.build_absolute_uri }}'
-{% if 'GET' in allowed_methods %}
+                <div id="javascript" class="grid gap-4">
+                  <pre><code class="language-javascript">const url = '{{ request.build_absolute_uri }}'</code></pre>
+                  <pre data-request-method="get" class="hidden"><code class="language-javascript">
 // GET Request
 fetch(url)
   .then(response => response.json())
   .then(data => console.log(data))
-  .catch(error => console.error('Error:', error))
-{% endif %}
-{% if 'POST' in allowed_methods %}// POST Request
+  .catch(error => console.error('Error:', error))</code></pre>
+                  <pre data-request-method="post" class="hidden"><code class="language-javascript">
+// POST Request
 fetch(url, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
@@ -821,9 +827,9 @@ fetch(url, {
 })
   .then(response => response.json())
   .then(data => console.log('Success:', data))
-  .catch(error => console.error('Error:', error))
-{% endif %}
-{% if 'PUT' in allowed_methods %}// PUT Request
+  .catch(error => console.error('Error:', error))</code></pre>
+                  <pre data-request-method="put" class="hidden"><code class="language-javascript">
+// PUT Request
 fetch(url, {
   method: 'PUT',
   headers: { 'Content-Type': 'application/json' },
@@ -831,9 +837,9 @@ fetch(url, {
 })
   .then(response => response.json())
   .then(data => console.log('Success:', data))
-  .catch(error => console.error('Error:', error))
-{% endif %}
-{% if 'PATCH' in allowed_methods %}// PATCH Request
+  .catch(error => console.error('Error:', error))</code></pre>
+                  <pre data-request-method="patch" class="hidden"><code class="language-javascript">
+// PATCH Request
 fetch(url, {
   method: 'PATCH',
   headers: { 'Content-Type': 'application/json' },
@@ -841,13 +847,13 @@ fetch(url, {
 })
   .then(response => response.json())
   .then(data => console.log('Success:', data))
-  .catch(error => console.error('Error:', error))
-{% endif %}
-{% if 'DELETE' in allowed_methods %}// DELETE Request
+  .catch(error => console.error('Error:', error))</code></pre>
+                  <pre data-request-method="delete" class="hidden"><code class="language-javascript">
+// DELETE Request
 fetch(url, { method: 'DELETE' })
   .then(response => console.log('Item deleted:', response))
-  .catch(error => console.error('Error:', error))
-{% endif %}</code></pre>
+  .catch(error => console.error('Error:', error))</code></pre>
+                </div>
               </main>
             </section>
           </div>
@@ -862,32 +868,62 @@ fetch(url, { method: 'DELETE' })
     </section>
   </dialog>
 
-  {% block script %}
-  <script type="application/json" id="drf_csrf">
-    {
-      "csrfHeaderName": "{{ csrf_header_name|default:'X-CSRFToken' }}",
-      "csrfToken": "{% if request %}{{ csrf_token }}{% endif %}"
-    }
-  </script>
-  <script src="{% static 'rest_framework/js/jquery-3.7.1.min.js' %}"></script>
-  <script src="{% static 'rest_framework/js/ajax-form.js' %}"></script>
-  <script src="{% static 'rest_framework/js/csrf.js' %}"></script>
-  <script src="{% static 'rest_framework/js/prettify-min.js' %}"></script>
-  <script src="{% static 'rest_framework/js/default.js' %}"></script>
-  <script src="{% static 'rest_framework/js/load-ajax-form.js' %}"></script>
-  <script>
-    // Copy buttons
-    const copyBtns = new ClipboardJS('.btn-copy')
+  <section id="scripts" class="hidden">
+    {% block script %}
+    <script type="application/json" id="drf_csrf">
+      {
+        "csrfHeaderName": "{{ csrf_header_name|default:'X-CSRFToken' }}",
+        "csrfToken": "{% if request %}{{ csrf_token }}{% endif %}"
+      }
+    </script>
+    <script src="{% static 'rest_framework/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'rest_framework/js/ajax-form.js' %}"></script>
+    <script src="{% static 'rest_framework/js/csrf.js' %}"></script>
+    <script src="{% static 'rest_framework/js/prettify-min.js' %}"></script>
+    <script src="{% static 'rest_framework/js/default.js' %}"></script>
+    <script src="{% static 'rest_framework/js/load-ajax-form.js' %}"></script>
+    {% endblock %}
 
-    // Make all links in response section clickable
-    setTimeout(() =>
-      document.querySelectorAll('#response .language-json .hljs-string').forEach(e => {
-        if (e.innerHTML.startsWith('"http')) {
-          e.innerHTML = `<a href="${e.innerHTML.slice(1, e.innerHTML.length - 1)}">${e.innerHTML}</a>`
-        }
-      }), 100);
-  </script>
-  {% endblock %}
+    <script>
+      // Copy buttons
+      const copyBtns = new ClipboardJS('.btn-copy')
+
+      // Make all links in response section clickable
+      setTimeout(() =>
+        document.querySelectorAll('#response .language-json .hljs-string').forEach(e => {
+          if (e.innerHTML.startsWith('"http')) {
+            e.innerHTML = `<a href="${e.innerHTML.slice(1, e.innerHTML.length - 1)}">${e.innerHTML}</a>`
+          }
+        }), 100);
+    </script>
+
+    <!-- Scripts to control visibility of code snippets -->
+    {% if 'GET' in allowed_methods %}
+    <script>
+      document.querySelectorAll('dialog#usageDialog pre[data-request-method=get]').forEach(e => e.classList.toggle('hidden'))
+    </script>
+    {% endif %}
+    {% if 'POST' in allowed_methods %}
+    <script>
+      document.querySelectorAll('dialog#usageDialog pre[data-request-method=post]').forEach(e => e.classList.toggle('hidden'))
+    </script>
+    {% endif %}
+    {% if 'PUT' in allowed_methods %}
+    <script>
+      document.querySelectorAll('dialog#usageDialog pre[data-request-method=put]').forEach(e => e.classList.toggle('hidden'))
+    </script>
+    {% endif %}
+    {% if 'PATCH' in allowed_methods %}
+    <script>
+      document.querySelectorAll('dialog#usageDialog pre[data-request-method=patch]').forEach(e => e.classList.toggle('hidden'))
+    </script>
+    {% endif %}
+    {% if 'DELETE' in allowed_methods %}
+    <script>
+      document.querySelectorAll('dialog#usageDialog pre[data-request-method=delete]').forEach(e => e.classList.toggle('hidden'))
+    </script>
+    {% endif %}
+  </section>
   {% endblock %}
 </body>
 

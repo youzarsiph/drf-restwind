@@ -92,6 +92,16 @@ Sure! Here’s the continuation of the instructions for changing the theme and o
 {% endblock %}
 ```
 
+### Removing theme selector
+
+To remove the theme selector, update your `api.html`:
+
+```html
+{% extends 'rest_framework/base.html' %}
+
+{% block theme_selector %}{% endblock %}
+```
+
 ### Customizing the Brand and Adding Links
 
 To change the brand name and add custom links, modify your `api.html`:
