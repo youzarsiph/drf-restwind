@@ -18,41 +18,42 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans&family=Noto+Serif&display=swap"
+    rel="stylesheet">
+
   <!-- Copy -->
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
 
   <!-- Code Highlighting -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/http.min.js"></script>
   {% block highlight_theme %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
   {% endblock %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/http.min.js"></script>
   <script>hljs.highlightAll();</script>
 
   <!-- Style overrides -->
   <style>
     body {
-      font-family: 'Noto Sans';
+      font-family: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
     h1#title {
-      font-family: 'Noto Serif';
+      font-family: 'Noto Serif', system-ui, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
     pre code.hljs,
     code.hljs,
     .hljs {
       padding: 0px;
-      font-family: 'Jetbrains Mono';
+      font-family: 'Jetbrains Mono', monospace;
       background-color: transparent;
     }
   </style>
   {% endblock %}
 </head>
 
-<body class="flex h-screen bg-base-300 overflow-hidden">
+<body class="flex h-dvh bg-base-300 overflow-hidden">
   {% block body %}
   <section id="nav" class="h-full z-20">
     <header class="h-full">
@@ -191,10 +192,10 @@
     </header>
   </section>
 
-  <main class="relative flex h-screen w-full flex-col gap-4 py-2 pr-2 overflow-y-auto lg:overflow-hidden">
+  <main class="relative flex h-dvh w-full flex-col gap-4 py-2 pr-2 overflow-y-auto lg:overflow-hidden">
     {% block content %}
     <div class="grid gap-4 w-full grid-cols-12 rounded-box bg-base-100 lg:h-full lg:gap-0">
-      <section id="sidebar" class="col-span-12 h-full lg:max-h-screen lg:col-span-3 lg:h-full lg:pb-4">
+      <section id="sidebar" class="col-span-12 h-full lg:max-h-dvh lg:col-span-3 lg:h-full lg:pb-4">
         <section id="sidebar-content" class="relative h-full">
           <header class="absolute inset-x-0 top-0 z-10">
             <nav class="flex items-center justify-between p-4 gap-4 backdrop-blur-3xl rounded-t-box">
@@ -300,7 +301,7 @@
             </nav>
           </header>
 
-          <main class="flex flex-col gap-4 gap-4 h-full px-4 py-20 lg:max-h-screen lg:overflow-y-auto">
+          <main class="flex flex-col gap-4 gap-4 h-full px-4 py-20 lg:max-h-dvh lg:overflow-y-auto">
             {% if display_edit_forms %}
             <div role="tablist" class="tabs tabs-sm tabs-border lg:tabs-md">
               {% if post_form or raw_data_post_form %}
@@ -448,7 +449,7 @@
         </section>
       </section>
 
-      <section id="content" class="col-span-12 h-full lg:max-h-screen lg:col-span-9 lg:h-full lg:pb-4">
+      <section id="content" class="col-span-12 h-full lg:max-h-dvh lg:col-span-9 lg:h-full lg:pb-4">
         <section id="main-content" class="relative h-full">
           <header class="absolute inset-x-0 top-0 z-10">
             <nav class="navbar items-center justify-between gap-4 rounded-t-box backdrop-blur-3xl px-4">
@@ -596,7 +597,7 @@
             </nav>
           </header>
 
-          <main class="flex flex-col gap-4 h-full p-4 pt-20 lg:max-h-screen lg:overflow-y-auto">
+          <main class="flex flex-col gap-4 h-full p-4 pt-20 lg:max-h-dvh lg:overflow-y-auto">
             <section id="title-description" class="grid gap-4">
               <h1 id="title" class="text-primary text-3xl font-black lg:text-6xl">
                 {{ name }}

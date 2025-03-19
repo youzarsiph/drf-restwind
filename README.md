@@ -109,7 +109,9 @@ To change the brand name and add custom links, modify your `api.html`:
 ```html
 {% extends 'rest_framework/base.html' %}
 
-{% block title %}YOUR_BRAND{% endblock %}
+{% load i18n %}
+
+{% block title %}{% translate 'YOUR_BRAND' %}{% endblock %}
 
 {% block branding %}
 <li class="tooltip tooltip-right tooltip-primary" data-tip="{% translate 'YOUR_BRAND' %}">
