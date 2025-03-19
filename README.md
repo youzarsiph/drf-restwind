@@ -28,6 +28,14 @@ Welcome to `drf-restwind`, a modern re-imagining of the Django REST Framework. T
 - **Comprehensive Testing**: Leverages Django’s testing framework for effective test management.
 - **Essential Configuration Files**: Includes necessary files such as `.gitignore` and `pyproject.toml` for streamlined project setup.
 
+## Screenshots
+
+![API Root](https://github.com/user-attachments/assets/5197b47d-8bb6-426b-a62b-232cfc34198d)
+
+![List View](https://github.com/user-attachments/assets/7665d4c8-e57a-4337-93af-4bb974a4f2d4)
+
+![Detail View](https://github.com/user-attachments/assets/76bddab0-8747-42ae-b79b-b3be7802a729)
+
 ## Quick Start Guide
 
 To get started with `drf-restwind`, follow these steps:
