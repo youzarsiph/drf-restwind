@@ -11,9 +11,11 @@
   {% endblock %}
   <title>{% block title %}{% if name %}{{ name }} - {% endif %}Django REST framework{% endblock %}</title>
   <!-- Themes -->
+  {% block styles %}
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  {% endblock %}
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +78,7 @@
           {% endblock %}
           {% block userlinks %}
           <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'Home' %}">
-            <a href="https://www.django-rest-framework.org/" class="btn btn-square btn-ghost">
+            <a href="https://www.django-rest-framework.org/" class="btn btn-sm btn-square btn-ghost lg:btn-md">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-house size-5 lg:size-6">
@@ -89,7 +91,8 @@
             </a>
           </li>
           <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'Docs' %}">
-            <a href="https://www.django-rest-framework.org/api-guide/requests/" class="btn btn-square btn-ghost">
+            <a href="https://www.django-rest-framework.org/api-guide/requests/"
+              class="btn btn-sm btn-square btn-ghost lg:btn-md">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-book-text size-5 lg:size-6">
@@ -102,7 +105,8 @@
             </a>
           </li>
           <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'Tutorial' %}">
-            <a href="https://www.django-rest-framework.org/tutorial/quickstart/" class="btn btn-square btn-ghost">
+            <a href="https://www.django-rest-framework.org/tutorial/quickstart/"
+              class="btn btn-sm btn-square btn-ghost lg:btn-md">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-graduation-cap size-5 lg:size-6">
@@ -116,7 +120,8 @@
             </a>
           </li>
           <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'DRF Repo' %}">
-            <a href="https://github.com/encode/django-rest-framework/" class="btn btn-square btn-ghost">
+            <a href="https://github.com/encode/django-rest-framework/"
+              class="btn btn-sm btn-square btn-ghost lg:btn-md">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-folder-git-2 size-5 lg:size-6">
@@ -131,7 +136,7 @@
             </a>
           </li>
           <li class="tooltip tooltip-right tooltip-secondary" data-tip="{% translate 'DRF RestWind Repo' %}">
-            <a href="https://github.com/youzarsiph/drf-restwind/" class="btn btn-square btn-ghost">
+            <a href="https://github.com/youzarsiph/drf-restwind/" class="btn btn-sm btn-square btn-ghost lg:btn-md">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-github size-5 lg:size-6">
@@ -152,7 +157,7 @@
           {% endblock %}
           <li class="tooltip tooltip-right tooltip-accent" data-tip="{% translate 'Profile' %}">
             <button popovertarget="profile" style="anchor-name:--profile-anchor"
-              class="btn btn-square {% if request.path == profile %}btn-soft btn-primary{% else %}btn-ghost{% endif %}">
+              class="btn btn-sm btn-square btn-ghost lg:btn-md">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-user size-5 lg:size-6">
@@ -192,9 +197,10 @@
     </header>
   </section>
 
-  <main class="relative flex h-dvh w-full flex-col gap-4 py-2 pr-2 overflow-y-auto lg:overflow-hidden">
+  <main class="relative flex h-dvh w-full flex-col gap-4 py-2 pr-2 overflow-hidden">
     {% block content %}
-    <div class="grid gap-4 w-full grid-cols-12 rounded-box bg-base-100 lg:h-full lg:gap-0">
+    <div
+      class="grid gap-4 h-full w-full grid-cols-12 rounded-box bg-base-100 overflow-y-auto lg:overflow-y-visible lg:gap-0">
       <section id="sidebar" class="col-span-12 h-full lg:max-h-dvh lg:col-span-3 lg:h-full lg:pb-4">
         <section id="sidebar-content" class="relative h-full">
           <header class="absolute inset-x-0 top-0 z-10">

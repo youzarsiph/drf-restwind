@@ -81,6 +81,21 @@ To customize `drf-restwind`, follow these steps:
    {% extends 'rest_framework/base.html' %}
    ```
 
+3. **Add your `app` to `INSTALLED_APPS`**
+
+   In `project/settings.py`:
+
+   ```python
+   # Application definition
+   INSTALLED_APPS = [
+       # Add your app
+       "app",
+       "rest_wind",
+       "rest_framework",
+       ...
+   ]
+   ```
+
 Now you can proceed with the following customization guides.
 
 ### Changing the Theme
