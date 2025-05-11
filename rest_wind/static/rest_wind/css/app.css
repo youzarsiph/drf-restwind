@@ -22,10 +22,6 @@ npx @tailwindcss/cli -i ..\static\rest_wind\css\app.css -o ..\static\rest_wind\c
 }
 
 @layer base {
-  * {
-    @apply transition-all;
-  }
-
   pre code.hljs,
   code.hljs,
   .hljs {
