@@ -107,9 +107,11 @@ Sure! Here’s the continuation of the instructions for changing the theme and o
 ```html
 {% extends 'rest_framework/base.html' %}
 
+<!-- prettier ignore -->
 {% block theme %}dracula{% endblock %}
 
 <!-- The default theme is light. To use a dark theme, set the highlight_theme accordingly to support dark themes -->
+<!-- prettier ignore -->
 {% block highlight_theme %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/dracula.min.css">
 {% endblock %}
@@ -122,6 +124,7 @@ To remove the theme selector, update your `api.html`:
 ```html
 {% extends 'rest_framework/base.html' %}
 
+<!-- prettier ignore -->
 {% block theme_selector %}{% endblock %}
 ```
 
@@ -132,10 +135,13 @@ To change the brand name and add custom links, modify your `api.html`:
 ```html
 {% extends 'rest_framework/base.html' %}
 
+<!-- prettier ignore -->
 {% load i18n %}
 
+<!-- prettier ignore -->
 {% block title %}{% translate 'YOUR_BRAND' %}{% endblock %}
 
+<!-- prettier ignore -->
 {% block branding %}
 <li class="tooltip tooltip-right tooltip-primary" data-tip="{% translate 'YOUR_BRAND' %}">
   <a href="https://www.django-rest-framework.org/" class="btn btn-square btn-primary lg:btn-lg">
@@ -159,6 +165,7 @@ To change the brand name and add custom links, modify your `api.html`:
 </li>
 {% endblock %}
 
+<!-- prettier ignore -->
 {% block userlinks %}
 <li class="tooltip tooltip-right" data-tip="{% translate 'Home' %}">
   <a href="https://github.com/youzarsiph" class="btn btn-square btn-ghost">

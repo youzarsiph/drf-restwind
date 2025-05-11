@@ -1,7 +1,7 @@
+<!-- prettier ignore -->
 {% load rest_framework %}
-
 {{ form.non_field_errors }}
-
+<!-- prettier ignore -->
 {% for field in form %}
 <fieldset class="fieldset">
   {{ field.label_tag|add_class:"fieldset-label-text" }}

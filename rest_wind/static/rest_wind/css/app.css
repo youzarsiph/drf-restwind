@@ -1,0 +1,35 @@
+/* Run this command to generate the output file
+npx @tailwindcss/cli -i ..\static\rest_wind\css\app.css -o ..\static\rest_wind\css\styles.css --cwd ..\..\templates\ -m
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans:
+    "Noto Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif:
+    "Noto Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+@plugin "daisyui" {
+  themes: all;
+}
+
+@layer base {
+  * {
+    @apply transition-all;
+  }
+
+  pre code.hljs,
+  code.hljs,
+  .hljs {
+    padding: 0px;
+    background-color: transparent;
+  }
+}

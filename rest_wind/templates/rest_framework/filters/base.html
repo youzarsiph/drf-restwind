@@ -1,3 +1,4 @@
+<!-- prettier ignore -->
 {% load i18n %}
 
 <dialog id="filtersDialog" class="modal rounded-box">
@@ -5,11 +6,24 @@
     <header class="flex items-center justify-between gap-4">
       <h1 class="text-2xl font-semibold">{% translate 'Filters' %}</h1>
 
-      <div class="tooltip tooltip-left" data-tip="{% translate 'Close' %}" onclick="filtersDialog.close()">
+      <div
+        class="tooltip tooltip-left"
+        data-tip="{% translate 'Close' %}"
+        onclick="filtersDialog.close()"
+      >
         <button class="btn btn-square btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="lucide lucide-x">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x"
+          >
             <path d="M18 6 6 18" />
             <path d="m6 6 12 12" />
           </svg>
@@ -20,9 +34,7 @@
     </header>
 
     <main class="grid gap-4">
-      {% for element in elements %}
-      {{ element }}
-      {% endfor %}
+      {% for element in elements %}{{ element }}{% endfor %}
     </main>
 
     <footer class="modal-action">
