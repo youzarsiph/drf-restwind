@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "drf-restwind"
-version = "0.1.7"
+version = "0.1.8"
 description = "drf-restwind, a modern re-imagining of the Django REST Framework utilizes TailwindCSS and DaisyUI to provide flexible and customizable UI solutions with minimal coding effort."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
