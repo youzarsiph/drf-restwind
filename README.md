@@ -30,11 +30,11 @@ Welcome to `drf-restwind`, a modern re-imagining of the Django REST Framework. T
 
 ## Screenshots
 
-![API Root](https://github.com/user-attachments/assets/5197b47d-8bb6-426b-a62b-232cfc34198d)
+![API Root](https://github.com/user-attachments/assets/86706c8c-392b-447d-8380-d852fd3b04df)
 
-![List View](https://github.com/user-attachments/assets/7665d4c8-e57a-4337-93af-4bb974a4f2d4)
+![List View](https://github.com/user-attachments/assets/f0f966f7-3d2e-4eba-9147-247b2d588194)
 
-![Detail View](https://github.com/user-attachments/assets/76bddab0-8747-42ae-b79b-b3be7802a729)
+![Detail View](https://github.com/user-attachments/assets/52d79530-2b0d-4f1b-9924-4923d2070704)
 
 ## Quick Start Guide
 
@@ -115,7 +115,7 @@ Sure! Here’s the continuation of the instructions for changing the theme and o
 
 <!-- Set the highlight_theme accordingly -->
 {% block highlight_theme %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/github.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/github-dark.min.css">
 {% endblock %}
 ```
 
@@ -129,51 +129,93 @@ To remove the theme selector, update your `api.html`:
 {% block theme_selector %}{% endblock %}
 ```
 
+### Removing the search bar
+
+To remove the search bar, update your `api.html`:
+
+```html
+{% extends 'rest_framework/base.html' %}
+
+{% block searchbar %}{% endblock %}
+```
+
 ### Customizing the Brand and Adding Links
 
 To change the brand name and add custom links, modify your `api.html`:
 
 ```html
-{% extends 'rest_framework/base.html' %}
-
-
-{% load i18n %}
-
+{% extends 'rest_framework/base.html' %}{% load i18n %}
 
 {% block title %}{% translate 'YOUR_BRAND' %}{% endblock %}
 
-
 {% block branding %}
-<li class="tooltip tooltip-right tooltip-primary" data-tip="{% translate 'YOUR_BRAND' %}">
-  <a href="https://www.django-rest-framework.org/" class="btn btn-square btn-primary lg:btn-lg">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-circuit lg:size-8">
-      <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-      <path d="M9 13a4.5 4.5 0 0 0 3-4" />
-      <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" />
-      <path d="M3.477 10.896a4 4 0 0 1 .585-.396" />
-      <path d="M6 18a4 4 0 0 1-1.967-.516" />
-      <path d="M12 13h4" />
-      <path d="M12 18h6a2 2 0 0 1 2 2v1" />
-      <path d="M12 8h8" />
-      <path d="M16 8V5a2 2 0 0 1 2-2" />
-      <circle cx="16" cy="13" r=".5" />
-      <circle cx="18" cy="3" r=".5" />
-      <circle cx="20" cy="21" r=".5" />
-      <circle cx="20" cy="8" r=".5" />
+<li
+  class="tooltip tooltip-right tooltip-primary"
+  data-tip="{% translate 'YOUR_BRAND' %}"
+>
+  <a
+    href="https://www.django-rest-framework.org/"
+    class="btn btn-sm btn-square btn-ghost lg:btn-md"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-graduation-cap size-5 lg:size-6"
+    >
+      <path
+        d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
+      />
+      <path d="M22 10v6" />
+      <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
     </svg>
+
     <span class="sr-only">{% translate 'YOUR_BRAND' %}</span>
   </a>
 </li>
 {% endblock %}
 
+{% block branding_text %}
+<!-- Add your brand -->
+<h1 class="hidden text-xl font-semibold text-primary lg:block">{% translate 'YOUR_BRAND' %}</h1>
+
+<!-- Or an empty div to center the search bar -->
+<div class="hidden lg:block"></div>
+{% endblock %}
 
 {% block userlinks %}
-<li class="tooltip tooltip-right" data-tip="{% translate 'Home' %}">
-  <a href="https://github.com/youzarsiph" class="btn btn-square btn-ghost">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house size-5 lg:size-6">
+<li
+  class="tooltip tooltip-right tooltip-secondary"
+  data-tip="{% translate 'Home' %}"
+>
+  <a
+    href="https://www.django-rest-framework.org/"
+    class="btn btn-sm btn-square btn-ghost lg:btn-md"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-house size-5 lg:size-6"
+    >
       <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
-      <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <path
+        d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+      />
     </svg>
+
     <span class="sr-only">{% translate 'Home' %}</span>
   </a>
 </li>

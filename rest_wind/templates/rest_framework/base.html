@@ -62,7 +62,7 @@
   <body class="flex h-dvh bg-base-300 overflow-hidden">
     <!-- prettier ignore -->
     {% block body %}
-    <section id="nav" class="h-full z-20">
+    <section id="nav" class="h-full z-30">
       <header class="h-full">
         <!-- prettier ignore -->
         {% block navbar %}
@@ -261,12 +261,156 @@
           </ul>
 
           <ul class="menu menu-vertical items-center gap-1 p-0 lg:gap-2">
-            {% block theme_selector %}
-            <!-- prettier ignore -->
-            {% include 'rest_framework/components/theme.html' %}
-            {% endblock %}
             <li
               class="tooltip tooltip-right tooltip-accent"
+              data-tip="{% translate 'Profile' %}"
+            >
+              <button
+                popovertarget="profile"
+                style="anchor-name: --profile"
+                class="btn btn-sm btn-square btn-ghost lg:btn-md"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-user size-5 lg:size-6"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+
+                <span class="sr-only">{% translate 'Profile' %}</span>
+              </button>
+
+              <ul
+                popover
+                id="profile"
+                style="position-anchor: --profile"
+                class="menu dropdown dropdown-top dropdown-right bg-base-200 rounded-box shadow-lg"
+              >
+                <li class="menu-title">{% translate 'Profile' %}</li>
+                <li>
+                  <button class="flex items-center gap-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-circle-user size-5 lg:size-6"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <circle cx="12" cy="10" r="3" />
+                      <path
+                        d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"
+                      />
+                    </svg>
+
+                    <span>{% translate 'Profile' %}</span>
+                  </button>
+                </li>
+                <!-- prettier ignore -->
+                {% if request.user.is_authenticated %}
+                <!-- prettier ignore -->
+                {% optional_logout request user csrf_token %}{% else %}
+                <!-- prettier ignore -->
+                {% optional_login request %}{% endif %}
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        {% endblock %}
+      </header>
+    </section>
+
+    <main
+      class="relative flex h-dvh max-h-dvh w-full flex-col gap-2 py-2 pr-2 overflow-hidden"
+    >
+      <!-- prettier ignore -->
+      {% block searchbar %}
+      <section id="searchbar" class="z-20 w-full">
+        <nav class="flex items-center justify-between w-full gap-2 lg:gap-4">
+          {% block branding_text %}
+          <h1 class="hidden text-xl font-semibold text-primary lg:block">
+            {% translate 'DRF RestWind' %}
+          </h1>
+          {% endblock %}
+
+          <form method="get" class="join w-full lg:max-w-lg">
+            <label
+              class="input input-sm input-primary w-full join-item lg:input-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-search opacity-50 size-5 lg:size-6"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+
+              <input
+                type="search"
+                class="grow"
+                name="search"
+                value="{{ request.GET.search }}"
+                placeholder="{% translate 'Search...' %}"
+              />
+            </label>
+
+            <div
+              class="tooltip tooltip-bottom"
+              data-tip="{% translate 'Search' %}"
+            >
+              <button
+                class="btn btn-sm btn-primary join-item lg:btn-md"
+                type="submit"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-icon lucide-circle-check size-5 lg:size-6"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+
+                <span class="sr-only"> {% trans "Search" %} </span>
+              </button>
+            </div>
+          </form>
+
+          <ul class="flex items-center gap-2 p-0 lg:gap-4">
+            {% block theme_selector %}
+            <!-- prettier ignore -->
+            {% include 'rest_framework/components/theme.html' %}{% endblock %}
+            <li
+              class="tooltip tooltip-left tooltip-accent"
               data-tip="{% translate 'Toggle theme' %}"
             >
               <label
@@ -319,92 +463,19 @@
                 </svg>
               </label>
             </li>
-            <li
-              class="tooltip tooltip-right tooltip-accent"
-              data-tip="{% translate 'Profile' %}"
-            >
-              <button
-                popovertarget="profile"
-                style="anchor-name: --profile"
-                class="btn btn-sm btn-square btn-ghost lg:btn-md"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-user size-5 lg:size-6"
-                >
-                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-
-                <span class="sr-only">{% translate 'Profile' %}</span>
-              </button>
-
-              <ul
-                popover
-                id="profile"
-                style="position-anchor: --profile"
-                class="menu dropdown dropdown-top dropdown-right bg-base-200 rounded-box shadow-lg"
-              >
-                <li class="menu-title">
-                  {% translate 'Welcome' %}, {{ request.user }}
-                </li>
-                <li>
-                  <button class="flex items-center gap-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-circle-user size-4"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <circle cx="12" cy="10" r="3" />
-                      <path
-                        d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"
-                      />
-                    </svg>
-
-                    <span>{% translate 'Profile' %}</span>
-                  </button>
-                </li>
-                <!-- prettier ignore -->
-                {% if request.user.is_authenticated %}
-                <!-- prettier ignore -->
-                {% optional_logout request user csrf_token %}{% else %}
-                <!-- prettier ignore -->
-                {% optional_login request %}{% endif %}
-              </ul>
-            </li>
           </ul>
         </nav>
-        {% endblock %}
-      </header>
-    </section>
+      </section>
+      {% endblock %}
 
-    <main
-      class="relative flex h-dvh w-full flex-col gap-4 py-2 pr-2 overflow-hidden"
-    >
       <!-- prettier ignore -->
       {% block content %}
       <div
-        class="grid gap-4 h-full w-full grid-cols-12 rounded-box bg-base-100 overflow-y-auto lg:overflow-y-visible lg:gap-0"
+        class="grid gap-4 grow grid-cols-12 rounded-box bg-base-100 overflow-y-auto lg:overflow-y-visible lg:gap-0"
       >
         <section
           id="sidebar"
-          class="col-span-12 h-full lg:max-h-dvh lg:col-span-3 lg:h-full lg:pb-4"
+          class="col-span-12 h-full lg:col-span-3 lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)]"
         >
           <section id="sidebar-content" class="relative h-full">
             <header class="absolute inset-x-0 top-0 z-10">
@@ -438,7 +509,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-refresh-ccw size-4 lg:size-5"
+                          class="lucide lucide-refresh-ccw size-5 lg:size-5"
                         >
                           <path
                             d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
@@ -471,7 +542,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-chevron-down size-4 lg:size-5"
+                          class="lucide lucide-chevron-down size-5 lg:size-5"
                         >
                           <path d="m6 9 6 6 6-6" />
                         </svg>
@@ -519,7 +590,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-refresh-ccw size-4 lg:size-5"
+                          class="lucide lucide-refresh-ccw size-5 lg:size-5"
                         >
                           <path
                             d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
@@ -561,7 +632,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-info size-4 lg:size-5"
+                          class="lucide lucide-info size-5 lg:size-5"
                         >
                           <circle cx="12" cy="12" r="10" />
                           <path d="M12 16v-4" />
@@ -595,7 +666,7 @@
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="lucide lucide-badge-info size-4 lg:size-5"
+                      class="lucide lucide-badge-info size-5 lg:size-5"
                     >
                       <path
                         d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"
@@ -650,7 +721,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-send-horizontal"
+                          class="lucide lucide-send-horizontal size-5 lg:size-6"
                         >
                           <path
                             d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z"
@@ -695,7 +766,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-send-horizontal size-4 lg:size-5"
+                          class="lucide lucide-send-horizontal size-5 lg:size-6"
                         >
                           <path
                             d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z"
@@ -742,7 +813,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-send-horizontal size-4 lg:size-5"
+                          class="lucide lucide-send-horizontal size-5 lg:size-6"
                         >
                           <path
                             d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z"
@@ -790,7 +861,7 @@
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="lucide lucide-send-horizontal size-4 lg:size-5"
+                            class="lucide lucide-send-horizontal size-5 lg:size-6"
                           >
                             <path
                               d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z"
@@ -822,7 +893,7 @@
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="lucide lucide-send-horizontal size-4 lg:size-5"
+                            class="lucide lucide-send-horizontal size-5 lg:size-6"
                           >
                             <path
                               d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z"
@@ -854,7 +925,7 @@
 
         <section
           id="content"
-          class="col-span-12 h-full lg:max-h-dvh lg:col-span-9 lg:h-full lg:pb-4"
+          class="col-span-12 h-full lg:col-span-9 lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)]"
         >
           <section id="main-content" class="relative h-full">
             <header class="absolute inset-x-0 top-0 z-10">
@@ -903,7 +974,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-trash-2 size-4 lg:size-5"
+                        class="lucide lucide-trash-2 size-5 lg:size-5"
                       >
                         <path d="M3 6h18" />
                         <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -1045,7 +1116,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-ellipsis-vertical size-4 lg:size-5"
+                        class="lucide lucide-ellipsis-vertical size-5 lg:size-5"
                       >
                         <circle cx="12" cy="12" r="1" />
                         <circle cx="12" cy="5" r="1" />
@@ -1094,7 +1165,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-list-filter size-4 lg:size-5"
+                        class="lucide lucide-list-filter size-5 lg:size-5"
                       >
                         <path d="M3 6h18" />
                         <path d="M7 12h10" />
@@ -1161,7 +1232,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-copy size-4 lg:size-5"
+                        class="lucide lucide-copy size-5 lg:size-5"
                       >
                         <rect
                           width="14"
@@ -1261,7 +1332,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-copy size-4 lg:size-5"
+                          class="lucide lucide-copy size-5 lg:size-5"
                         >
                           <rect
                             width="14"
@@ -1353,7 +1424,7 @@ curl -X DELETE {{ request.build_absolute_uri }}</code></pre>
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-copy size-4 lg:size-5"
+                          class="lucide lucide-copy size-5 lg:size-5"
                         >
                           <rect
                             width="14"
@@ -1469,7 +1540,7 @@ else:
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-copy size-4 lg:size-5"
+                          class="lucide lucide-copy size-5 lg:size-5"
                         >
                           <rect
                             width="14"
