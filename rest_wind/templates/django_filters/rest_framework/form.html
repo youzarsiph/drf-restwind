@@ -1,13 +1,13 @@
 <!-- prettier ignore -->
 {% load i18n %}
 
-<h2>{% translate 'Field filters' %}</h2>
+<h2>{% trans 'Field filters' %}</h2>
 
 <form class="grid gap-4" action="" method="get">
   {{ filter.form.as_p }}
 
   <button type="submit" class="btn btn-primary">
-    {% translate 'Submit' %}
+    {% trans 'Submit' %}
   </button>
 </form>
 

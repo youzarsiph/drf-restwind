@@ -139,6 +139,21 @@ To remove the search bar, update your `api.html`:
 {% block searchbar %}{% endblock %}
 ```
 
+### Removing theme toggle
+
+To remove theme toggle, update your `api.html`:
+
+```html
+{% extends 'rest_framework/base.html' %}
+
+{% block searchbar_right %}{% endblock %}
+
+{% block sidebar_styles %}lg:h-[calc(100dvh-1rem)] lg:max-h-[calc(100dvh-1rem)]{% endblock %}
+{% block content_styles %}lg:h-[calc(100dvh-1rem)] lg:max-h-[calc(100dvh-1rem)]{% endblock %}
+```
+
+**Note**: This also removes the theme selector.
+
 ### Customizing the Brand and Adding Links
 
 To change the brand name and add custom links, modify your `api.html`:
@@ -146,12 +161,12 @@ To change the brand name and add custom links, modify your `api.html`:
 ```html
 {% extends 'rest_framework/base.html' %}{% load i18n %}
 
-{% block title %}{% translate 'YOUR_BRAND' %}{% endblock %}
+{% block title %}{% trans 'YOUR_BRAND' %}{% endblock %}
 
 {% block branding %}
 <li
   class="tooltip tooltip-right tooltip-primary"
-  data-tip="{% translate 'YOUR_BRAND' %}"
+  data-tip="{% trans 'YOUR_BRAND' %}"
 >
   <a
     href="https://www.django-rest-framework.org/"
@@ -176,14 +191,14 @@ To change the brand name and add custom links, modify your `api.html`:
       <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
     </svg>
 
-    <span class="sr-only">{% translate 'YOUR_BRAND' %}</span>
+    <span class="sr-only">{% trans 'YOUR_BRAND' %}</span>
   </a>
 </li>
 {% endblock %}
 
 {% block branding_text %}
 <!-- Add your brand -->
-<h1 class="hidden text-xl font-semibold text-primary lg:block">{% translate 'YOUR_BRAND' %}</h1>
+<h1 class="hidden text-xl font-semibold text-primary lg:block">{% trans 'YOUR_BRAND' %}</h1>
 
 <!-- Or an empty div to center the search bar -->
 <div class="hidden lg:block"></div>
@@ -192,7 +207,7 @@ To change the brand name and add custom links, modify your `api.html`:
 {% block userlinks %}
 <li
   class="tooltip tooltip-right tooltip-secondary"
-  data-tip="{% translate 'Home' %}"
+  data-tip="{% trans 'Home' %}"
 >
   <a
     href="https://www.django-rest-framework.org/"
@@ -216,10 +231,60 @@ To change the brand name and add custom links, modify your `api.html`:
       />
     </svg>
 
-    <span class="sr-only">{% translate 'Home' %}</span>
+    <span class="sr-only">{% trans 'Home' %}</span>
   </a>
 </li>
 {% endblock %}
+```
+
+### Adding menu items to profile menu
+
+To add menu items to profile menu, modify your `api.html`:
+
+```html
+{% extends 'rest_framework/base.html' %}{% load i18n %}
+
+{% block profile_menu %}
+<li>
+  <a href="/users/me" class="flex items-center gap-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-circle-user size-5 lg:size-6"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="10" r="3" />
+      <path
+        d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"
+      />
+    </svg>
+
+    <span>{% translate 'Profile' %}</span>
+  </a>
+</li>
+{% endblock %}
+
+```
+
+### Generating CSS styles
+
+To generate the CSS styles, run:
+
+```console
+cd /rest_wind/static/rest_wind
+
+# Install deps
+npm install
+
+# Generate the styles using TailwindCSS
+npx @tailwindcss/cli -i ../static/rest_wind/css/app.css -o ../static/rest_wind/css/styles.css --cwd ../../templates -m
 ```
 
 ## Contributing

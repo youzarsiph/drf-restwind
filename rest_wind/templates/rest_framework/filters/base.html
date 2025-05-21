@@ -4,11 +4,11 @@
 <dialog id="filtersDialog" class="modal rounded-box">
   <section class="modal-box grid gap-4">
     <header class="flex items-center justify-between gap-4">
-      <h1 class="text-2xl font-semibold">{% translate 'Filters' %}</h1>
+      <h1 class="text-2xl font-semibold">{% trans 'Filters' %}</h1>
 
       <div
         class="tooltip tooltip-left"
-        data-tip="{% translate 'Close' %}"
+        data-tip="{% trans 'Close' %}"
         onclick="filtersDialog.close()"
       >
         <button class="btn btn-square btn-ghost">
@@ -28,7 +28,7 @@
             <path d="m6 6 12 12" />
           </svg>
 
-          <span class="sr-only">{% translate 'Close' %}</span>
+          <span class="sr-only">{% trans 'Close' %}</span>
         </button>
       </div>
     </header>
@@ -39,7 +39,7 @@
 
     <footer class="modal-action">
       <button class="btn btn-primary grow" onclick="filtersDialog.close()">
-        {% translate 'Close' %}
+        {% trans 'Close' %}
       </button>
     </footer>
   </section>

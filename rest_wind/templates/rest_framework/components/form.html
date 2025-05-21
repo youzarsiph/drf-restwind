@@ -3,7 +3,7 @@
 <form method="post" class="grid gap-4">
   {% csrf_token %}{{ form }}
   <button type="submit" class="btn btn-primary">
-    {% translate 'Submit' %}
+    {% trans 'Submit' %}
   </button>
 </form>
 <script>

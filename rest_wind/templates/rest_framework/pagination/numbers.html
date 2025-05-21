@@ -6,7 +6,7 @@
   {% if previous_url %}
   <li
     class="tooltip tooltip-top tooltip-primary"
-    data-tip="{% translate 'Previous' %}"
+    data-tip="{% trans 'Previous' %}"
   >
     <a href="{{ previous_url }}" class="btn btn-soft btn-primary join-item">
       <svg
@@ -24,11 +24,11 @@
         <path d="m15 18-6-6 6-6" />
       </svg>
 
-      <span class="sr-only">{% translate 'Previous' %}</span>
+      <span class="sr-only">{% trans 'Previous' %}</span>
     </a>
   </li>
   {% else %}
-  <li class="tooltip tooltip-top" data-tip="{% translate 'Previous' %}">
+  <li class="tooltip tooltip-top" data-tip="{% trans 'Previous' %}">
     <button disabled class="btn btn-soft btn-primary join-item">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@
         <path d="m15 18-6-6 6-6" />
       </svg>
 
-      <span class="sr-only">{% translate 'Previous' %}</span>
+      <span class="sr-only">{% trans 'Previous' %}</span>
     </button>
   </li>
   {% endif %}
@@ -78,7 +78,7 @@
   {% if page_link.is_active %}
   <li
     class="tooltip tooltip-top tooltip-accent"
-    data-tip="{% translate 'Current - Page' %} {{ page_link.number }}"
+    data-tip="{% trans 'Current - Page' %} {{ page_link.number }}"
   >
     <a href="{{ page_link.url }}" class="btn btn-soft btn-accent join-item"
       >{{ page_link.number }}</a
@@ -87,7 +87,7 @@
   {% else %}
   <li
     class="tooltip tooltip-top"
-    data-tip="{% translate 'Page' %} {{ page_link.number }}"
+    data-tip="{% trans 'Page' %} {{ page_link.number }}"
   >
     <a href="{{ page_link.url }}" class="btn btn-ghost join-item"
       >{{ page_link.number }}</a
@@ -100,7 +100,7 @@
   {% if next_url %}
   <li
     class="tooltip tooltip-top tooltip-primary"
-    data-tip="{% translate 'Next' %}"
+    data-tip="{% trans 'Next' %}"
   >
     <a href="{{ next_url }}" class="btn btn-soft btn-primary join-item">
       <svg
@@ -118,11 +118,11 @@
         <path d="m9 18 6-6-6-6" />
       </svg>
 
-      <span class="sr-only">{% translate 'Next' %}</span>
+      <span class="sr-only">{% trans 'Next' %}</span>
     </a>
   </li>
   {% else %}
-  <li class="tooltip tooltip-top" data-tip="{% translate 'Next' %}">
+  <li class="tooltip tooltip-top" data-tip="{% trans 'Next' %}">
     <button disabled class="btn btn-soft btn-primary join-item">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@
         <path d="m9 18 6-6-6-6" />
       </svg>
 
-      <span class="sr-only">{% translate 'Next' %}</span>
+      <span class="sr-only">{% trans 'Next' %}</span>
     </button>
   </li>
   {% endif %}

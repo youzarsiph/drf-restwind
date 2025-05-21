@@ -2,7 +2,7 @@
 {% load i18n %}
 <li
   class="tooltip tooltip-left tooltip-secondary"
-  data-tip="{% translate 'Theme' %}"
+  data-tip="{% trans 'Theme' %}"
 >
   <button
     popovertarget="theme"
@@ -29,7 +29,7 @@
       />
     </svg>
 
-    <span class="sr-only">{% translate 'Theme' %}</span>
+    <span class="sr-only">{% trans 'Theme' %}</span>
   </button>
 
   <ul
@@ -38,7 +38,7 @@
     style="position-anchor: --theme; max-height: 20rem"
     class="menu dropdown dropdown-bottom dropdown-left bg-base-200 rounded-box shadow-lg"
   >
-    <li class="menu-title">{% translate 'Select a theme' %}</li>
+    <li class="menu-title">{% trans 'Select a theme' %}</li>
     <li>
       <input
         type="radio"

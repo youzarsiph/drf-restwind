@@ -2,7 +2,7 @@
 <!-- prettier ignore -->
 {% load i18n %}
 <!-- prettier ignore -->
-{% block title %}{{ block.super }} | {% translate 'Login' %}{% endblock %}
+{% block title %}{{ block.super }} | {% trans 'Login' %}{% endblock %}
 
 <!-- prettier ignore -->
 {% block searchbar %}{% endblock %}
@@ -15,7 +15,7 @@
   <div
     class="card gap-12 mx-2 max-w-md card-body w-full rounded-box bg-base-200 py-12 shadow-xl"
   >
-    <h1 class="text-ptimary text-4xl font-serif font-black">{% translate 'Login' %}</h1>
+    <h1 class="text-ptimary text-4xl font-serif font-black">{% trans 'Login' %}</h1>
 
     {% if next %}
     {% if user.is_authenticated %}
@@ -27,7 +27,7 @@
       {% endblocktranslate %}
     </p>
     {% else %}
-    <p>{% translate 'Please login to continue.' %}</p>
+    <p>{% trans 'Please login to continue.' %}</p>
     {% endif %}
     {% endif %}
     <!-- prettier ignore -->

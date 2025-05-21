@@ -14,8 +14,9 @@
     {% endblock %}
     <!-- prettier ignore -->
     <title>
-      {% block title %} {% if name %}{{ name }} - {% endif %}Django REST
-      framework {% endblock %}
+      {% block title %}
+      {% if name %}{{ name }} -{% endif %} Django REST framework 
+      {% endblock %}
     </title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -74,7 +75,7 @@
             {% block branding %}
             <li
               class="tooltip tooltip-right tooltip-primary"
-              data-tip="{% translate 'Django REST Framework' %}"
+              data-tip="{% trans 'Django REST Framework' %}"
             >
               <a
                 href="https://www.django-rest-framework.org/"
@@ -101,7 +102,7 @@
                 </svg>
 
                 <span class="sr-only"
-                  >{% translate 'Django REST Framework' %}</span
+                  >{% trans 'Django REST Framework' %}</span
                 >
               </a>
             </li>
@@ -110,7 +111,7 @@
             {% block userlinks %}
             <li
               class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% translate 'Home' %}"
+              data-tip="{% trans 'Home' %}"
             >
               <a
                 href="https://www.django-rest-framework.org/"
@@ -134,12 +135,12 @@
                   />
                 </svg>
 
-                <span class="sr-only">{% translate 'Home' %}</span>
+                <span class="sr-only">{% trans 'Home' %}</span>
               </a>
             </li>
             <li
               class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% translate 'Docs' %}"
+              data-tip="{% trans 'Docs' %}"
             >
               <a
                 href="https://www.django-rest-framework.org/api-guide/requests/"
@@ -164,12 +165,12 @@
                   <path d="M8 7h6" />
                 </svg>
 
-                <span class="sr-only">{% translate 'Docs' %}</span>
+                <span class="sr-only">{% trans 'Docs' %}</span>
               </a>
             </li>
             <li
               class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% translate 'Tutorial' %}"
+              data-tip="{% trans 'Tutorial' %}"
             >
               <a
                 href="https://www.django-rest-framework.org/tutorial/quickstart/"
@@ -194,12 +195,12 @@
                   <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
                 </svg>
 
-                <span class="sr-only">{% translate 'Tutorial' %}</span>
+                <span class="sr-only">{% trans 'Tutorial' %}</span>
               </a>
             </li>
             <li
               class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% translate 'DRF Repo' %}"
+              data-tip="{% trans 'DRF Repo' %}"
             >
               <a
                 href="https://github.com/encode/django-rest-framework/"
@@ -225,12 +226,12 @@
                   <circle cx="20" cy="19" r="2" />
                 </svg>
 
-                <span class="sr-only">{% translate 'DRF Repo' %}</span>
+                <span class="sr-only">{% trans 'DRF Repo' %}</span>
               </a>
             </li>
             <li
               class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% translate 'DRF RestWind Repo' %}"
+              data-tip="{% trans 'DRF RestWind Repo' %}"
             >
               <a
                 href="https://github.com/youzarsiph/drf-restwind/"
@@ -254,7 +255,7 @@
                   <path d="M9 18c-4.51 2-5-2-7-2" />
                 </svg>
 
-                <span class="sr-only">{% translate 'DRF RestWind Repo' %}</span>
+                <span class="sr-only">{% trans 'DRF RestWind Repo' %}</span>
               </a>
             </li>
             {% endblock %}
@@ -263,7 +264,7 @@
           <ul class="menu menu-vertical items-center gap-1 p-0 lg:gap-2">
             <li
               class="tooltip tooltip-right tooltip-accent"
-              data-tip="{% translate 'Profile' %}"
+              data-tip="{% trans 'Profile' %}"
             >
               <button
                 popovertarget="profile"
@@ -286,7 +287,7 @@
                   <circle cx="12" cy="7" r="4" />
                 </svg>
 
-                <span class="sr-only">{% translate 'Profile' %}</span>
+                <span class="sr-only">{% trans 'Profile' %}</span>
               </button>
 
               <ul
@@ -295,31 +296,10 @@
                 style="position-anchor: --profile"
                 class="menu dropdown dropdown-top dropdown-right bg-base-200 rounded-box shadow-lg"
               >
-                <li class="menu-title">{% translate 'Profile' %}</li>
-                <li>
-                  <button class="flex items-center gap-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-circle-user size-5 lg:size-6"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <circle cx="12" cy="10" r="3" />
-                      <path
-                        d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"
-                      />
-                    </svg>
+                <li class="menu-title">{% trans 'Profile' %}</li>
+                <!-- prettier ignore -->
+                {% block profile_menu %}{% endblock %}
 
-                    <span>{% translate 'Profile' %}</span>
-                  </button>
-                </li>
                 <!-- prettier ignore -->
                 {% if request.user.is_authenticated %}
                 <!-- prettier ignore -->
@@ -341,9 +321,10 @@
       {% block searchbar %}
       <section id="searchbar" class="z-20 w-full">
         <nav class="flex items-center justify-between w-full gap-2 lg:gap-4">
+          <!-- prettier ignore -->
           {% block branding_text %}
           <h1 class="hidden text-xl font-semibold text-primary lg:block">
-            {% translate 'DRF RestWind' %}
+            {% trans 'DRF RestWind' %}
           </h1>
           {% endblock %}
 
@@ -372,13 +353,13 @@
                 class="grow"
                 name="search"
                 value="{{ request.GET.search }}"
-                placeholder="{% translate 'Search...' %}"
+                placeholder="{% trans 'Search...' %}"
               />
             </label>
 
             <div
               class="tooltip tooltip-bottom"
-              data-tip="{% translate 'Search' %}"
+              data-tip="{% trans 'Search' %}"
             >
               <button
                 class="btn btn-sm btn-primary join-item lg:btn-md"
@@ -404,14 +385,16 @@
               </button>
             </div>
           </form>
-
+          
+          <!-- prettier ignore -->
+          {% block searchbar_right %}
           <ul class="flex items-center gap-2 p-0 lg:gap-4">
             {% block theme_selector %}
             <!-- prettier ignore -->
             {% include 'rest_framework/components/theme.html' %}{% endblock %}
             <li
               class="tooltip tooltip-left tooltip-accent"
-              data-tip="{% translate 'Toggle theme' %}"
+              data-tip="{% trans 'Toggle theme' %}"
             >
               <label
                 class="swap swap-rotate btn btn-sm btn-square btn-ghost lg:btn-md"
@@ -464,6 +447,7 @@
               </label>
             </li>
           </ul>
+          {% endblock %}
         </nav>
       </section>
       {% endblock %}
@@ -475,7 +459,7 @@
       >
         <section
           id="sidebar"
-          class="col-span-12 h-full lg:col-span-3 lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)]"
+          class="col-span-12 h-full lg:col-span-3 {% block sidebar_styles %} lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)] {% endblock %}"
         >
           <section id="sidebar-content" class="relative h-full">
             <header class="absolute inset-x-0 top-0 z-10">
@@ -492,7 +476,7 @@
                     {% if api_settings.URL_FORMAT_OVERRIDE %}
                     <div
                       class="tooltip tooltip-right tooltip-primary"
-                      data-tip="{% translate 'GET request' %}"
+                      data-tip="{% trans 'GET request' %}"
                     >
                       <a
                         href="{{ request.get_full_path }}"
@@ -521,7 +505,7 @@
                           <path d="M16 16h5v5" />
                         </svg>
 
-                        <span class="sr-only">{% translate 'Get' %}</span>
+                        <span class="sr-only">{% trans 'Get' %}</span>
                       </a>
                     </div>
 
@@ -554,11 +538,11 @@
                         style="position-anchor: --formats"
                         class="menu dropdown dropdown-center dropdown-bottom bg-base-200 rounded-box shadow-lg overflow-visible"
                       >
-                        <li class="menu-title">{% translate 'Formats' %}</li>
+                        <li class="menu-title">{% trans 'Formats' %}</li>
                         {% for format in available_formats %}
                         <li
                           class="tooltip tooltip-right"
-                          data-tip="{% translate 'GET request with format of' %} `{{ format|upper }}`"
+                          data-tip="{% trans 'GET request with format of' %} `{{ format|upper }}`"
                         >
                           <a
                             href="{% add_query_param request api_settings.URL_FORMAT_OVERRIDE format %}"
@@ -573,7 +557,7 @@
                     {% else %}
                     <div
                       class="tooltip tooltip-right tooltip-primary"
-                      data-tip="{% translate 'GET request' %}"
+                      data-tip="{% trans 'GET request' %}"
                     >
                       <a
                         href="{{ request.get_full_path }}"
@@ -602,7 +586,7 @@
                           <path d="M16 16h5v5" />
                         </svg>
 
-                        <span class="sr-only">{% translate 'Get' %}</span>
+                        <span class="sr-only">{% trans 'Get' %}</span>
                       </a>
                     </div>
                     {% endif %}
@@ -612,7 +596,7 @@
                   {% if options_form %}
                   <div
                     class="tooltip tooltip-right tooltip-info"
-                    data-tip="{% translate 'OPTIONS request' %}"
+                    data-tip="{% trans 'OPTIONS request' %}"
                   >
                     <form
                       action="{{ request.get_full_path }}"
@@ -639,7 +623,7 @@
                           <path d="M12 8h.01" />
                         </svg>
 
-                        <span class="sr-only">{% translate 'Options' %}</span>
+                        <span class="sr-only">{% trans 'Options' %}</span>
                       </button>
                     </form>
                   </div>
@@ -649,7 +633,7 @@
 
                 <div
                   class="tooltip tooltip-bottom tooltip-primary"
-                  data-tip="{% translate 'Usage' %}"
+                  data-tip="{% trans 'Usage' %}"
                 >
                   <button
                     type="button"
@@ -675,7 +659,7 @@
                       <line x1="12" x2="12.01" y1="8" y2="8" />
                     </svg>
 
-                    <span class="sr-only">{% translate 'Usage' %}</span>
+                    <span class="sr-only">{% trans 'Usage' %}</span>
                   </button>
                 </div>
               </nav>
@@ -691,7 +675,7 @@
                 {% if post_form or raw_data_post_form %}
                 <label class="tab" role="tab">
                   <input type="radio" name="form_tabs" checked />
-                  <span>{% translate 'HTML Form' %}</span>
+                  <span>{% trans 'HTML Form' %}</span>
                 </label>
                 <div class="tab-content" id="post-object-form">
                   <!-- prettier ignore -->
@@ -706,10 +690,10 @@
 
                     <div
                       class="tooltip tooltip-top tooltip-primary"
-                      data-tip="{% translate 'POST request' %}"
+                      data-tip="{% trans 'POST request' %}"
                     >
                       <button class="btn btn-primary w-full">
-                        <span>{% translate 'Send' %}</span>
+                        <span>{% trans 'Send' %}</span>
 
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -736,7 +720,7 @@
 
                 <label class="tab" role="tab">
                   <input type="radio" name="form_tabs" />
-                  <span>{% translate 'Raw data' %}</span>
+                  <span>{% trans 'Raw data' %}</span>
                 </label>
                 <div class="tab-content" id="post-generic-content-form">
                   <!-- prettier ignore -->
@@ -751,10 +735,10 @@
 
                     <div
                       class="tooltip tooltip-top tooltip-primary"
-                      data-tip="{% translate 'POST request' %}"
+                      data-tip="{% trans 'POST request' %}"
                     >
                       <button class="btn btn-primary w-full">
-                        <span>{% translate 'Send' %}</span>
+                        <span>{% trans 'Send' %}</span>
 
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -783,7 +767,7 @@
                 {% if put_form or raw_data_put_form or raw_data_patch_form %}
                 <label class="tab" role="tab">
                   <input type="radio" name="form_tabs" checked />
-                  <span>{% translate 'HTML Form' %}</span>
+                  <span>{% trans 'HTML Form' %}</span>
                 </label>
                 <div class="tab-content" id="put-object-form">
                   <!-- prettier ignore -->
@@ -798,10 +782,10 @@
 
                     <div
                       class="tooltip tooltip-top"
-                      data-tip="{% translate 'PUT request' %}"
+                      data-tip="{% trans 'PUT request' %}"
                     >
                       <button class="btn btn-primary w-full">
-                        <span>{% translate 'Send' %}</span>
+                        <span>{% trans 'Send' %}</span>
 
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -828,7 +812,7 @@
 
                 <label class="tab" role="tab">
                   <input type="radio" name="form_tabs" />
-                  <span>{% translate 'Raw data' %}</span>
+                  <span>{% trans 'Raw data' %}</span>
                 </label>
                 <div class="tab-content" id="put-generic-content-form">
                   <!-- prettier ignore -->
@@ -846,10 +830,10 @@
                       {% if raw_data_put_form %}
                       <div
                         class="tooltip tooltip-top tooltip-primary grow"
-                        data-tip="{% translate 'PUT request' %}"
+                        data-tip="{% trans 'PUT request' %}"
                       >
                         <button class="btn btn-primary w-full">
-                          <span>{% translate 'Send' %}</span>
+                          <span>{% trans 'Send' %}</span>
 
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -875,13 +859,13 @@
                       {% if raw_data_patch_form %}
                       <div
                         class="tooltip tooltip-top tooltip-secondary grow"
-                        data-tip="{% translate 'PATCH request' %}"
+                        data-tip="{% trans 'PATCH request' %}"
                       >
                         <button
                           class="btn btn-secondary w-full"
                           data-method="PATCH"
                         >
-                          <span>{% translate 'Send' %}</span>
+                          <span>{% trans 'Send' %}</span>
 
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -925,7 +909,7 @@
 
         <section
           id="content"
-          class="col-span-12 h-full lg:col-span-9 lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)]"
+          class="col-span-12 h-full lg:col-span-9 {% block contetn_styles %} lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)] {% endblock %}"
         >
           <section id="main-content" class="relative h-full">
             <header class="absolute inset-x-0 top-0 z-10">
@@ -957,7 +941,7 @@
                   {% if delete_form %}
                   <div
                     class="tooltip tooltip-left tooltip-error"
-                    data-tip="{% translate 'DELETE request' %}"
+                    data-tip="{% trans 'DELETE request' %}"
                   >
                     <button
                       type="button"
@@ -983,7 +967,7 @@
                         <line x1="14" x2="14" y1="11" y2="17" />
                       </svg>
 
-                      <span class="sr-only">{% translate 'Delete' %}</span>
+                      <span class="sr-only">{% trans 'Delete' %}</span>
                     </button>
                   </div>
 
@@ -991,12 +975,12 @@
                     <section class="modal-box grid gap-4">
                       <header class="flex items-center justify-between gap-4">
                         <h1 class="text-2xl font-semibold">
-                          {% translate 'Delete' %} {{ name }}
+                          {% trans 'Delete' %} {{ name }}
                         </h1>
 
                         <div
                           class="tooltip tooltip-left"
-                          data-tip="{% translate 'Close' %}"
+                          data-tip="{% trans 'Close' %}"
                         >
                           <button
                             class="btn btn-square btn-ghost"
@@ -1018,7 +1002,7 @@
                               <path d="m6 6 12 12" />
                             </svg>
 
-                            <span class="sr-only">{% translate 'Close' %}</span>
+                            <span class="sr-only">{% trans 'Close' %}</span>
                           </button>
                         </div>
                       </header>
@@ -1031,7 +1015,7 @@
                         >
                           <p>
                             <!-- prettier ignore -->
-                            {% translate 'Are you sure you want to delete this'
+                            {% trans 'Are you sure you want to delete this'
                             %} {{ name }}?
                           </p>
                         </form>
@@ -1055,7 +1039,7 @@
                             />
                             <path d="m9 9 6 6" />
                           </svg>
-                          <p>{% translate 'This action is destructive!' %}</p>
+                          <p>{% trans 'This action is destructive!' %}</p>
                         </div>
                       </main>
 
@@ -1084,14 +1068,14 @@
                             <line x1="14" x2="14" y1="11" y2="17" />
                           </svg>
 
-                          <span>{% translate 'Delete' %}</span>
+                          <span>{% trans 'Delete' %}</span>
                         </button>
 
                         <button
                           class="btn btn-secondary grow"
                           onclick="deleteDialog.close()"
                         >
-                          {% translate 'Close' %}
+                          {% trans 'Close' %}
                         </button>
                       </footer>
                     </section>
@@ -1124,7 +1108,7 @@
                       </svg>
 
                       <span class="sr-only"
-                        >{% translate 'Extra actions' %}</span
+                        >{% trans 'Extra actions' %}</span
                       >
                     </button>
 
@@ -1135,7 +1119,7 @@
                       class="menu dropdown dropdown-left dropdown-bottom bg-base-200 rounded-box shadow-lg"
                     >
                       <li class="menu-title">
-                        {% translate 'Extra actions' %}
+                        {% trans 'Extra actions' %}
                       </li>
                       <!-- prettier ignore -->
                       {% for action_name, url in extra_actions|items %}
@@ -1148,7 +1132,7 @@
                   {% if filter_form %}
                   <div
                     class="tooltip tooltip-left"
-                    data-tip="{% translate 'Filters' %}"
+                    data-tip="{% trans 'Filters' %}"
                   >
                     <button
                       type="button"
@@ -1172,7 +1156,7 @@
                         <path d="M10 18h4" />
                       </svg>
 
-                      <span class="sr-only">{% translate 'Filters' %}</span>
+                      <span class="sr-only">{% trans 'Filters' %}</span>
                     </button>
                   </div>
 
@@ -1215,7 +1199,7 @@
 
                   <div
                     class="tooltip tooltip-left"
-                    data-tip="{% translate 'Copy' %}"
+                    data-tip="{% trans 'Copy' %}"
                   >
                     <button
                       type="button"
@@ -1247,7 +1231,7 @@
                         />
                       </svg>
 
-                      <span class="sr-only">{% translate 'Copy' %}</span>
+                      <span class="sr-only">{% trans 'Copy' %}</span>
                     </button>
                   </div>
                 </header>
@@ -1271,9 +1255,9 @@ HTTP {{ response.status_code }} {{ response.status_text }}
     <dialog id="usageDialog" class="modal rounded-box">
       <section class="modal-box grid gap-4 max-w-4xl">
         <header class="flex items-center justify-between gap-4">
-          <h1 class="text-2xl font-semibold">{% translate 'Examples' %}</h1>
+          <h1 class="text-2xl font-semibold">{% trans 'Examples' %}</h1>
 
-          <div class="tooltip tooltip-left" data-tip="{% translate 'Close' %}">
+          <div class="tooltip tooltip-left" data-tip="{% trans 'Close' %}">
             <button
               class="btn btn-square btn-ghost"
               onclick="usageDialog.close()"
@@ -1294,7 +1278,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                 <path d="m6 6 12 12" />
               </svg>
 
-              <span class="sr-only">{% translate 'Close' %}</span>
+              <span class="sr-only">{% trans 'Close' %}</span>
             </button>
           </div>
         </header>
@@ -1315,7 +1299,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                   <div class="absolute top-0 right-4">
                     <div
                       class="tooltip tooltip-left"
-                      data-tip="{% translate 'Copy' %}"
+                      data-tip="{% trans 'Copy' %}"
                     >
                       <button
                         type="button"
@@ -1347,7 +1331,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                           />
                         </svg>
 
-                        <span class="sr-only">{% translate 'Copy' %}</span>
+                        <span class="sr-only">{% trans 'Copy' %}</span>
                       </button>
                     </div>
                   </div>
@@ -1407,7 +1391,7 @@ curl -X DELETE {{ request.build_absolute_uri }}</code></pre>
                   <div class="absolute top-0 right-4">
                     <div
                       class="tooltip tooltip-left"
-                      data-tip="{% translate 'Copy' %}"
+                      data-tip="{% trans 'Copy' %}"
                     >
                       <button
                         type="button"
@@ -1439,7 +1423,7 @@ curl -X DELETE {{ request.build_absolute_uri }}</code></pre>
                           />
                         </svg>
 
-                        <span class="sr-only">{% translate 'Copy' %}</span>
+                        <span class="sr-only">{% trans 'Copy' %}</span>
                       </button>
                     </div>
                   </div>
@@ -1523,7 +1507,7 @@ else:
                   <div class="absolute top-0 right-4">
                     <div
                       class="tooltip tooltip-left"
-                      data-tip="{% translate 'Copy' %}"
+                      data-tip="{% trans 'Copy' %}"
                     >
                       <button
                         type="button"
@@ -1555,7 +1539,7 @@ else:
                           />
                         </svg>
 
-                        <span class="sr-only">{% translate 'Copy' %}</span>
+                        <span class="sr-only">{% trans 'Copy' %}</span>
                       </button>
                     </div>
                   </div>
@@ -1627,7 +1611,7 @@ fetch(url, { method: 'DELETE' })
 
         <footer class="modal-action">
           <button class="btn btn-primary grow" onclick="usageDialog.close()">
-            {% translate 'Close' %}
+            {% trans 'Close' %}
           </button>
         </footer>
       </section>
@@ -1713,5 +1697,7 @@ fetch(url, { method: 'DELETE' })
       {% endif %}
     </section>
     {% endblock %}
+
+    <div class="hidden lg:h-[calc(100dvh-1rem)] lg:max-h-[calc(100dvh-1rem)]"></div>
   </body>
 </html>
