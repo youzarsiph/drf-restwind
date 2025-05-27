@@ -129,6 +129,17 @@ To remove the theme selector, update your `api.html`:
 {% block theme_selector %}{% endblock %}
 ```
 
+### Updating Markdown Styles
+
+To update markdown styles, update your `api.html`:
+
+```html
+{% extends 'rest_framework/base.html' %}
+
+<!-- This removes responsiveness from markdown styles -->
+{% block markdown_styles %}{% endblock %}
+```
+
 ### Removing the search bar
 
 To remove the search bar, update your `api.html`:

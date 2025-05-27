@@ -1176,10 +1176,10 @@
                 >
                   {{ name }}
                 </h1>
-                <div class="font-light">
+                <section id="docs" class="prose prose-sm prose-primary max-w-none w-full {% block markdown_styles %} lg:prose-base xl:prose-lg 2xl:prose-xl 3x:prose-2xl {% endblock %}">
                   <!-- prettier ignore -->
                   {% block description %}{{ description }}{% endblock %}
-                </div>
+                </section>
               </section>
 
               <section id="response" class="card rounded-box bg-base-200">
