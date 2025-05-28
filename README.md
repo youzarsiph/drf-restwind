@@ -102,8 +102,6 @@ Now you can proceed with the following customization guides.
 
 To modify the theme, update your `api.html`:
 
-Sure! Here’s the continuation of the instructions for changing the theme and other customization options:
-
 ```html
 {% extends 'rest_framework/base.html' %}
 
@@ -119,6 +117,41 @@ Sure! Here’s the continuation of the instructions for changing the theme and o
 {% endblock %}
 ```
 
+If you want to update code highlight theme for API documentation (written in `Markdown` in `View`'s `docstring`):
+
+- Install `markdown` and `pygments`:
+
+  ```console
+  pip install markdown pygments
+  ```
+
+- Select a style form available [styles](https://pygments.org/styles).
+- Generate the `css` file for selected styles:
+
+  ```console
+  pygmentize -S github-dark -f html > app/static/app/css/highlight.css
+  ```
+
+- Include the generated `css` file in your `api.html`:
+
+  ```html
+  {% extends 'rest_framework/base.html' %}{% load static %}
+
+  <!-- Main theme -->
+  {% block theme %}luxury{% endblock %}
+
+  <!-- Light or Dark theme to toggle between -->
+  {% block toggle_theme %}silk{% endblock %}
+
+  <!-- Set the highlight_theme accordingly -->
+  {% block highlight_theme %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/github-dark.min.css">
+
+  <!-- Include styles -->
+  <link rel="stylesheet" href="{% static 'app/css/highlight.css' %}">
+  {% endblock %}
+  ```
+
 ### Removing theme selector
 
 To remove the theme selector, update your `api.html`:
@@ -129,15 +162,14 @@ To remove the theme selector, update your `api.html`:
 {% block theme_selector %}{% endblock %}
 ```
 
-### Updating Markdown Styles
+### Updating `View` documentation styles
 
-To update markdown styles, update your `api.html`:
+To update `View` documentation **typography** styles, update your `api.html`:
 
 ```html
 {% extends 'rest_framework/base.html' %}
 
-<!-- This removes responsiveness from markdown styles -->
-{% block markdown_styles %}{% endblock %}
+{% block markdown_styles %}lg:prose-xl{% endblock %}
 ```
 
 ### Removing the search bar
