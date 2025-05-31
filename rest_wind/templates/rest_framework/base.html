@@ -15,7 +15,7 @@
     <!-- prettier ignore -->
     <title>
       {% block title %}
-      {% if name %}{{ name }} -{% endif %} Django REST framework 
+      {% if name %}{{ name }} -{% endif %} Django REST framework
       {% endblock %}
     </title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,22 +30,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="{% static 'rest_wind/css/pygments.css' %}"
-    />
+    <link rel="stylesheet" href="{% static 'rest_wind/css/pygments.css' %}" />
     {% endblock %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/http.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+      hljs.highlightAll();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
 
     <!-- prettier ignore -->
     {% block styles %}
-    <link
-      rel="stylesheet"
-      href="{% static 'rest_wind/css/styles.css' %}"
-    />
+    <link rel="stylesheet" href="{% static 'rest_wind/css/styles.css' %}" />
     {% endblock %}
 
     <!-- Style overrides -->
@@ -102,9 +98,7 @@
                   />
                 </svg>
 
-                <span class="sr-only"
-                  >{% trans 'Django REST Framework' %}</span
-                >
+                <span class="sr-only">{% trans 'Django REST Framework' %}</span>
               </a>
             </li>
             {% endblock %}
@@ -329,9 +323,9 @@
           </h1>
           {% endblock %}
 
-          <form method="get" class="join w-full lg:max-w-lg">
+          <form method="get" class="w-full lg:max-w-lg">
             <label
-              class="input input-sm input-primary w-full join-item lg:input-md"
+              class="input input-sm input-primary w-full lg:input-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -356,16 +350,8 @@
                 value="{{ request.GET.search }}"
                 placeholder="{% trans 'Search...' %}"
               />
-            </label>
 
-            <div
-              class="tooltip tooltip-bottom"
-              data-tip="{% trans 'Search' %}"
-            >
-              <button
-                class="btn btn-sm btn-primary join-item lg:btn-md"
-                type="submit"
-              >
+              <div class="tooltip tooltip-left" data-tip="{% trans 'Press `Enter` to search' %}">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -376,17 +362,16 @@
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="lucide lucide-circle-check-icon lucide-circle-check size-5 lg:size-6"
+                  class="lucide lucide-info-icon lucide-info text-primary size-5 lg:size-6"
                 >
                   <circle cx="12" cy="12" r="10" />
-                  <path d="m9 12 2 2 4-4" />
+                  <path d="M12 16v-4" />
+                  <path d="M12 8h.01" />
                 </svg>
-
-                <span class="sr-only"> {% trans "Search" %} </span>
-              </button>
-            </div>
+              </div>
+            </label>
           </form>
-          
+
           <!-- prettier ignore -->
           {% block searchbar_right %}
           <ul class="flex items-center gap-2 p-0 lg:gap-4">
@@ -494,7 +479,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-refresh-ccw size-5 lg:size-5"
+                          class="lucide lucide-refresh-ccw size-4 lg:size-5"
                         >
                           <path
                             d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
@@ -527,7 +512,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-chevron-down size-5 lg:size-5"
+                          class="lucide lucide-chevron-down size-4 lg:size-5"
                         >
                           <path d="m6 9 6 6 6-6" />
                         </svg>
@@ -575,7 +560,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-refresh-ccw size-5 lg:size-5"
+                          class="lucide lucide-refresh-ccw size-4 lg:size-5"
                         >
                           <path
                             d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
@@ -617,7 +602,7 @@
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-info size-5 lg:size-5"
+                          class="lucide lucide-info size-4 lg:size-5"
                         >
                           <circle cx="12" cy="12" r="10" />
                           <path d="M12 16v-4" />
@@ -651,7 +636,7 @@
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="lucide lucide-badge-info size-5 lg:size-5"
+                      class="lucide lucide-badge-info size-4 lg:size-5"
                     >
                       <path
                         d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"
@@ -959,7 +944,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-trash-2 size-5 lg:size-5"
+                        class="lucide lucide-trash-2 size-4 lg:size-5"
                       >
                         <path d="M3 6h18" />
                         <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -972,10 +957,14 @@
                     </button>
                   </div>
 
-                  <dialog id="deleteDialog" class="modal rounded-box">
-                    <section class="modal-box grid gap-4">
-                      <header class="flex items-center justify-between gap-4">
-                        <h1 class="text-2xl font-semibold">
+                  <dialog id="deleteDialog" class="modal overflow-hidden">
+                    <section
+                      class="relative modal-box p-0 grid gap-4 max-w-3xl"
+                    >
+                      <header
+                        class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl p-4 flex items-center justify-between gap-4"
+                      >
+                        <h1 class="text-lg font-semibold lg:text-2xl">
                           {% trans 'Delete' %} {{ name }}
                         </h1>
 
@@ -1008,7 +997,9 @@
                         </div>
                       </header>
 
-                      <main class="grid gap-4">
+                      <main
+                        class="max-h-[calc(100dvh-1rem)] overflow-y-auto px-4 py-20 lg:max-h-[calc(100dvh-4rem)]"
+                      >
                         <form
                           id="delete-form"
                           action="{{ request.get_full_path }}"
@@ -1043,7 +1034,9 @@
                         </div>
                       </main>
 
-                      <footer class="modal-action gap-4">
+                      <footer
+                        class="absolute inset-x-0 bottom-0 z-10 backdrop-blur-3xl p-4 modal-action gap-4"
+                      >
                         <button
                           type="submit"
                           form="delete-form"
@@ -1100,16 +1093,14 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-ellipsis-vertical size-5 lg:size-5"
+                        class="lucide lucide-ellipsis-vertical size-4 lg:size-5"
                       >
                         <circle cx="12" cy="12" r="1" />
                         <circle cx="12" cy="5" r="1" />
                         <circle cx="12" cy="19" r="1" />
                       </svg>
 
-                      <span class="sr-only"
-                        >{% trans 'Extra actions' %}</span
-                      >
+                      <span class="sr-only">{% trans 'Extra actions' %}</span>
                     </button>
 
                     <ul
@@ -1118,9 +1109,7 @@
                       style="position-anchor: --extra-actions"
                       class="menu dropdown dropdown-left dropdown-bottom bg-base-200 rounded-box shadow-lg"
                     >
-                      <li class="menu-title">
-                        {% trans 'Extra actions' %}
-                      </li>
+                      <li class="menu-title">{% trans 'Extra actions' %}</li>
                       <!-- prettier ignore -->
                       {% for action_name, url in extra_actions|items %}
                       <li><a href="{{ url }}">{{ action_name }}</a></li>
@@ -1149,7 +1138,7 @@
                         stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        class="lucide lucide-list-filter size-5 lg:size-5"
+                        class="lucide lucide-list-filter size-4 lg:size-5"
                       >
                         <path d="M3 6h18" />
                         <path d="M7 12h10" />
@@ -1170,17 +1159,13 @@
             <main
               class="flex flex-col gap-4 h-full p-4 pt-20 lg:max-h-dvh lg:overflow-y-auto"
             >
-              <section id="title-description" class="grid gap-4">
+              <section id="title" class="grid gap-4">
                 <h1
                   id="title"
                   class="text-primary font-serif text-3xl font-black lg:text-6xl"
                 >
                   {{ name }}
                 </h1>
-                <section id="docs" class="prose prose-sm prose-primary max-w-none w-full {% block markdown_styles %} lg:prose-base xl:prose-lg 2xl:prose-xl 3x:prose-2xl {% endblock %}">
-                  <!-- prettier ignore -->
-                  {% block description %}{{ description }}{% endblock %}
-                </section>
               </section>
 
               <section id="response" class="card rounded-box bg-base-200">
@@ -1197,42 +1182,76 @@
                     ></div>
                   </div>
 
-                  <div
-                    class="tooltip tooltip-left"
-                    data-tip="{% trans 'Copy' %}"
-                  >
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
-                      data-clipboard-text="{{ content }}"
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="tooltip tooltip-left tooltip-success"
+                      data-tip="{% trans 'Documentation' %}"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-copy size-5 lg:size-5"
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-square btn-soft btn-success lg:btn-md"
+                        onclick="docsDialog.showModal()"
                       >
-                        <rect
-                          width="14"
-                          height="14"
-                          x="8"
-                          y="8"
-                          rx="2"
-                          ry="2"
-                        />
-                        <path
-                          d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
-                        />
-                      </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-book-text size-4 lg:size-5"
+                        >
+                          <path
+                            d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"
+                          />
+                          <path d="M8 11h8" />
+                          <path d="M8 7h6" />
+                        </svg>
 
-                      <span class="sr-only">{% trans 'Copy' %}</span>
-                    </button>
+                        <span class="sr-only">{% trans 'Documentation' %}</span>
+                      </button>
+                    </div>
+
+                    <div
+                      class="tooltip tooltip-left"
+                      data-tip="{% trans 'Copy' %}"
+                    >
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
+                        data-clipboard-text="{{ content }}"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-copy size-4 lg:size-5"
+                        >
+                          <rect
+                            width="14"
+                            height="14"
+                            x="8"
+                            y="8"
+                            rx="2"
+                            ry="2"
+                          />
+                          <path
+                            d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                          />
+                        </svg>
+
+                        <span class="sr-only">{% trans 'Copy' %}</span>
+                      </button>
+                    </div>
                   </div>
                 </header>
 
@@ -1252,10 +1271,70 @@ HTTP {{ response.status_code }} {{ response.status_text }}
       {% endblock %}
     </main>
 
-    <dialog id="usageDialog" class="modal rounded-box">
-      <section class="modal-box grid gap-4 max-w-4xl">
-        <header class="flex items-center justify-between gap-4">
-          <h1 class="text-2xl font-semibold">{% trans 'Examples' %}</h1>
+    <dialog id="docsDialog" class="modal overflow-hidden">
+      <section class="relative modal-box p-0 grid gap-4 max-w-5xl">
+        <header
+          class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl p-4 flex items-center justify-between gap-4"
+        >
+          <h1 class="text-lg font-semibold lg:text-2xl">
+            {% trans 'Documentation' %}
+          </h1>
+
+          <div class="tooltip tooltip-left" data-tip="{% trans 'Close' %}">
+            <button
+              class="btn btn-square btn-ghost"
+              onclick="docsDialog.close()"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+
+              <span class="sr-only">{% trans 'Close' %}</span>
+            </button>
+          </div>
+        </header>
+
+        <main
+          class="max-h-[calc(100dvh-1rem)] overflow-y-auto px-6 py-20 lg:px-12 lg:max-h-[calc(100dvh-4rem)]"
+        >
+          <section
+            class="prose prose-sm prose-primary max-w-none {% block markdown_styles %} lg:prose-base xl:prose-lg 2xl:prose-xl 3x:prose-2xl {% endblock %}"
+          >
+            <!-- prettier ignore -->
+            {% block description %}{{ description }}{% endblock %}
+          </section>
+        </main>
+
+        <footer
+          class="absolute inset-x-0 bottom-0 z-10 backdrop-blur-3xl p-4 modal-action gap-4"
+        >
+          <button class="btn btn-secondary grow" onclick="docsDialog.close()">
+            {% trans 'Close' %}
+          </button>
+        </footer>
+      </section>
+    </dialog>
+
+    <dialog id="usageDialog" class="modal overflow-hidden">
+      <section class="relative modal-box p-0 grid gap-4 max-w-5xl">
+        <header
+          class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl p-4 flex items-center justify-between gap-4"
+        >
+          <h1 class="text-lg font-semibold lg:text-2xl">
+            {% trans 'Examples' %}
+          </h1>
 
           <div class="tooltip tooltip-left" data-tip="{% trans 'Close' %}">
             <button
@@ -1283,7 +1362,9 @@ HTTP {{ response.status_code }} {{ response.status_text }}
           </div>
         </header>
 
-        <main class="overflow-hidden">
+        <main
+          class="max-h-[calc(100dvh-1rem)] overflow-y-auto px-4 py-20 lg:max-h-[calc(100dvh-4rem)]"
+        >
           <div role="tablist" class="tabs tabs-box">
             <input
               type="radio"
@@ -1316,7 +1397,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-copy size-5 lg:size-5"
+                          class="lucide lucide-copy size-4 lg:size-5"
                         >
                           <rect
                             width="14"
@@ -1408,7 +1489,7 @@ curl -X DELETE {{ request.build_absolute_uri }}</code></pre>
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-copy size-5 lg:size-5"
+                          class="lucide lucide-copy size-4 lg:size-5"
                         >
                           <rect
                             width="14"
@@ -1524,7 +1605,7 @@ else:
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          class="lucide lucide-copy size-5 lg:size-5"
+                          class="lucide lucide-copy size-4 lg:size-5"
                         >
                           <rect
                             width="14"
@@ -1609,7 +1690,9 @@ fetch(url, { method: 'DELETE' })
           </div>
         </main>
 
-        <footer class="modal-action">
+        <footer
+          class="absolute inset-x-0 bottom-0 z-10 backdrop-blur-3xl p-4 modal-action gap-4"
+        >
           <button class="btn btn-primary grow" onclick="usageDialog.close()">
             {% trans 'Close' %}
           </button>
@@ -1698,6 +1781,8 @@ fetch(url, { method: 'DELETE' })
     </section>
     {% endblock %}
 
-    <div class="hidden lg:h-[calc(100dvh-1rem)] lg:max-h-[calc(100dvh-1rem)]"></div>
+    <div
+      class="hidden lg:h-[calc(100dvh-1rem)] lg:max-h-[calc(100dvh-1rem)]"
+    ></div>
   </body>
 </html>

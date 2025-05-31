@@ -1,10 +1,12 @@
 <!-- prettier ignore -->
 {% load i18n %}
 
-<dialog id="filtersDialog" class="modal rounded-box">
-  <section class="modal-box grid gap-4">
-    <header class="flex items-center justify-between gap-4">
-      <h1 class="text-2xl font-semibold">{% trans 'Filters' %}</h1>
+<dialog id="filtersDialog" class="modal overflow-hidden">
+  <section class="relative modal-box p-0 grid gap-4 max-w-3xl">
+    <header
+      class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl p-4 flex items-center justify-between gap-4"
+    >
+      <h1 class="text-lg font-semibold lg:text-2xl">{% trans 'Filters' %}</h1>
 
       <div
         class="tooltip tooltip-left"
@@ -33,11 +35,15 @@
       </div>
     </header>
 
-    <main class="grid gap-4">
+    <main
+      class="grid gap-6 max-h-[calc(100dvh-1rem)] overflow-y-auto px-4 py-20 lg:max-h-[calc(100dvh-4rem)]"
+    >
       {% for element in elements %}{{ element }}{% endfor %}
     </main>
 
-    <footer class="modal-action">
+    <footer
+      class="absolute inset-x-0 bottom-0 z-10 backdrop-blur-3xl p-4 modal-action gap-4"
+    >
       <button class="btn btn-primary grow" onclick="filtersDialog.close()">
         {% trans 'Close' %}
       </button>
