@@ -9,21 +9,7 @@
     data-tip="{% trans 'Previous' %}"
   >
     <a href="{{ previous_url }}" class="btn btn-soft btn-primary join-item">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-left"
-      >
-        <path d="m15 18-6-6 6-6" />
-      </svg>
-
+      <i data-lucide="chevron-left" class="size-4 lg:size-6"></i>
       <span>{% trans 'Prev' %}</span>
     </a>
   </li>
@@ -33,21 +19,7 @@
     data-tip="{% trans 'Previous' %}"
   >
     <button disabled class="btn btn-soft btn-primary join-item">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-left"
-      >
-        <path d="m15 18-6-6 6-6" />
-      </svg>
-
+      <i data-lucide="chevron-left" class="size-4 lg:size-6"></i>
       <span>{% trans 'Prev' %}</span>
     </button>
   </li>
@@ -60,21 +32,7 @@
   >
     <a href="{{ next_url }}" class="btn btn-soft btn-primary join-item">
       <span>{% trans 'Next' %}</span>
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-right"
-      >
-        <path d="m9 18 6-6-6-6" />
-      </svg>
+      <i data-lucide="chevron-right" class="size-4 lg:size-6"></i>
     </a>
   </li>
   {% else %}
@@ -84,21 +42,7 @@
   >
     <button disabled class="btn btn-soft btn-primary join-item">
       <span>{% trans 'Next' %}</span>
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-right"
-      >
-        <path d="m9 18 6-6-6-6" />
-      </svg>
+      <i data-lucide="chevron-right" class="size-4 lg:size-6"></i>
     </button>
   </li>
   {% endif %}

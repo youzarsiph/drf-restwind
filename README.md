@@ -215,25 +215,7 @@ To change the brand name and add custom links, modify your `api.html`:
     href="https://www.django-rest-framework.org/"
     class="btn btn-sm btn-square btn-ghost lg:btn-md"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-graduation-cap size-5 lg:size-6"
-    >
-      <path
-        d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
-      />
-      <path d="M22 10v6" />
-      <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
-    </svg>
-
+    <i data-lucide="graduation-cap" class="size-4 lg:size-6"></i>
     <span class="sr-only">{% trans 'YOUR_BRAND' %}</span>
   </a>
 </li>
@@ -256,24 +238,7 @@ To change the brand name and add custom links, modify your `api.html`:
     href="https://www.django-rest-framework.org/"
     class="btn btn-sm btn-square btn-ghost lg:btn-md"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-house size-5 lg:size-6"
-    >
-      <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
-      <path
-        d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-      />
-    </svg>
-
+    <i data-lucide="house" class="size-4 lg:size-6"></i> 
     <span class="sr-only">{% trans 'Home' %}</span>
   </a>
 </li>
@@ -290,25 +255,7 @@ To add menu items to profile menu, modify your `api.html`:
 {% block profile_menu %}
 <li>
   <a href="/users/me" class="flex items-center gap-4">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-circle-user size-5 lg:size-6"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="10" r="3" />
-      <path
-        d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"
-      />
-    </svg>
-
+    <i data-lucide="user" class="size-4 lg:size-6"></i>
     <span>{% translate 'Profile' %}</span>
   </a>
 </li>
