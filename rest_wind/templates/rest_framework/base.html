@@ -751,7 +751,7 @@
                   <pre><code class="language-http">{{ request.method }} {{ request.get_full_path }}
 HTTP {{ response.status_code }} {{ response.status_text }}
 {% for key, val in response_headers|items %}
-{{ key }}: {{ val|break_long_headers|urlize }}{% endfor %}</code></pre>
+{{ key }}: {{ val|urlize }}{% endfor %}</code></pre>
 
                   <pre><code class="language-json">{{ content|urlize }}</code></pre>
                 </main>
