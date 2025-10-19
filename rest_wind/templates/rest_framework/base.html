@@ -1,30 +1,29 @@
-<!-- prettier ignore -->
 {% load i18n static rest_framework rest_wind %}
 
-<!doctype html>
-<html lang="en" data-theme="{% block theme %}default{% endblock %}">
+<!DOCTYPE html>
+<html
+  lang="{{ LANGUAGE_CODE }}"
+  dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+  data-theme="{% block theme %}default{% endblock %}"
+>
   <head>
-    <!-- prettier ignore -->
     {% block head %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- prettier ignore -->
     {% block meta %}
     <meta name="robots" content="NONE,NOARCHIVE" />
     {% endblock %}
-    <!-- prettier ignore -->
     <title>
-      {% block title %}
-      {% if name %}{{ name }} -{% endif %} Django REST framework
-      {% endblock %}
+      {% block title %}{% if name %}{{ name }} -{% endif %} Django REST
+      framework{% endblock %}
     </title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <!-- prettier ignore -->
     {% block highlight_theme %}
     <link
       rel="stylesheet"
@@ -34,261 +33,344 @@
     {% endblock %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/http.min.js"></script>
-    <script>hljs.highlightAll()</script>
+    <script>
+      hljs.highlightAll();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
 
-    <!-- prettier ignore -->
     {% block styles %}
     <link rel="stylesheet" href="{% static 'rest_wind/css/styles.css' %}" />
     {% endblock %}
-
-    <!-- Style overrides -->
-    <style>
-      pre code.hljs,
-      code.hljs,
-      .hljs {
-        padding: 0px;
-        font-family: "Jetbrains Mono", monospace;
-        background-color: transparent;
-      }
-    </style>
+    <!---->
     {% endblock %}
   </head>
 
-  <body class="flex h-dvh bg-base-300 overflow-hidden">
-    <!-- prettier ignore -->
-    {% block body %}
-    <section id="nav" class="h-full z-30">
-      <header class="h-full">
-        <!-- prettier ignore -->
-        {% block navbar %}
-        <nav
-          class="menu menu-vertical h-full items-center justify-between gap-4 lg:w-auto"
-        >
-          <ul class="menu menu-vertical items-center gap-1 p-0 lg:gap-2">
-            <!-- prettier ignore -->
-            {% block branding %}
-            <li
-              class="tooltip tooltip-right tooltip-primary"
-              data-tip="{% trans 'Django REST Framework' %}"
-            >
-              <a
-                href="https://www.django-rest-framework.org/"
-                class="btn btn-square btn-primary lg:btn-lg"
-              >
-                <i data-lucide="braces" class="size-8"></i>
-                <span class="sr-only">{% trans 'Django REST Framework' %}</span>
-              </a>
-            </li>
-            {% endblock %}
-            <!-- prettier ignore -->
-            {% block userlinks %}
-            <li
-              class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% trans 'Home' %}"
-            >
-              <a
-                href="https://www.django-rest-framework.org/"
-                class="btn btn-sm btn-square btn-ghost lg:btn-md"
-              >
-                <i data-lucide="house" class="size-4 lg:size-6"></i>
-                <span class="sr-only">{% trans 'Home' %}</span>
-              </a>
-            </li>
-            <li
-              class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% trans 'Docs' %}"
-            >
-              <a
-                href="https://www.django-rest-framework.org/api-guide/requests/"
-                class="btn btn-sm btn-square btn-ghost lg:btn-md"
-              >
-                <i data-lucide="book-text" class="size-4 lg:size-6"></i>
-                <span class="sr-only">{% trans 'Docs' %}</span>
-              </a>
-            </li>
-            <li
-              class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% trans 'Tutorial' %}"
-            >
-              <a
-                href="https://www.django-rest-framework.org/tutorial/quickstart/"
-                class="btn btn-sm btn-square btn-ghost lg:btn-md"
-              >
-                <i data-lucide="graduation-cap" class="size-4 lg:size-6"></i>
-                <span class="sr-only">{% trans 'Tutorial' %}</span>
-              </a>
-            </li>
-            <li
-              class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% trans 'DRF Repo' %}"
-            >
-              <a
-                href="https://github.com/encode/django-rest-framework/"
-                class="btn btn-sm btn-square btn-ghost lg:btn-md"
-              >
-                <i data-lucide="folder-git-2" class="size-4 lg:size-6"></i>
-                <span class="sr-only">{% trans 'DRF Repo' %}</span>
-              </a>
-            </li>
-            <li
-              class="tooltip tooltip-right tooltip-secondary"
-              data-tip="{% trans 'DRF RestWind Repo' %}"
-            >
-              <a
-                href="https://github.com/youzarsiph/drf-restwind/"
-                class="btn btn-sm btn-square btn-ghost lg:btn-md"
-              >
-                <i data-lucide="github" class="size-4 lg:size-6"></i>
-                <span class="sr-only">{% trans 'DRF RestWind Repo' %}</span>
-              </a>
-            </li>
-            {% endblock %}
-          </ul>
-
-          <ul class="menu menu-vertical items-center gap-1 p-0 lg:gap-2">
-            <li
-              class="tooltip tooltip-right tooltip-accent"
-              data-tip="{% trans 'Profile' %}"
-            >
-              <button
-                popovertarget="profile"
-                style="anchor-name: --profile"
-                class="btn btn-sm btn-square btn-ghost lg:btn-md"
-              >
-                <i data-lucide="user" class="size-4 lg:size-6"></i>
-                <span class="sr-only">{% trans 'Profile' %}</span>
-              </button>
-
-              <ul
-                popover
-                id="profile"
-                style="position-anchor: --profile"
-                class="menu dropdown dropdown-top dropdown-right bg-base-200 rounded-box shadow-lg"
-              >
-                <li class="menu-title">{% trans 'Profile' %}</li>
-                <!-- prettier ignore -->
-                {% block profile_menu %}{% endblock %}
-
-                <!-- prettier ignore -->
-                {% if request.user.is_authenticated %}
-                <!-- prettier ignore -->
-                {% optional_logout request user csrf_token %}{% else %}
-                <!-- prettier ignore -->
-                {% optional_login request %}{% endif %}
-              </ul>
-            </li>
-          </ul>
-        </nav>
-        {% endblock %}
-      </header>
-    </section>
-
-    <main
-      class="relative flex h-dvh max-h-dvh w-full flex-col gap-2 py-2 pr-2 overflow-hidden"
+  <body
+    class="bg-base-300 font-sans h-dvh overflow-hidden md:p-1 lg:p-2 rtl:font-kufi"
+  >
+    <div
+      class="drawer h-dvh bg-base-100 overflow-hidden md:rounded-box md:drawer-open lg:max-h-[calc(100dvh-1rem)]"
     >
-      <!-- prettier ignore -->
-      {% block searchbar %}
-      <section id="searchbar" class="z-20 w-full">
-        <nav class="flex items-center justify-between w-full gap-2 lg:gap-4">
-          <!-- prettier ignore -->
-          {% block branding_text %}
-          <h1 class="hidden text-xl font-semibold text-primary lg:block">
-            {% trans 'DRF RestWind' %}
-          </h1>
-          {% endblock %}
+      <input id="main-drawer" type="checkbox" class="drawer-toggle" />
 
-          <form method="get" class="w-full lg:max-w-lg">
-            <label
-              class="input input-sm input-primary w-full lg:input-md"
-            >
-              <i data-lucide="search" class="size-4 lg:size-6"></i>
-              <input
-                type="search"
-                class="grow"
-                name="search"
-                value="{{ request.GET.search }}"
-                placeholder="{% trans 'Search...' %}"
-              />
-
-              <div class="tooltip tooltip-left" data-tip="{% trans 'Press `Enter` to search' %}">
-                <i data-lucide="info-icon" class="size-4 lg:size-6"></i>
-              </div>
-            </label>
-          </form>
-
-          <!-- prettier ignore -->
-          {% block searchbar_right %}
-          <ul class="flex items-center gap-2 p-0 lg:gap-4">
-            {% block theme_selector %}
-            <!-- prettier ignore -->
-            {% include 'rest_framework/components/theme.html' %}{% endblock %}
-            <li
-              class="tooltip tooltip-left tooltip-accent"
-              data-tip="{% trans 'Toggle theme' %}"
-            >
-              <label
-                class="swap swap-rotate btn btn-sm btn-square btn-ghost lg:btn-md"
-              >
-                <input
-                  type="checkbox"
-                  class="theme-controller"
-                  value="{% block toggle_theme %}light{% endblock %}"
-                />
-                <i data-lucide="sun" class="swap-off size-4 lg:size-6"></i>
-                <i data-lucide="moon-star" class="swap-on size-4 lg:size-6"></i>
-              </label>
-            </li>
-          </ul>
-          {% endblock %}
-        </nav>
-      </section>
-      {% endblock %}
-
-      <!-- prettier ignore -->
-      {% block content %}
-      <div
-        class="grid gap-4 grow grid-cols-12 rounded-box bg-base-100 overflow-y-auto lg:overflow-y-visible lg:gap-0"
+      <section
+        class="drawer-content size-full max-h-dvh lg:max-h-[calc(100dvh-1rem)]"
       >
-        <section
-          id="sidebar"
-          class="col-span-12 h-full lg:col-span-3 {% block sidebar_styles %} lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)] {% endblock %}"
+        {% block content %}
+        <div
+          class="drawer max-h-dvh lg:max-h-[calc(100dvh-1rem)] lg:drawer-open"
         >
-          <section id="sidebar-content" class="relative h-full">
-            <header class="absolute inset-x-0 top-0 z-10">
-              <nav
-                class="flex items-center justify-between p-4 gap-4 backdrop-blur-3xl rounded-t-box"
-              >
-                <div class="flex items-center gap-4">
-                  <!-- prettier ignore -->
-                  {% block request_forms %}
-                  <!-- prettier ignore -->
-                  {% if 'GET' in allowed_methods %}
-                  <form class="join" id="get-form">
-                    <!-- prettier ignore -->
-                    {% if api_settings.URL_FORMAT_OVERRIDE %}
+          <input id="sidebar" type="checkbox" class="drawer-toggle" />
+
+          <section
+            class="drawer-content max-h-dvh lg:max-h-[calc(100dvh-1rem)]"
+          >
+            <div class="relative size-full">
+              <header class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl">
+                <nav class="navbar p-4">
+                  <ul class="navbar-start gap-4">
+                    {% block navbar_start %}
+                    <li
+                      class="tooltip tooltip-right rtl:tooltip-left tooltip-primary lg:hidden"
+                      data-tip="{% trans 'Open drawer' %}"
+                    >
+                      <label
+                        for="sidebar"
+                        aria-label="{% trans 'close sidebar' %}"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
+                      >
+                        <i data-lucide="menu" class="size-4 lg:size-6"></i>
+                        <span class="sr-only"> {% trans 'Open drawer' %} </span>
+                      </label>
+                    </li>
+                    {% endblock %}
+
+                    <!---->
+                    {% block branding %}
+                    <li
+                      class="tooltip tooltip-right rtl:tooltip-left tooltip-primary md:hidden"
+                      data-tip="{% trans 'Django REST Framework' %}"
+                    >
+                      <h1 class="relative">
+                        <a
+                          href="https://www.django-rest-framework.org/"
+                          class="btn btn-square btn-primary lg:btn-lg 2xl:btn-lg"
+                        >
+                          <div
+                            class="btn btn-square btn-primary rotate-45 p-0 shadow-none lg:btn-lg 2xl:btn-lg"
+                          >
+                            <i
+                              data-lucide="braces"
+                              class="-rotate-45 lg:size-8 2xl:size-10"
+                            ></i>
+                          </div>
+                          <span class="sr-only">
+                            {% trans 'Django REST Framework' %}
+                          </span>
+                        </a>
+                      </h1>
+                    </li>
+                    {% endblock %}
+                  </ul>
+
+                  <ul class="navbar-center hidden gap-4 lg:block">
+                    {% block navbar_center %}
+                    <li>
+                      <form method="get">
+                        <label
+                          class="input input-ghost input-primary 2xl:input-lg mx-auto w-full max-w-xl bg-transparent"
+                        >
+                          <i
+                            data-lucide="search"
+                            class="size-4 text-primary lg:size-6"
+                          ></i>
+                          <input
+                            required
+                            type="search"
+                            name="search"
+                            class="placeholder-primary grow"
+                            placeholder="{% trans 'Search' %}"
+                          />
+                        </label>
+                      </form>
+                    </li>
+                    {% endblock %}
+                  </ul>
+
+                  <ul class="navbar-end gap-4">
+                    {% block navbar_end %}
+                    <!---->
+                    {% if delete_form %}
                     <div
-                      class="tooltip tooltip-right tooltip-primary"
+                      data-tip="{% trans 'Delete' %}"
+                      class="tooltip tooltip-left tooltip-error rtl:tooltip-right"
+                    >
+                      <button
+                        type="button"
+                        onclick="deleteDialog.showModal()"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-error 2xl:btn-md"
+                      >
+                        <i data-lucide="trash-2" class="size-4 lg:size-6"></i>
+                        <span class="sr-only"> {% trans 'Delete' %} </span>
+                      </button>
+                    </div>
+                    {% endif %}
+
+                    <!---->
+                    {% if filter_form %}
+                    <div
+                      class="tooltip tooltip-left rtl:tooltip-right"
+                      data-tip="{% trans 'Filters' %}"
+                    >
+                      <button
+                        type="button"
+                        onclick="filtersDialog.showModal()"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                      >
+                        <i
+                          data-lucide="list-filter"
+                          class="size-4 lg:size-6"
+                        ></i>
+                        <span class="sr-only"> {% trans 'Filters' %} </span>
+                      </button>
+                    </div>
+
+                    {{ filter_form }}
+                    <!---->
+                    {% endif %}
+                    
+                    <!---->
+                    {% block theme_toggle %}
+                    <li
+                      class="tooltip tooltip-left rtl:tooltip-right"
+                      data-tip="{% trans 'Toggle theme' %}"
+                    >
+                      <label
+                        class="swap swap-rotate btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
+                      >
+                        <input
+                          type="checkbox"
+                          class="theme-controller"
+                          value="{% block toggle_theme %}light{% endblock %}"
+                          value="luxury"
+                        />
+                        <i
+                          data-lucide="sun"
+                          class="swap-off size-4 lg:size-6"
+                        ></i>
+                        <i
+                          data-lucide="moon-star"
+                          class="swap-on size-4 lg:size-6"
+                        ></i>
+                        <span class="sr-only">
+                          {% trans 'Toggle theme' %}
+                        </span>
+                      </label>
+                    </li>
+                    {% endblock %}
+
+                    <!---->
+                    {% block theme_selector %}
+                    <!---->
+                    {% include 'rest_framework/components/theme.html' %}
+                    <!---->
+                    {% endblock %}
+                    <!---->
+                    {% endblock %}
+                  </ul>
+                </nav>
+              </header>
+
+              <div
+                class="size-full max-h-dvh overflow-y-auto px-4 py-24 lg:max-h-[calc(100dvh-1rem)]"
+              >
+                <main class="container mx-auto grid gap-8">
+                  <!---->
+                  {% block breadcrumbs %}
+                  <nav class="breadcrumbs text-sm">
+                    <ol>
+                      {% for name, url in breadcrumblist %}
+                      <!---->
+                      {% if forloop.last %}
+                      <li>{{ name }}</li>
+                      {% else %}
+                      <li>
+                        <a href="{{ url }}">{{ name }}</a>
+                      </li>
+                      {% endif %}
+                      <!---->
+                      {% endfor %}
+                    </ol>
+                  </nav>
+                  {% endblock %}
+
+                  <section class="container-prose">
+                    <h1>{{ name }}</h1>
+
+                    {% if paginator %}
+                    <nav class="not-prose">
+                      {% get_pagination_html paginator %}
+                    </nav>
+                    {% endif %}
+
+                    <div class="relative">
+                      <div
+                        class="absolute inset-x-0 flex items-center justify-end gap-4 p-2 rtl:justify-start"
+                      >
+                        <div
+                          class="tooltip tooltip-left"
+                          data-tip="{% trans 'Documentation' %}"
+                        >
+                          <button
+                            onclick="docsDialog.showModal()"
+                            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-ghost btn-square"
+                          >
+                            <span class="sr-only">
+                              {% trans 'Documentation' %}
+                            </span>
+
+                            <i
+                              data-lucide="book-text"
+                              class="size-4 lg:size-5"
+                            ></i>
+                          </button>
+                        </div>
+
+                        <div
+                          class="tooltip tooltip-left"
+                          data-tip="{% trans 'Copy' %}"
+                        >
+                          <button
+                            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-copy btn-ghost btn-square"
+                            data-clipboard-text="{{ content }}"
+                          >
+                            <span class="sr-only"> {% trans 'Copy' %} </span>
+                            <i data-lucide="copy" class="size-4 lg:size-5"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <pre
+                        dir="ltr"
+                        class="bg-transparent p-0 border border-base-300"
+                      ><code class="language-http">{{ request.method }} {{ request.get_full_path }}
+HTTP {{ response.status_code }} {{ response.status_text }}
+{% for key, val in response_headers|items %}
+{{ key }}: {{ val|urlize }}{% endfor %}</code><code class="language-json">{{ content|urlize }}</code></pre>
+                    </div>
+                  </section>
+                </main>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="drawer-side z-50 max-h-dvh lg:max-h-[calc(100dvh-1rem)]"
+          >
+            <label
+              for="sidebar"
+              aria-label="{% trans 'close sidebar' %}"
+              class="drawer-overlay"
+            ></label>
+
+            <div
+              class="bg-base-100 border-base-300 border-y-base-100 relative flex size-full flex-col overflow-hidden overflow-y-auto border lg:min-w-sm lg:max-w-sm 2xl:min-w-md 2xl:max-w-md"
+            >
+              <header
+                class="absolute inset-x-0 top-0 z-10 flex items-center justify-between gap-4 p-4 backdrop-blur-3xl"
+              >
+                <div class="flex items-center gap-2 lg:gap-4">
+                  <div
+                    class="tooltip tooltip-right rtl:tooltip-left tooltip-primary md:hidden"
+                    data-tip="{% trans 'Open drawer' %}"
+                  >
+                    <label
+                      for="main-drawer"
+                      aria-label="{% trans 'close sidebar' %}"
+                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
+                    >
+                      <i
+                        data-lucide="panel-left-open"
+                        class="size-4 lg:size-6"
+                      ></i>
+                      <span class="sr-only">{% trans 'Open drawer' %}</span>
+                    </label>
+                  </div>
+
+                  {% block request_forms %}
+                  <!---->
+                  {% if 'GET' in allowed_methods %}
+                  <form method="get" class="flex items-center gap-2 lg:gap-4">
+                    <div
+                      class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
                       data-tip="{% trans 'GET request' %}"
                     >
                       <a
-                        href="{{ request.get_full_path }}"
                         rel="nofollow"
-                        class="btn join-item btn-sm btn-square btn-primary lg:btn-md"
+                        href="{{ request.get_full_path }}"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-primary 2xl:btn-md"
                       >
-                        <i data-lucide="refresh-ccw" class="size-4 lg:size-6"></i>
-                        <span class="sr-only">{% trans 'Get' %}</span>
+                        <i
+                          data-lucide="refresh-ccw"
+                          class="size-4 lg:size-6"
+                        ></i>
+                        <span class="sr-only"> {% trans 'GET request' %} </span>
                       </a>
                     </div>
-
-                    <div>
+                    {% if api_settings.URL_FORMAT_OVERRIDE %}
+                    <div
+                      class="tooltip tooltip-right rtl:tooltip-left"
+                      data-tip="{% trans 'Formats' %}"
+                    >
                       <button
                         type="button"
-                        class="btn join-item btn-sm btn-square btn-soft btn-primary lg:btn-md"
-                        popovertarget="formats"
+                        popoverTarget="formats"
                         style="anchor-name: --formats"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
                       >
-                        <i data-lucide="chevron-down" class="size-4 lg:size-6"></i>
+                        <i
+                          data-lucide="grid-2x2-plus"
+                          class="size-4 lg:size-6"
+                        ></i>
                         <span class="sr-only">{% trans 'Formats' %}</span>
                       </button>
 
@@ -296,17 +378,17 @@
                         id="formats"
                         popover
                         style="position-anchor: --formats"
-                        class="menu dropdown dropdown-center dropdown-bottom bg-base-200 rounded-box shadow-lg overflow-visible"
+                        class="menu dropdown dropdown-right bg-base-100/50 rounded-box rtl:dropdown-left overflow-visible shadow-lg backdrop-blur-3xl"
                       >
                         <li class="menu-title">{% trans 'Formats' %}</li>
                         {% for format in available_formats %}
                         <li
-                          class="tooltip tooltip-right"
+                          class="tooltip tooltip-bottom"
                           data-tip="{% trans 'GET request with format of' %} `{{ format|upper }}`"
                         >
                           <a
-                            href="{% add_query_param request api_settings.URL_FORMAT_OVERRIDE format %}"
                             rel="nofollow"
+                            href="{% add_query_param request api_settings.URL_FORMAT_OVERRIDE format %}"
                           >
                             {{ format|upper }}
                           </a>
@@ -314,785 +396,445 @@
                         {% endfor %}
                       </ul>
                     </div>
-                    {% else %}
-                    <div
-                      class="tooltip tooltip-right tooltip-primary"
-                      data-tip="{% trans 'GET request' %}"
-                    >
-                      <a
-                        href="{{ request.get_full_path }}"
-                        rel="nofollow"
-                        class="btn join-item btn-sm btn-square btn-ghost lg:btn-md"
-                      >
-                        <i data-lucide="refresh-ccw" class="size-4 lg:size-6"></i>
-                        <span class="sr-only">{% trans 'Get' %}</span>
-                      </a>
-                    </div>
                     {% endif %}
                   </form>
                   {% endif %}
-                  <!-- prettier ignore -->
+                  <!---->
+                  {% endblock %}
+                </div>
+
+                <div class="flex items-center gap-2 lg:gap-4">
+                  <!---->
                   {% if options_form %}
-                  <div
-                    class="tooltip tooltip-right tooltip-info"
+                  <form
+                    data-method="OPTIONS"
                     data-tip="{% trans 'OPTIONS request' %}"
+                    class="tooltip tooltip-left rtl:tooltip-right"
                   >
+                    <button
+                      type="submit"
+                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                    >
+                      <i data-lucide="info" class="size-4 lg:size-6"></i>
+                      <span class="sr-only">
+                        {% trans 'OPTIONS request' %}
+                      </span>
+                    </button>
+                  </form>
+                  {% endif %}
+
+                  <div
+                    data-tip="{% trans 'Usage' %}"
+                    class="tooltip tooltip-left rtl:tooltip-right"
+                  >
+                    <button
+                      type="button"
+                      onclick="usageDialog.showModal()"
+                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                    >
+                      <i
+                        data-lucide="notebook-text"
+                        class="size-4 lg:size-6"
+                      ></i>
+                      <span class="sr-only"> {% trans 'Usage' %} </span>
+                    </button>
+                  </div>
+
+                  <div
+                    class="tooltip tooltip-left rtl:tooltip-right lg:hidden"
+                    data-tip="{% trans 'Close' %}"
+                  >
+                    <label
+                      for="sidebar"
+                      aria-label="{% trans 'close sidebar' %}"
+                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                    >
+                      <i data-lucide="x" class="size-4 lg:size-6"></i>
+                      <span class="sr-only"> {% trans 'Close' %} </span>
+                    </label>
+                  </div>
+                </div>
+              </header>
+
+              <div
+                class="flex size-full max-h-dvh flex-col gap-4 overflow-y-auto py-20 lg:max-h-[calc(100dvh-1rem)]"
+              >
+                <form method="get" class="px-4 lg:hidden">
+                  <label
+                    class="input input-ghost input-primary 2xl:input-lg mx-auto w-full max-w-xl bg-transparent"
+                  >
+                    <i
+                      data-lucide="search"
+                      class="size-4 text-primary lg:size-6"
+                    ></i>
+                    <input
+                      required
+                      type="search"
+                      name="search"
+                      class="placeholder-primary grow"
+                      placeholder="{% trans 'Search' %}"
+                    />
+                  </label>
+                </form>
+
+                {% if display_edit_forms %}
+                <section
+                  role="tablist"
+                  class="tabs tabs-border tabs-xs sm:tabs-sm md:tabs-md 2xl:tabs-lg"
+                >
+                  {% if post_form or raw_data_post_form %}
+                  <input
+                    checked
+                    class="tab"
+                    type="radio"
+                    name="form-tabs"
+                    aria-label="{% trans 'Form' %}"
+                  />
+                  <div class="tab-content p-4" id="post-object-form">
+                    {% with form=post_form %}
                     <form
                       action="{{ request.get_full_path }}"
-                      data-method="OPTIONS"
+                      method="POST"
+                      enctype="multipart/form-data"
+                      class="grid gap-4"
                     >
-                      <button
-                        type="submit"
-                        class="btn btn-sm btn-square btn-info lg:btn-md"
-                      >
-                        <i data-lucide="info" class="size-4 lg:size-6"></i>
-                        <span class="sr-only">{% trans 'Options' %}</span>
-                      </button>
-                    </form>
-                  </div>
-                  <!-- prettier ignore -->
-                  {% endif %}{% endblock %}
-                </div>
+                      {% csrf_token %}{{ post_form }}
 
-                <div
-                  class="tooltip tooltip-bottom tooltip-primary"
-                  data-tip="{% trans 'Usage' %}"
-                >
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-square btn-soft btn-primary lg:btn-md"
-                    onclick="usageDialog.showModal()"
-                  >
-                    <i data-lucide="badge-info" class="size-4 lg:size-6"></i>
-                    <span class="sr-only">{% trans 'Usage' %}</span>
-                  </button>
-                </div>
-              </nav>
-            </header>
-
-            <main
-              class="flex flex-col gap-4 gap-4 h-full px-4 py-20 lg:max-h-dvh lg:overflow-y-auto"
-            >
-              <!-- prettier ignore -->
-              {% if display_edit_forms %}
-              <div role="tablist" class="tabs tabs-sm tabs-border lg:tabs-md">
-                <!-- prettier ignore -->
-                {% if post_form or raw_data_post_form %}
-                <label class="tab" role="tab">
-                  <input type="radio" name="form_tabs" checked />
-                  <span>{% trans 'HTML Form' %}</span>
-                </label>
-                <div class="tab-content" id="post-object-form">
-                  <!-- prettier ignore -->
-                  {% with form=post_form %}
-                  <form
-                    action="{{ request.get_full_path }}"
-                    method="POST"
-                    enctype="multipart/form-data"
-                    class="grid gap-4"
-                  >
-                    {% csrf_token %}{{ post_form }}
-
-                    <div
-                      class="tooltip tooltip-top tooltip-primary"
-                      data-tip="{% trans 'POST request' %}"
-                    >
-                      <button class="btn btn-primary w-full">
-                        <span>{% trans 'Send' %}</span>
-                        <i data-lucide="send-horizontal" class="size-4 lg:size-6"></i>
-                      </button>
-                    </div>
-                  </form>
-                  {% endwith %}
-                </div>
-
-                <label class="tab" role="tab">
-                  <input type="radio" name="form_tabs" />
-                  <span>{% trans 'Raw data' %}</span>
-                </label>
-                <div class="tab-content" id="post-generic-content-form">
-                  <!-- prettier ignore -->
-                  {% with form=raw_data_post_form %}
-                  <form
-                    action="{{ request.get_full_path }}"
-                    method="POST"
-                    class="grid gap-4"
-                  >
-                    <!-- prettier ignore -->
-                    {% include "rest_framework/raw_data_form.html" %}
-
-                    <div
-                      class="tooltip tooltip-top tooltip-primary"
-                      data-tip="{% trans 'POST request' %}"
-                    >
-                      <button class="btn btn-primary w-full">
-                        <span>{% trans 'Send' %}</span>
-                        <i data-lucide="send-horizontal" class="size-4 lg:size-6"></i>
-                      </button>
-                    </div>
-                  </form>
-                  {% endwith %}
-                </div>
-                {% endif %}
-                <!-- prettier ignore -->
-                {% if put_form or raw_data_put_form or raw_data_patch_form %}
-                <label class="tab" role="tab">
-                  <input type="radio" name="form_tabs" checked />
-                  <span>{% trans 'HTML Form' %}</span>
-                </label>
-                <div class="tab-content" id="put-object-form">
-                  <!-- prettier ignore -->
-                  {% with form=post_form %}
-                  <form
-                    action="{{ request.get_full_path }}"
-                    data-method="PUT"
-                    enctype="multipart/form-data"
-                    class="grid gap-4"
-                  >
-                    {{ put_form }}
-
-                    <div
-                      class="tooltip tooltip-top"
-                      data-tip="{% trans 'PUT request' %}"
-                    >
-                      <button class="btn btn-primary w-full">
-                        <span>{% trans 'Send' %}</span>
-                        <i data-lucide="send-horizontal" class="size-4 lg:size-6"></i>
-                      </button>
-                    </div>
-                  </form>
-                  {% endwith %}
-                </div>
-
-                <label class="tab" role="tab">
-                  <input type="radio" name="form_tabs" />
-                  <span>{% trans 'Raw data' %}</span>
-                </label>
-                <div class="tab-content" id="put-generic-content-form">
-                  <!-- prettier ignore -->
-                  {% with form=raw_data_put_or_patch_form %}
-                  <form
-                    action="{{ request.get_full_path }}"
-                    data-method="PUT"
-                    class="grid gap-4"
-                  >
-                    <!-- prettier ignore -->
-                    {% include "rest_framework/raw_data_form.html" %}
-
-                    <div class="flex items-center gap-4">
-                      <!-- prettier ignore -->
-                      {% if raw_data_put_form %}
                       <div
-                        class="tooltip tooltip-top tooltip-primary grow"
+                        class="tooltip tooltip-top tooltip-primary"
+                        data-tip="{% trans 'POST request' %}"
+                      >
+                        <button
+                          class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                        >
+                          <span>{% trans 'Send' %}</span>
+                          <i
+                            data-lucide="arrow-up-from-dot"
+                            class="size-4 lg:size-6"
+                          ></i>
+                        </button>
+                      </div>
+                    </form>
+                    {% endwith %}
+                  </div>
+
+                  <input
+                    class="tab"
+                    type="radio"
+                    name="form-tabs"
+                    aria-label="{% trans 'JSON' %}"
+                  />
+                  <div class="tab-content p-4" id="post-generic-content-form">
+                    {% with form=raw_data_post_form %}
+                    <form
+                      dir="ltr"
+                      action="{{ request.get_full_path }}"
+                      method="POST"
+                      class="grid gap-4"
+                    >
+                      {% include "rest_framework/raw_data_form.html" %}
+
+                      <div
+                        class="tooltip tooltip-top tooltip-primary"
+                        data-tip="{% trans 'POST request' %}"
+                      >
+                        <button
+                          class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                        >
+                          <span>{% trans 'Send' %}</span>
+                          <i
+                            data-lucide="arrow-up-from-dot"
+                            class="size-4 lg:size-6"
+                          ></i>
+                        </button>
+                      </div>
+                    </form>
+                    {% endwith %}
+                  </div>
+                  {% endif %}
+
+                  <!---->
+                  {% if put_form or raw_data_put_form or raw_data_patch_form %}
+                  <input
+                    checked
+                    class="tab"
+                    type="radio"
+                    name="form-tabs"
+                    aria-label="{% trans 'Form' %}"
+                  />
+                  <div class="tab-content p-4" id="put-object-form">
+                    {% with form=post_form %}
+                    <form
+                      action="{{ request.get_full_path }}"
+                      data-method="PUT"
+                      enctype="multipart/form-data"
+                      class="grid gap-4"
+                    >
+                      {{ put_form }}
+
+                      <div
+                        class="tooltip tooltip-top"
                         data-tip="{% trans 'PUT request' %}"
                       >
-                        <button class="btn btn-primary w-full">
-                          <span>{% trans 'Send' %}</span>
-                          <i data-lucide="send-horizontal" class="size-4 lg:size-6"></i>
-                        </button>
-                      </div>
-                      {% endif %}
-                      <!-- prettier ignore -->
-                      {% if raw_data_patch_form %}
-                      <div
-                        class="tooltip tooltip-top tooltip-secondary grow"
-                        data-tip="{% trans 'PATCH request' %}"
-                      >
                         <button
-                          class="btn btn-secondary w-full"
-                          data-method="PATCH"
+                          class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
                         >
                           <span>{% trans 'Send' %}</span>
-                          <i data-lucide="send-horizontal" class="size-4 lg:size-6"></i>
+                          <i
+                            data-lucide="arrow-up-right"
+                            class="size-4 lg:size-6"
+                          ></i>
                         </button>
                       </div>
-                      {% endif %}
-                    </div>
-                  </form>
-                  {% endwith %}
-                </div>
-                {% endif %}
-              </div>
-              {% endif %}
-            </main>
-
-            <!-- prettier ignore -->
-            {% if paginator %}
-            <footer class="absolute inset-x-0 bottom-0 z-10">
-              <nav class="p-4 gap-4 backdrop-blur-3xl rounded-b-box">
-                {% get_pagination_html paginator %}
-              </nav>
-            </footer>
-            {% endif %}
-          </section>
-        </section>
-
-        <section
-          id="content"
-          class="col-span-12 h-full lg:col-span-9 {% block contetn_styles %} lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)] {% endblock %}"
-        >
-          <section id="main-content" class="relative h-full">
-            <header class="absolute inset-x-0 top-0 z-10">
-              <nav
-                class="navbar items-center justify-between gap-4 rounded-t-box backdrop-blur-3xl px-4"
-              >
-                <!-- prettier ignore -->
-                {% block breadcrumbs %}
-                <div class="breadcrumbs text-sm">
-                  <ol>
-                    <!-- prettier ignore -->
-                    {% for breadcrumb_name, breadcrumb_url in breadcrumblist %}
-                    <!-- prettier ignore -->
-                    {% if forloop.last %}
-                    <li>{{ breadcrumb_name }}</li>
-                    {% else %}
-                    <li>
-                      <a href="{{ breadcrumb_url }}"> {{ breadcrumb_name }} </a>
-                    </li>
-                    {% endif %}
-                    <!-- prettier ignore -->
-                    {% endfor %}
-                  </ol>
-                </div>
-                {% endblock %}
-
-                <div class="flex items-center gap-4">
-                  <!-- prettier ignore -->
-                  {% if delete_form %}
-                  <div
-                    class="tooltip tooltip-left tooltip-error"
-                    data-tip="{% trans 'DELETE request' %}"
-                  >
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-square btn-error lg:btn-md"
-                      onclick="deleteDialog.showModal()"
-                    >
-                      <i data-lucide="trash-2" class="size-4 lg:size-6"></i>
-                      <span class="sr-only">{% trans 'Delete' %}</span>
-                    </button>
+                    </form>
+                    {% endwith %}
                   </div>
 
-                  <dialog id="deleteDialog" class="modal overflow-hidden">
-                    <section
-                      class="relative modal-box p-0 grid gap-4 max-w-3xl"
+                  <input
+                    class="tab"
+                    type="radio"
+                    name="form-tabs"
+                    aria-label="{% trans 'JSON' %}"
+                  />
+                  <div class="tab-content p-4" id="put-generic-content-form">
+                    {% with form=raw_data_put_or_patch_form %}
+                    <form
+                      dir="ltr"
+                      action="{{ request.get_full_path }}"
+                      data-method="PUT"
+                      class="grid gap-4"
                     >
-                      <header
-                        class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl p-4 flex items-center justify-between gap-4"
-                      >
-                        <h1 class="text-lg font-semibold lg:text-2xl">
-                          {% trans 'Delete' %} {{ name }}
-                        </h1>
+                      {% include "rest_framework/raw_data_form.html" %}
 
+                      <div class="flex items-center gap-4">
+                        {% if raw_data_put_form %}
                         <div
-                          class="tooltip tooltip-left"
-                          data-tip="{% trans 'Close' %}"
+                          class="tooltip tooltip-top tooltip-primary grow"
+                          data-tip="{% trans 'PUT request' %}"
                         >
                           <button
-                            class="btn btn-square btn-ghost"
-                            onclick="deleteDialog.close()"
+                            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
                           >
-                            <i data-lucide="x" class="size-4 lg:size-6"></i>
-                            <span class="sr-only">{% trans 'Close' %}</span>
+                            <span>{% trans 'Send' %}</span>
+                            <i
+                              data-lucide="arrow-up-right"
+                              class="size-4 lg:size-6"
+                            ></i>
                           </button>
                         </div>
-                      </header>
+                        {% endif %}
 
-                      <main
-                        class="max-h-[calc(100dvh-1rem)] overflow-y-auto px-4 py-20 lg:max-h-[calc(100dvh-4rem)]"
-                      >
-                        <form
-                          id="delete-form"
-                          action="{{ request.get_full_path }}"
-                          data-method="DELETE"
+                        <!---->
+                        {% if raw_data_patch_form %}
+                        <div
+                          class="tooltip tooltip-top tooltip-secondary grow"
+                          data-tip="{% trans 'PATCH request' %}"
                         >
-                          <p>
-                            <!-- prettier ignore -->
-                            {% trans 'Are you sure you want to delete this' %} {{ name }}?
-                          </p>
-                        </form>
-
-                        <div role="alert" class="alert alert-error">
-                          <i data-lucide="octagon-x" class="size-4 lg:size-6"></i>
-                          <p>{% trans 'This action is destructive!' %}</p>
+                          <button
+                            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-secondary w-full"
+                            data-method="PATCH"
+                          >
+                            <span>{% trans 'Send' %}</span>
+                            <i
+                              data-lucide="arrow-up-right"
+                              class="size-4 lg:size-6"
+                            ></i>
+                          </button>
                         </div>
-                      </main>
-
-                      <footer
-                        class="absolute inset-x-0 bottom-0 z-10 backdrop-blur-3xl p-4 modal-action gap-4"
-                      >
-                        <button
-                          type="submit"
-                          form="delete-form"
-                          class="btn btn-error grow"
-                        >
-                          <i data-lucide="trash-2" class="size-4 lg:size-6"></i>
-                          <span>{% trans 'Delete' %}</span>
-                        </button>
-
-                        <button
-                          class="btn btn-secondary grow"
-                          onclick="deleteDialog.close()"
-                        >
-                          {% trans 'Close' %}
-                        </button>
-                      </footer>
-                    </section>
-                  </dialog>
-                  {% endif %}
-                  <!-- prettier ignore -->
-                  {% if extra_actions %}
-                  <div>
-                    <button
-                      type="button"
-                      popovertarget="extra-actions"
-                      style="anchor-name: --extra-actions"
-                      class="btn btn-sm btn-square btn-ghost lg:btn-md"
-                    >
-                      <i data-lucide="ellipsis-vertical" class="size-4 lg:size-6"></i>
-                      <span class="sr-only">{% trans 'Extra actions' %}</span>
-                    </button>
-
-                    <ul
-                      id="extra-actions"
-                      popover
-                      style="position-anchor: --extra-actions"
-                      class="menu dropdown dropdown-left dropdown-bottom bg-base-200 rounded-box shadow-lg"
-                    >
-                      <li class="menu-title">{% trans 'Extra actions' %}</li>
-                      <!-- prettier ignore -->
-                      {% for action_name, url in extra_actions|items %}
-                      <li><a href="{{ url }}">{{ action_name }}</a></li>
-                      {% endfor %}
-                    </ul>
+                        {% endif %}
+                      </div>
+                    </form>
+                    {% endwith %}
                   </div>
                   {% endif %}
-                  <!-- prettier ignore -->
-                  {% if filter_form %}
+                </section>
+                {% endif %}
+              </div>
+            </div>
+          </section>
+        </div>
+        {% endblock %}
+      </section>
+
+      <section
+        class="drawer-side is-drawer-close:overflow-visible z-50 md:z-40 lg:z-50 max-h-dvh lg:max-h-[calc(100dvh-1rem)]"
+      >
+        <label
+          for="main-drawer"
+          aria-label="close sidebar"
+          class="drawer-overlay"
+        ></label>
+
+        <div
+          class="is-drawer-close:w-18 is-drawer-close:lg:w-20 is-drawer-open:w-full md:is-drawer-open:w-sm bg-base-100 border-base-300 flex h-full flex-col items-center gap-4 p-4 md:border-r lg:border-r-0 lg:max-h-[calc(100dvh-1rem)]"
+        >
+          <header class="flex w-full items-center justify-between gap-4">
+            {% block drawer_branding %}
+            <div
+              class="tooltip tooltip-right rtl:tooltip-left tooltip-primary"
+              data-tip="{% trans 'Django REST Framework' %}"
+            >
+              <h1 class="relative">
+                <a
+                  href="https://www.django-rest-framework.org/"
+                  class="btn btn-square btn-primary lg:btn-lg 2xl:btn-lg"
+                >
                   <div
-                    class="tooltip tooltip-left"
-                    data-tip="{% trans 'Filters' %}"
+                    class="btn btn-square btn-primary rotate-45 p-0 shadow-none lg:btn-lg 2xl:btn-lg"
                   >
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-square btn-ghost lg:btn-md"
-                      onclick="filtersDialog.showModal()"
-                    >
-                      <i data-lucide="list-filter" class="size-4 lg:size-6"></i>
-                      <span class="sr-only">{% trans 'Filters' %}</span>
-                    </button>
+                    <i
+                      data-lucide="braces"
+                      class="-rotate-45 lg:size-8 2xl:size-10"
+                    ></i>
                   </div>
+                  <span class="sr-only">
+                    {% trans 'Django REST Framework' %}
+                  </span>
+                </a>
+              </h1>
+            </div>
+            {% endblock %}
 
-                  {{ filter_form }}
-                  <!-- prettier ignore -->
-                  {% endif %}
-                </div>
-              </nav>
-            </header>
-
-            <main
-              class="flex flex-col gap-4 h-full p-4 pt-20 lg:max-h-dvh lg:overflow-y-auto"
-            >
-              <section id="title" class="grid gap-4">
-                <h1
-                  id="title"
-                  class="text-primary font-serif text-3xl font-black lg:text-6xl"
+            <div class="is-drawer-close:hidden flex items-center gap-4">
+              {% block package %}
+              <div
+                class="tooltip tooltip-left tooltip-primary rtl:tooltip-right"
+                data-tip="{% trans 'Github' %}"
+              >
+                <a
+                  href="https://github.com/youzarsiph/drf-restwind/"
+                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-primary 2xl:btn-md"
                 >
-                  {{ name }}
-                </h1>
-              </section>
+                  <i data-lucide="github" class="size-4 lg:size-6"></i>
+                  <span class="sr-only">{% trans 'Github' %}</span>
+                </a>
+              </div>
 
-              <section id="response" class="card rounded-box bg-base-200">
-                <header
-                  class="flex items-center justify-between gap-4 px-4 py-2 rounded-t-box bg-base-300"
+              <div
+                class="tooltip tooltip-left tooltip-success rtl:tooltip-right"
+                data-tip="{% trans 'Package' %}"
+              >
+                <a
+                  href="https://github.com/youzarsiph/drf-restwind/"
+                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-success 2xl:btn-md"
                 >
-                  <div class="flex items-center gap-2">
-                    <div class="size-5 rounded-full bg-red-400 lg:size-6"></div>
-                    <div
-                      class="size-5 rounded-full bg-yellow-400 lg:size-6"
-                    ></div>
-                    <div
-                      class="size-5 rounded-full bg-green-400 lg:size-6"
-                    ></div>
-                  </div>
+                  <i data-lucide="package-check" class="size-4 lg:size-6"></i>
+                  <span class="sr-only">{% trans 'Package' %}</span>
+                </a>
+              </div>
+              {% endblock %}
 
-                  <div class="flex items-center gap-4">
-                    <div
-                      class="tooltip tooltip-left tooltip-success"
-                      data-tip="{% trans 'Documentation' %}"
-                    >
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-square btn-soft btn-success lg:btn-md"
-                        onclick="docsDialog.showModal()"
-                      >
-                        <i data-lucide="book-text" class="size-4 lg:size-6"></i>
-                        <span class="sr-only">{% trans 'Documentation' %}</span>
-                      </button>
-                    </div>
+              <div
+                class="tooltip tooltip-left rtl:tooltip-right"
+                data-tip="{% trans 'Close' %}"
+              >
+                <label
+                  for="main-drawer"
+                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                >
+                  <i data-lucide="x" class="size-4 lg:size-6"></i>
+                  <span class="sr-only">{% trans 'Close' %}</span>
+                </label>
+              </div>
+            </div>
+          </header>
 
-                    <div
-                      class="tooltip tooltip-left"
-                      data-tip="{% trans 'Copy' %}"
-                    >
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
-                        data-clipboard-text="{{ content }}"
-                      >
-                        <i data-lucide="copy" class="size-4 lg:size-6"></i>
-                        <span class="sr-only">{% trans 'Copy' %}</span>
-                      </button>
-                    </div>
-                  </div>
-                </header>
-
-                <main class="card-body py-4 gap-4 overflow-auto">
-                  <pre><code class="language-http">{{ request.method }} {{ request.get_full_path }}
-HTTP {{ response.status_code }} {{ response.status_text }}
-{% for key, val in response_headers|items %}
-{{ key }}: {{ val|urlize }}{% endfor %}</code></pre>
-
-                  <pre><code class="language-json">{{ content|urlize }}</code></pre>
-                </main>
-              </section>
-            </main>
-          </section>
-        </section>
-      </div>
-      {% endblock %}
-    </main>
-
-    <dialog id="docsDialog" class="modal overflow-hidden">
-      <section class="relative modal-box p-0 grid gap-4 max-w-5xl">
-        <header
-          class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl p-4 flex items-center justify-between gap-4"
-        >
-          <h1 class="text-lg font-semibold lg:text-2xl">
-            {% trans 'Documentation' %}
-          </h1>
-
-          <div class="tooltip tooltip-left" data-tip="{% trans 'Close' %}">
-            <button
-              class="btn btn-square btn-ghost"
-              onclick="docsDialog.close()"
-
+          <ul class="menu w-full grow gap-2 p-0">
+            {% block user_links %}
+            <li
+              class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+              data-tip="{% trans 'Home' %}"
             >
-              <i data-lucide="x" class="size-4 lg:size-6"></i>
-              <span class="sr-only">{% trans 'Close' %}</span>
-            </button>
-          </div>
-        </header>
+              <a href="https://www.django-rest-framework.org/">
+                <i data-lucide="home" class="size-4 lg:size-6"></i>
+                <span class="is-drawer-close:sr-only">
+                  {% trans 'Home' %}
+                </span>
+              </a>
+            </li>
 
-        <main
-          class="max-h-[calc(100dvh-1rem)] overflow-y-auto px-6 py-20 lg:px-12 lg:max-h-[calc(100dvh-4rem)]"
-        >
-          <section
-            class="prose prose-sm prose-primary max-w-none {% block markdown_styles %} lg:prose-base xl:prose-lg 2xl:prose-xl 3x:prose-2xl {% endblock %}"
-          >
-            <!-- prettier ignore -->
-            {% block description %}{{ description }}{% endblock %}
-          </section>
-        </main>
-
-        <footer
-          class="absolute inset-x-0 bottom-0 z-10 backdrop-blur-3xl p-4 modal-action gap-4"
-        >
-          <button class="btn btn-secondary grow" onclick="docsDialog.close()">
-            {% trans 'Close' %}
-          </button>
-        </footer>
-      </section>
-    </dialog>
-
-    <dialog id="usageDialog" class="modal overflow-hidden">
-      <section class="relative modal-box p-0 grid gap-4 max-w-5xl">
-        <header
-          class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl p-4 flex items-center justify-between gap-4"
-        >
-          <h1 class="text-lg font-semibold lg:text-2xl">
-            {% trans 'Examples' %}
-          </h1>
-
-          <div class="tooltip tooltip-left" data-tip="{% trans 'Close' %}">
-            <button
-              class="btn btn-square btn-ghost"
-              onclick="usageDialog.close()"
+            <li
+              class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+              data-tip="{% trans 'Docs' %}"
             >
-              <i data-lucide="x" class="size-4 lg:size-6"></i>
-              <span class="sr-only">{% trans 'Close' %}</span>
-            </button>
-          </div>
-        </header>
+              <a
+                href="https://www.django-rest-framework.org/api-guide/requests/"
+              >
+                <i data-lucide="book-text" class="size-4 lg:size-6"></i>
+                <span class="is-drawer-close:sr-only">
+                  {% trans 'Docs' %}
+                </span>
+              </a>
+            </li>
 
-        <main
-          class="max-h-[calc(100dvh-1rem)] overflow-y-auto px-4 py-20 lg:max-h-[calc(100dvh-4rem)]"
-        >
-          <div role="tablist" class="tabs tabs-box">
-            <input
-              type="radio"
-              name="usage_tabs"
-              role="tab"
-              class="tab"
-              aria-label="Curl"
-              checked
-            />
-            <div class="tab-content">
-              <section class="relative card max-h-96">
-                <main class="card-body p-2 gap-4 overflow-auto">
-                  <div class="absolute top-0 right-4">
-                    <div
-                      class="tooltip tooltip-left"
-                      data-tip="{% trans 'Copy' %}"
-                    >
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
-                        data-clipboard-target="#curl"
-                      >
-                        <i data-lucide="copy" class="size-4 lg:size-6"></i>
-                        <span class="sr-only">{% trans 'Copy' %}</span>
-                      </button>
-                    </div>
-                  </div>
+            <li
+              class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+              data-tip="{% trans 'Tutorial' %}"
+            >
+              <a
+                href="https://www.django-rest-framework.org/tutorial/quickstart/"
+              >
+                <i data-lucide="graduation-cap" class="size-4 lg:size-6"></i>
+                <span class="is-drawer-close:sr-only">
+                  {% trans 'Tutorial' %}
+                </span>
+              </a>
+            </li>
 
-                  <div id="curl" class="grid gap-4">
-                    <pre
-                      data-request-method="get"
-                      class="hidden"
-                    ><code class="language-bash">
-# GET Request
-curl -X GET {{ request.build_absolute_uri }}</code></pre>
-                    <pre
-                      data-request-method="post"
-                      class="hidden"
-                    ><code class="language-bash">
-# POST Request
-curl -X POST {{ request.build_absolute_uri }} \
-  -H "Content-Type: application/json" \
-  -d '{...}'</code></pre>
-                    <pre
-                      data-request-method="put"
-                      class="hidden"
-                    ><code class="language-bash">
-# PUT Request
-curl -X PUT {{ request.build_absolute_uri }} \
-  -H "Content-Type: application/json" \
-  -d '{...}'</code></pre>
-                    <pre
-                      data-request-method="patch"
-                      class="hidden"
-                    ><code class="language-bash">
-# PATCH Request
-curl -X PATCH {{ request.build_absolute_uri }} \
-  -H "Content-Type: application/json" \
-  -d '{...}'</code></pre>
-                    <pre
-                      data-request-method="delete"
-                      class="hidden"
-                    ><code class="language-bash">
-# DELETE Request
-curl -X DELETE {{ request.build_absolute_uri }}</code></pre>
-                  </div>
-                </main>
-              </section>
-            </div>
+            <li
+              class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+              data-tip="{% trans 'DRF Repository' %}"
+            >
+              <a href="https://github.com/encode/django-rest-framework/">
+                <i data-lucide="folder-git-2" class="size-4 lg:size-6"></i>
+                <span class="is-drawer-close:sr-only">
+                  {% trans 'DRF Repository' %}
+                </span>
+              </a>
+            </li>
+            {% endblock %}
+          </ul>
 
-            <input
-              type="radio"
-              name="usage_tabs"
-              role="tab"
-              class="tab"
-              aria-label="Python"
-            />
-            <div class="tab-content">
-              <section class="relative card max-h-96">
-                <main class="card-body p-2 gap-4 overflow-auto">
-                  <div class="absolute top-0 right-4">
-                    <div
-                      class="tooltip tooltip-left"
-                      data-tip="{% trans 'Copy' %}"
-                    >
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
-                        data-clipboard-target="#python"
-                      >
-                        <i data-lucide="copy" class="size-4 lg:size-6"></i>
-                        <span class="sr-only">{% trans 'Copy' %}</span>
-                      </button>
-                    </div>
-                  </div>
+          <ul class="menu w-full gap-2 p-0">
+            {% block profile_links %}{% endblock %}
 
-                  <div id="python" class="grid gap-4">
-                    <pre><code class="language-python">import requests
+            <!---->
+            {% if request.user.is_authenticated %}
+            <!---->
+            {% optional_logout request user csrf_token %}
+            <!---->
+            {% else %}
+            <!---->
+            {% optional_login request %}
+            <!---->
+            {% endif %}
 
-
-url = "{{ request.build_absolute_uri }}"</code></pre>
-                    <pre
-                      data-request-method="get"
-                      class="hidden"
-                    ><code class="language-python">
-# GET Request
-response = requests.get(url)
-
-if response.status_code == 200:
-    items = response.json()
-    print("Items retrieved:", items)
-else:
-    print("Failed to retrieve items:", response.status_code, response.text)</code></pre>
-                    <pre
-                      data-request-method="post"
-                      class="hidden"
-                    ><code class="language-python">
-# POST Request
-response = requests.post(url, json={...})
-
-if response.status_code == 201:
-    print("Item created:", response.json())
-else:
-    print("Failed to create item:", response.status_code, response.text)</code></pre>
-                    <pre
-                      data-request-method="put"
-                      class="hidden"
-                    ><code class="language-python">
-# PUT Request
-response = requests.put(url, json={...})
-
-if response.status_code == 200:
-    print("Item updated:", response.json())
-else:
-    print("Failed to update item:", response.status_code, response.text)</code></pre>
-                    <pre
-                      data-request-method="patch"
-                      class="hidden"
-                    ><code class="language-python">
-# PATCH Request
-response = requests.patch(url, json={...})
-
-if response.status_code == 200:
-    print("Item updated:", response.json())
-else:
-    print("Failed to update item:", response.status_code, response.text)</code></pre>
-                    <pre
-                      data-request-method="delete"
-                      class="hidden"
-                    ><code class="language-python">
-# DELETE Request
-response = requests.delete(url)
-
-if response.status_code == 204:
-    print("Item deleted successfully")
-else:
-    print("Failed to delete item:", response.status_code, response.text)</code></pre>
-                  </div>
-                </main>
-              </section>
-            </div>
-
-            <input
-              type="radio"
-              name="usage_tabs"
-              role="tab"
-              class="tab"
-              aria-label="Javascript"
-            />
-            <div class="tab-content">
-              <section class="relative card max-h-96">
-                <main class="card-body p-2 gap-4 overflow-auto">
-                  <div class="absolute top-0 right-4">
-                    <div
-                      class="tooltip tooltip-left"
-                      data-tip="{% trans 'Copy' %}"
-                    >
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-square btn-soft btn-ghost btn-copy lg:btn-md"
-                        data-clipboard-target="#javascript"
-                      >
-                        <i data-lucide="copy" class="size-4 lg:size-6"></i>
-                        <span class="sr-only">{% trans 'Copy' %}</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div id="javascript" class="grid gap-4">
-                    <pre><code class="language-javascript">const url = '{{ request.build_absolute_uri }}'</code></pre>
-                    <pre
-                      data-request-method="get"
-                      class="hidden"
-                    ><code class="language-javascript">
-// GET Request
-fetch(url)
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error))</code></pre>
-                    <pre
-                      data-request-method="post"
-                      class="hidden"
-                    ><code class="language-javascript">
-// POST Request
-fetch(url, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({...}),
-})
-  .then(response => response.json())
-  .then(data => console.log('Success:', data))
-  .catch(error => console.error('Error:', error))</code></pre>
-                    <pre
-                      data-request-method="put"
-                      class="hidden"
-                    ><code class="language-javascript">
-// PUT Request
-fetch(url, {
-  method: 'PUT',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({...}),
-})
-  .then(response => response.json())
-  .then(data => console.log('Success:', data))
-  .catch(error => console.error('Error:', error))</code></pre>
-                    <pre
-                      data-request-method="patch"
-                      class="hidden"
-                    ><code class="language-javascript">
-// PATCH Request
-fetch(url, {
-  method: 'PATCH',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({...}),
-})
-  .then(response => response.json())
-  .then(data => console.log('Success:', data))
-  .catch(error => console.error('Error:', error))</code></pre>
-                    <pre
-                      data-request-method="delete"
-                      class="hidden"
-                    ><code class="language-javascript">
-// DELETE Request
-fetch(url, { method: 'DELETE' })
-  .then(response => console.log('Item deleted:', response))
-  .catch(error => console.error('Error:', error))</code></pre>
-                  </div>
-                </main>
-              </section>
-            </div>
-          </div>
-        </main>
-
-        <footer
-          class="absolute inset-x-0 bottom-0 z-10 backdrop-blur-3xl p-4 modal-action gap-4"
-        >
-          <button class="btn btn-primary grow" onclick="usageDialog.close()">
-            {% trans 'Close' %}
-          </button>
-        </footer>
+            <li
+              class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+              data-tip="{% trans 'Open drawer' %}"
+            >
+              <label for="main-drawer" class="drawer-button">
+                <i
+                  data-lucide="sidebar-open"
+                  class="is-drawer-open:hidden size-4 lg:size-6 rtl:rotate-180"
+                ></i>
+                <i
+                  data-lucide="sidebar-close"
+                  class="is-drawer-close:hidden size-4 lg:size-6 rtl:rotate-180"
+                ></i>
+                <span class="is-drawer-close:sr-only">
+                  {% trans 'Close' %}
+                </span>
+              </label>
+            </li>
+          </ul>
+        </div>
       </section>
-    </dialog>
+    </div>
+
+    {% include 'rest_framework/components/dialogs.html' %}
 
     <section id="scripts" class="hidden">
-      <!-- prettier ignore -->
       {% block script %}
       <script type="application/json" id="drf_csrf">
         {
@@ -1119,64 +861,20 @@ fetch(url, { method: 'DELETE' })
               .querySelectorAll("#response .language-json .hljs-string")
               .forEach((e) => {
                 if (e.innerHTML.startsWith('"http')) {
-                  e.innerHTML = `<a href="${e.innerHTML.slice(1, e.innerHTML.length - 1)}">${e.innerHTML}</a>`;
+                  e.innerHTML = `<a href="${e.innerHTML.slice(
+                    1,
+                    e.innerHTML.length - 1
+                  )}">${e.innerHTML}</a>`;
                 }
               }),
-          100,
+          100
         );
       </script>
 
-      <!-- Scripts to control visibility of code snippets -->
-      <!-- prettier ignore -->
-      {% if 'GET' in allowed_methods %}
+      <script src="https://unpkg.com/lucide@latest"></script>
       <script>
-        document
-          .querySelectorAll("dialog#usageDialog pre[data-request-method=get]")
-          .forEach((e) => e.classList.toggle("hidden"));
+        lucide.createIcons();
       </script>
-      {% endif %}
-      <!-- prettier ignore -->
-      {% if 'POST' in allowed_methods %}
-      <script>
-        document
-          .querySelectorAll("dialog#usageDialog pre[data-request-method=post]")
-          .forEach((e) => e.classList.toggle("hidden"));
-      </script>
-      {% endif %}
-      <!-- prettier ignore -->
-      {% if 'PUT' in allowed_methods %}
-      <script>
-        document
-          .querySelectorAll("dialog#usageDialog pre[data-request-method=put]")
-          .forEach((e) => e.classList.toggle("hidden"));
-      </script>
-      {% endif %}
-      <!-- prettier ignore -->
-      {% if 'PATCH' in allowed_methods %}
-      <script>
-        document
-          .querySelectorAll("dialog#usageDialog pre[data-request-method=patch]")
-          .forEach((e) => e.classList.toggle("hidden"));
-      </script>
-      {% endif %}
-      <!-- prettier ignore -->
-      {% if 'DELETE' in allowed_methods %}
-      <script>
-        document
-          .querySelectorAll(
-            "dialog#usageDialog pre[data-request-method=delete]",
-          )
-          .forEach((e) => e.classList.toggle("hidden"));
-      </script>
-      {% endif %}
     </section>
-    {% endblock %}
-
-    <div
-      class="hidden lg:h-[calc(100dvh-1rem)] lg:max-h-[calc(100dvh-1rem)]"
-    ></div>
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>lucide.createIcons()</script>
   </body>
 </html>

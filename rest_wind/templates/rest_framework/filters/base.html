@@ -1,37 +1,34 @@
-<!-- prettier ignore -->
 {% load i18n %}
 
-<dialog id="filtersDialog" class="modal overflow-hidden">
-  <section class="relative modal-box p-0 grid gap-4 max-w-3xl">
-    <header
-      class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl p-4 flex items-center justify-between gap-4"
-    >
+<dialog id="filtersDialog" class="modal">
+  <section class="relative modal-box w-full max-w-2xl">
+    <header class="flex items-center justify-between gap-4">
       <h1 class="text-lg font-semibold lg:text-2xl">{% trans 'Filters' %}</h1>
 
       <div
-        class="tooltip tooltip-left"
+        class="tooltip tooltip-left rtl:tooltip-right"
         data-tip="{% trans 'Close' %}"
         onclick="filtersDialog.close()"
       >
-        <button class="btn btn-square btn-ghost">
+        <button class="btn btn-square btn-sm btn-ghost lg:btn-md 2xl:btn-lg">
           <i data-lucide="x" class="size-4 lg:size-6"></i>
           <span class="sr-only">{% trans 'Close' %}</span>
         </button>
       </div>
     </header>
 
-    <main
-      class="grid gap-6 max-h-[calc(100dvh-1rem)] overflow-y-auto px-4 py-20 lg:max-h-[calc(100dvh-4rem)]"
-    >
+    <main class="container-prose">
       {% for element in elements %}{{ element }}{% endfor %}
-    </main>
 
-    <footer
-      class="absolute inset-x-0 bottom-0 z-10 backdrop-blur-3xl p-4 modal-action gap-4"
-    >
-      <button class="btn btn-primary grow" onclick="filtersDialog.close()">
-        {% trans 'Close' %}
-      </button>
-    </footer>
+      <div class="mt-8">
+        <button
+          type="button"
+          class="btn btn-block btn-sm btn-primary grow lg:btn-md"
+          onclick="filtersDialog.close()"
+        >
+          {% trans 'Close' %}
+        </button>
+      </div>
+    </main>
   </section>
 </dialog>

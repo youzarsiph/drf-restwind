@@ -12,7 +12,7 @@ To generate the styles:
 
 ```console
 npm install
-npx @tailwindcss/cli -i ../static/rest_wind/css/app.css -o ../static/rest_wind/css/styles.css --cwd ../../templates -m --watch
+npx @tailwindcss/cli -i ../static/rest_wind/css/app.css -o ../static/rest_wind/css/styles.css --cwd ../../templates -m -w
 ```
 
 To format the templates:

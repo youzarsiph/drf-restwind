@@ -1,12 +1,10 @@
-<!-- prettier ignore -->
 {% if field.errors %}
-<div class="grid gap-2">
-  <!-- prettier ignore -->
+<ul class="grid gap-2">
   {% for error in field.errors %}
-  <div role="alert" class="alert alert-error">
+  <li role="alert" class="alert alert-error">
     <i data-lucide="circle-x" class="size-4 lg:size-6"></i>
     <p>{{ error }}</p>
-  </div>
+  </li>
   {% endfor %}
-</div>
+</ul>
 {% endif %}

@@ -1,13 +1,13 @@
-<!-- prettier ignore -->
 {% load i18n %}
+
 <li
-  class="tooltip tooltip-left tooltip-secondary"
+  class="tooltip tooltip-left rtl:tooltip-right"
   data-tip="{% trans 'Theme' %}"
 >
   <button
     popovertarget="theme"
     style="anchor-name: --theme"
-    class="btn btn-sm btn-square btn-ghost lg:btn-md"
+    class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
   >
     <i data-lucide="swatch-book" class="size-4 lg:size-6"></i>
     <span class="sr-only">{% trans 'Theme' %}</span>
@@ -17,7 +17,7 @@
     popover
     id="theme"
     style="position-anchor: --theme; max-height: 20rem"
-    class="menu dropdown dropdown-bottom dropdown-left bg-base-200 rounded-box shadow-lg"
+    class="menu dropdown dropdown-left bg-base-100/50 rounded-box shadow-lg backdrop-blur-3xl rtl:dropdown-right"
   >
     <li class="menu-title">{% trans 'Select a theme' %}</li>
     <li>

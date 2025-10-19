@@ -1,24 +1,9 @@
-<!-- prettier ignore -->
 {% load i18n %}
 
-<h2>{% trans 'Field filters' %}</h2>
+<h4>{% trans 'Field filters' %}</h4>
 
-<form class="grid gap-4" action="" method="get">
-  {{ filter.form.as_p }}
-
-  <button type="submit" class="btn btn-primary">
-    {% trans 'Submit' %}
-  </button>
-</form>
-
-<script>
-  document
-    .querySelectorAll("#filtersDialog main form > p")
-    .forEach((e) => e.classList.add("fieldset"));
-  document
-    .querySelectorAll("#filtersDialog main form > p > input")
-    .forEach((e) => e.classList.add("input", "input-primary", "w-full"));
-  document
-    .querySelectorAll("#filtersDialog main form > p > select")
-    .forEach((e) => e.classList.add("select", "select-primary", "w-full"));
-</script>
+{% with form=filter.form %}
+<!---->
+{% include 'rest_framework/components/form.html' with method='get' %}
+<!---->
+{% endwith %}

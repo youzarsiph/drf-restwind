@@ -1,11 +1,36 @@
-<!-- prettier ignore -->
 {% load i18n %}
-<form method="post" class="grid gap-4">
-  {% csrf_token %}{{ form }}
-  <button type="submit" class="btn btn-primary">
-    {% trans 'Submit' %}
-  </button>
+
+<!---->
+{% if form.errors %}
+<div class="toast toast-top toast-end top-24 right-8 z-10">
+  <ol class="grid gap-4 max-w-2xl mx-auto">
+    {% for field, errors in form.errors.items %}
+    <li class="alert alert-soft alert-horizontal alert-error">
+      <i data-lucide="x-circle" class="size-4 lg:size-6"></i>
+
+      <div>{{ errors }}</div>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}
+
+<form
+  enctype="multipart/form-data"
+  method="{{ method|default:'post' }}"
+  class="grid gap-4"
+>
+  {% if csrf|default_if_none:True %}{% csrf_token %}{% endif %}
+
+  <!---->
+  {{ form }}
+
+  <!---->
+  {% if btn|default_if_none:True %}
+  <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+  {% endif %}
 </form>
+
 <script>
   // Style containers and labels
   document
@@ -20,24 +45,31 @@
 
   // Style inputs
   document
-    .querySelectorAll("input")
-    .forEach((e) => e.classList.add("input", "input-primary", "w-full"));
-  document.querySelectorAll("input[type=checkbox]").forEach((e) => {
+    .querySelectorAll("form > div > input")
+    .forEach((e) => e.classList.add("input", "w-full", "validator"));
+  document
+    .querySelectorAll("form > div > input[type=checkbox]")
+    .forEach((e) => {
+      e.classList.remove("input", "w-full");
+      e.classList.add("checkbox");
+    });
+  document.querySelectorAll("form > div > input[type=radio]").forEach((e) => {
     e.classList.remove("input", "w-full");
-    e.classList.add("checkbox", "checkbox-primary");
+    e.classList.add("radio");
   });
-  document.querySelectorAll("input[type=radio]").forEach((e) => {
-    e.classList.remove("input", "w-full");
-    e.classList.add("radio", "radio-primary");
-  });
-  document.querySelectorAll("input[type=file]").forEach((e) => {
+  document.querySelectorAll("form > div > input[type=file]").forEach((e) => {
     e.classList.remove("input");
     e.classList.add("file-input");
   });
   document
-    .querySelectorAll("textarea")
-    .forEach((e) => e.classList.add("textarea", "textarea-primary", "w-full"));
+    .querySelectorAll("form > div > textarea")
+    .forEach((e) => e.classList.add("textarea", "w-full", "validator"));
   document
-    .querySelectorAll("select")
-    .forEach((e) => e.classList.add("select", "select-primary", "w-full"));
+    .querySelectorAll("form > div > select")
+    .forEach((e) => e.classList.add("select", "w-full", "validator"));
+
+  // Style error lists
+  document
+    .querySelectorAll("form > div > .errorlist")
+    .forEach((e) => e.classList.add("validator-hint", "text-error", "visible"));
 </script>

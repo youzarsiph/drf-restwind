@@ -1,0 +1,264 @@
+{% load i18n %}
+
+<dialog id="deleteDialog" class="modal">
+  <section class="modal-box w-full max-w-2xl">
+    <header class="flex items-center justify-between gap-4">
+      <h1 class="text-lg font-semibold lg:text-2xl">
+        {% trans 'Delete' %} {{ name }}
+      </h1>
+
+      <div
+        class="tooltip tooltip-left rtl:tooltip-right"
+        data-tip="{% trans 'Close' %}"
+        onclick="deleteDialog.close()"
+      >
+        <button class="btn btn-square btn-sm btn-ghost lg:btn-md 2xl:btn-lg">
+          <i data-lucide="x" class="size-4 lg:size-6"></i>
+          <span class="sr-only">{% trans 'Close' %}</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container-prose">
+      <p>
+        {% trans 'Are you sure you want to delete this' %}
+        <!---->
+        {{ name }}?
+      </p>
+
+      <div class="not-prose">
+        <div role="alert" class="alert alert-soft alert-error">
+          <i data-lucide="octagon-x" class="size-4 lg:size-6"></i>
+          <p>{% trans 'This action is destructive!' %}</p>
+        </div>
+      </div>
+    </main>
+
+    <form
+      data-method="DELETE"
+      class="modal-action"
+      action="{{ request.get_full_path }}"
+    >
+      <button type="submit" class="btn btn-sm btn-error grow lg:btn-md">
+        {% trans 'Delete' %}
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-sm btn-ghost grow lg:btn-md"
+        onclick="deleteDialog.close()"
+      >
+        {% trans 'Close' %}
+      </button>
+    </form>
+  </section>
+</dialog>
+
+<dialog id="docsDialog" class="relative modal">
+  <section class="modal-box w-full max-w-2xl">
+    <header class="flex items-center justify-between gap-4 py-4">
+      <h1 class="text-lg font-semibold lg:text-2xl">{% trans 'Docs' %}</h1>
+
+      <div
+        class="tooltip tooltip-left rtl:tooltip-right"
+        data-tip="{% trans 'Close' %}"
+        onclick="docsDialog.close()"
+      >
+        <button class="btn btn-square btn-sm btn-ghost lg:btn-md 2xl:btn-lg">
+          <i data-lucide="x" class="size-4 lg:size-6"></i>
+          <span class="sr-only">{% trans 'Close' %}</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container-prose">
+      <h1>{% trans 'Docs' %}</h1>
+
+      {% block description %}{{ description }}{% endblock %}
+
+      <button
+        type="button"
+        class="btn btn-block btn-sm btn-primary grow lg:btn-md"
+        onclick="docsDialog.close()"
+      >
+        {% trans 'Close' %}
+      </button>
+    </main>
+  </section>
+</dialog>
+
+<dialog id="usageDialog" class="modal">
+  <section class="modal-box w-full max-w-2xl">
+    <header class="flex items-center justify-between gap-4">
+      <h1 class="text-lg font-semibold lg:text-2xl">{% trans 'Examples' %}</h1>
+
+      <div
+        class="tooltip tooltip-left rtl:tooltip-right"
+        data-tip="{% trans 'Close' %}"
+        onclick="usageDialog.close()"
+      >
+        <button class="btn btn-square btn-sm btn-ghost lg:btn-md 2xl:btn-lg">
+          <i data-lucide="x" class="size-4 lg:size-6"></i>
+          <span class="sr-only">{% trans 'Close' %}</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container-prose">
+      <div dir="ltr" role="tablist" class="tabs tabs-sm tabs-border lg:tabs-md">
+        <input
+          type="radio"
+          name="usage_tabs"
+          role="tab"
+          class="tab"
+          aria-label="Curl"
+          checked
+        />
+        <div class="tab-content">
+          <pre
+            id="curl"
+            class="bg-transparent p-0"
+          ><code class="language-python">url="{{ request.build_absolute_uri }}"</code><code data-request-method="get" class="language-bash" style="display: none;"># GET Request
+curl -X GET "$url"</code><code data-request-method="post" class="language-bash" style="display: none;"># POST Request
+curl -X POST "$url" \
+  -H "Content-Type: application/json" \
+  -d '{...}'</code><code data-request-method="put" class="language-bash" style="display: none;"># PUT Request
+curl -X PUT "$url" \
+  -H "Content-Type: application/json" \
+  -d '{...}'</code><code data-request-method="patch" class="language-bash" style="display: none;"># PATCH Request
+curl -X PATCH "$url" \
+  -H "Content-Type: application/json" \
+  -d '{...}'</code><code data-request-method="delete" class="language-bash" style="display: none;"># DELETE Request
+curl -X DELETE "$url"</code>
+          </pre>
+        </div>
+
+        <input
+          type="radio"
+          name="usage_tabs"
+          role="tab"
+          class="tab"
+          aria-label="Python"
+        />
+        <div class="tab-content">
+          <pre
+            id="python"
+            class="bg-transparent p-0"
+          ><code class="language-python">import requests
+
+
+url = "{{ request.build_absolute_uri }}"</code><code data-request-method="get" class="language-python" style="display: none;"># GET Request
+response = requests.get(url)</code><code data-request-method="post" class="language-python" style="display: none;"># POST Request
+response = requests.post(url, json={...})</code><code data-request-method="put" class="language-python" style="display: none;"># PUT Request
+response = requests.put(url, json={...})
+</code><code data-request-method="patch" class="language-python" style="display: none;"># PATCH Request
+response = requests.patch(url, json={...})
+</code><code data-request-method="delete" class="language-python" style="display: none;"># DELETE Request
+response = requests.delete(url)
+</code><code class="language-python"># Handle response
+print(response.status_code)</code></pre>
+        </div>
+
+        <input
+          type="radio"
+          name="usage_tabs"
+          role="tab"
+          class="tab"
+          aria-label="Javascript"
+        />
+        <div class="tab-content">
+          <pre
+            id="javascript"
+            class="bg-transparent p-0"
+          ><code class="language-javascript">const url = '{{ request.build_absolute_uri }}'</code><code data-request-method="get" class="language-javascript" style="display: none;">// GET Request
+let response = fetch(url)</code><code data-request-method="post" class="language-javascript" style="display: none;">// POST Request
+let response = fetch(url, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({...}),
+})</code><code data-request-method="put" class="language-javascript" style="display: none;">// PUT Request
+let response = fetch(url, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({...}),
+})</code><code data-request-method="patch" class="language-javascript" style="display: none;">// PATCH Request
+let response = fetch(url, {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({...}),
+})</code><code data-request-method="delete" class="language-javascript" style="display: none;">// DELETE Request
+let response = fetch(url, { method: 'DELETE' })</code><code class="language-javascript">// Handle response
+response.then(r => console.log(r.ok))</code></pre>
+        </div>
+      </div>
+
+      <div
+        role="alert"
+        class="alert alert-vertical alert-soft alert-info lg:alert-horizontal mb-8"
+      >
+        <i data-lucide="info" class="size-4 lg:size-6"></i>
+        <p class="m-0">
+          {% blocktrans trimmed %}You may need to include authentication tokens
+          (e.g., Bearer tokens) in request headers for access-controlled
+          endpoints. Ensure tokens are stored securely and not exposed in logs
+          or code repositories. If you're using a token, pass it as a header
+          such as <code>Authorization: Bearer TOKEN</code> and consider using
+          environment variables or secret management tools to protect it.
+          <!---->
+          {% endblocktrans %}
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-block btn-sm btn-primary grow lg:btn-md"
+        onclick="usageDialog.close()"
+      >
+        {% trans 'Close' %}
+      </button>
+    </main>
+
+    <div class="hidden">
+      <!-- Scripts to control visibility of code snippets -->
+      {% if 'GET' in allowed_methods %}
+      <script>
+        document
+          .querySelectorAll("code[data-request-method=get]")
+          .forEach((e) => e.toggleAttribute("style"));
+      </script>
+      {% endif %}
+      <!---->
+      {% if 'POST' in allowed_methods %}
+      <script>
+        document
+          .querySelectorAll("code[data-request-method=post]")
+          .forEach((e) => e.toggleAttribute("style"));
+      </script>
+      {% endif %}
+      <!---->
+      {% if 'PUT' in allowed_methods %}
+      <script>
+        document
+          .querySelectorAll("code[data-request-method=put]")
+          .forEach((e) => e.toggleAttribute("style"));
+      </script>
+      {% endif %}
+      <!---->
+      {% if 'PATCH' in allowed_methods %}
+      <script>
+        document
+          .querySelectorAll("code[data-request-method=patch]")
+          .forEach((e) => e.toggleAttribute("style"));
+      </script>
+      {% endif %}
+      <!---->
+      {% if 'DELETE' in allowed_methods %}
+      <script>
+        document
+          .querySelectorAll("code[data-request-method=delete]")
+          .forEach((e) => e.toggleAttribute("style"));
+      </script>
+      {% endif %}
+    </div>
+  </section>
+</dialog>

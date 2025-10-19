@@ -1,0 +1,296 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-19 08:35-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\rest_wind\templates\django_filters\rest_framework\form.html:3
+msgid "Field filters"
+msgstr "Alan filtreleri"
+
+#: .\rest_wind\templates\rest_framework\base.html:75
+#: .\rest_wind\templates\rest_framework\base.html:83
+#: .\rest_wind\templates\rest_framework\base.html:314
+#: .\rest_wind\templates\rest_framework\base.html:325
+#: .\rest_wind\templates\rest_framework\base.html:802
+msgid "Open drawer"
+msgstr "Paneli aç"
+
+#: .\rest_wind\templates\rest_framework\base.html:79
+#: .\rest_wind\templates\rest_framework\base.html:301
+#: .\rest_wind\templates\rest_framework\base.html:318
+#: .\rest_wind\templates\rest_framework\base.html:439
+msgid "close sidebar"
+msgstr "kenar çubuğunu kapat"
+
+#: .\rest_wind\templates\rest_framework\base.html:92
+#: .\rest_wind\templates\rest_framework\base.html:108
+#: .\rest_wind\templates\rest_framework\base.html:663
+#: .\rest_wind\templates\rest_framework\base.html:679
+msgid "Django REST Framework"
+msgstr "Django REST Framework"
+
+#: .\rest_wind\templates\rest_framework\base.html:132
+#: .\rest_wind\templates\rest_framework\base.html:465
+#: .\rest_wind\templates\rest_framework\filters\search.html:3
+#: .\rest_wind\templates\rest_framework\filters\search.html:14
+msgid "Search"
+msgstr "Ara"
+
+#: .\rest_wind\templates\rest_framework\base.html:145
+#: .\rest_wind\templates\rest_framework\base.html:154
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:7
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:43
+msgid "Delete"
+msgstr "Sil"
+
+#: .\rest_wind\templates\rest_framework\base.html:163
+#: .\rest_wind\templates\rest_framework\base.html:174
+#: .\rest_wind\templates\rest_framework\filters\base.html:6
+msgid "Filters"
+msgstr "Filtreler"
+
+#: .\rest_wind\templates\rest_framework\base.html:182
+#: .\rest_wind\templates\rest_framework\base.html:202
+msgid "Toggle theme"
+msgstr "Temayı değiştir"
+
+#: .\rest_wind\templates\rest_framework\base.html:252
+#: .\rest_wind\templates\rest_framework\base.html:259
+msgid "Documentation"
+msgstr "Dokümantasyon"
+
+#: .\rest_wind\templates\rest_framework\base.html:271
+#: .\rest_wind\templates\rest_framework\base.html:277
+msgid "Copy"
+msgstr "Kopyala"
+
+#: .\rest_wind\templates\rest_framework\base.html:335
+#: .\rest_wind\templates\rest_framework\base.html:346
+msgid "GET request"
+msgstr "GET isteği"
+
+#: .\rest_wind\templates\rest_framework\base.html:352
+#: .\rest_wind\templates\rest_framework\base.html:364
+#: .\rest_wind\templates\rest_framework\base.html:373
+msgid "Formats"
+msgstr "Biçimler"
+
+#: .\rest_wind\templates\rest_framework\base.html:377
+msgid "GET request with format of"
+msgstr "Şu biçimle GET isteği"
+
+#: .\rest_wind\templates\rest_framework\base.html:401
+#: .\rest_wind\templates\rest_framework\base.html:410
+msgid "OPTIONS request"
+msgstr "OPTIONS isteği"
+
+#: .\rest_wind\templates\rest_framework\base.html:417
+#: .\rest_wind\templates\rest_framework\base.html:429
+msgid "Usage"
+msgstr "Kullanım"
+
+#: .\rest_wind\templates\rest_framework\base.html:435
+#: .\rest_wind\templates\rest_framework\base.html:443
+#: .\rest_wind\templates\rest_framework\base.html:717
+#: .\rest_wind\templates\rest_framework\base.html:724
+#: .\rest_wind\templates\rest_framework\base.html:814
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:12
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:17
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:51
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:64
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:69
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:84
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:97
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:102
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:217
+#: .\rest_wind\templates\rest_framework\filters\base.html:10
+#: .\rest_wind\templates\rest_framework\filters\base.html:15
+#: .\rest_wind\templates\rest_framework\filters\base.html:29
+msgid "Close"
+msgstr "Kapat"
+
+#: .\rest_wind\templates\rest_framework\base.html:481
+#: .\rest_wind\templates\rest_framework\base.html:552
+msgid "Form"
+msgstr "Form"
+
+#: .\rest_wind\templates\rest_framework\base.html:495
+#: .\rest_wind\templates\rest_framework\base.html:528
+msgid "POST request"
+msgstr "POST isteği"
+
+#: .\rest_wind\templates\rest_framework\base.html:500
+#: .\rest_wind\templates\rest_framework\base.html:533
+#: .\rest_wind\templates\rest_framework\base.html:571
+#: .\rest_wind\templates\rest_framework\base.html:606
+#: .\rest_wind\templates\rest_framework\base.html:625
+msgid "Send"
+msgstr "Gönder"
+
+#: .\rest_wind\templates\rest_framework\base.html:515
+#: .\rest_wind\templates\rest_framework\base.html:586
+msgid "JSON"
+msgstr "JSON"
+
+#: .\rest_wind\templates\rest_framework\base.html:566
+#: .\rest_wind\templates\rest_framework\base.html:601
+msgid "PUT request"
+msgstr "PUT isteği"
+
+#: .\rest_wind\templates\rest_framework\base.html:619
+msgid "PATCH request"
+msgstr "PATCH isteği"
+
+#: .\rest_wind\templates\rest_framework\base.html:690
+#: .\rest_wind\templates\rest_framework\base.html:697
+msgid "Github"
+msgstr "GitHub"
+
+#: .\rest_wind\templates\rest_framework\base.html:703
+#: .\rest_wind\templates\rest_framework\base.html:710
+msgid "Package"
+msgstr "Paket"
+
+#: .\rest_wind\templates\rest_framework\base.html:734
+#: .\rest_wind\templates\rest_framework\base.html:739
+msgid "Home"
+msgstr "Ana sayfa"
+
+#: .\rest_wind\templates\rest_framework\base.html:746
+#: .\rest_wind\templates\rest_framework\base.html:753
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:60
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:75
+msgid "Docs"
+msgstr "Belgeler"
+
+#: .\rest_wind\templates\rest_framework\base.html:760
+#: .\rest_wind\templates\rest_framework\base.html:767
+msgid "Tutorial"
+msgstr "Eğitim"
+
+#: .\rest_wind\templates\rest_framework\base.html:774
+#: .\rest_wind\templates\rest_framework\base.html:779
+msgid "DRF Repository"
+msgstr "DRF deposu"
+
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:24
+msgid "Are you sure you want to delete this"
+msgstr "Bunu silmek istediğinizden emin misiniz?"
+
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:32
+msgid "This action is destructive!"
+msgstr "Bu işlem geri alınamaz!"
+
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:93
+msgid "Examples"
+msgstr "Örnekler"
+
+#: .\rest_wind\templates\rest_framework\components\dialogs.html:201
+msgid ""
+"You may need to include authentication tokens (e.g., Bearer tokens) in "
+"request headers for access-controlled endpoints. Ensure tokens are stored "
+"securely and not exposed in logs or code repositories. If you're using a "
+"token, pass it as a header such as <code>Authorization: Bearer TOKEN</code> "
+"and consider using environment variables or secret management tools to "
+"protect it. <!---->"
+msgstr ""
+"Erişim kontrolü olan uç noktalara ulaşmak için istek başlıklarına "
+"kimlik doğrulama belirteçleri (ör. Bearer token) eklemeniz gerekebilir. "
+"Belirteçlerin güvenli şekilde saklandığından ve günlüklerde veya kod "
+"depolarında ifşa edilmediğinden emin olun. Bir belirteç kullanıyorsanız, "
+"<code>Authorization: Bearer TOKEN</code> gibi bir başlık olarak iletin ve "
+"korumak için ortam değişkenleri veya gizli yönetimi araçlarını kullanmayı "
+"değerlendirin. <!---->"
+
+#: .\rest_wind\templates\rest_framework\components\form.html:30
+msgid "Submit"
+msgstr "Gönder"
+
+#: .\rest_wind\templates\rest_framework\components\theme.html:5
+#: .\rest_wind\templates\rest_framework\components\theme.html:13
+msgid "Theme"
+msgstr "Tema"
+
+#: .\rest_wind\templates\rest_framework\components\theme.html:22
+msgid "Select a theme"
+msgstr "Bir tema seçin"
+
+#: .\rest_wind\templates\rest_framework\filters\ordering.html:3
+msgid "Ordering"
+msgstr "Sıralama"
+
+#: .\rest_wind\templates\rest_framework\login_base.html:4
+#: .\rest_wind\templates\rest_framework\login_base.html:13
+msgid "Login"
+msgstr "Giriş"
+
+#: .\rest_wind\templates\rest_framework\login_base.html:19
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access. <!---->"
+msgstr "Hesabınızın bu sayfaya erişimi yok. Devam etmek için erişimi olan bir hesapla giriş yapın. <!---->"
+
+#: .\rest_wind\templates\rest_framework\login_base.html:25
+msgid "Please login to continue."
+msgstr "Devam etmek için lütfen giriş yapın."
+
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:5
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:11
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:15
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:21
+#: .\rest_wind\templates\rest_framework\pagination\previous_and_next.html:5
+#: .\rest_wind\templates\rest_framework\pagination\previous_and_next.html:11
+#: .\rest_wind\templates\rest_framework\pagination\previous_and_next.html:15
+#: .\rest_wind\templates\rest_framework\pagination\previous_and_next.html:21
+msgid "Previous"
+msgstr "Önceki"
+
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:42
+msgid "Current"
+msgstr "Geçerli"
+
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:51
+msgid "Page"
+msgstr "Sayfa"
+
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:67
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:76
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:80
+#: .\rest_wind\templates\rest_framework\pagination\numbers.html:89
+#: .\rest_wind\templates\rest_framework\pagination\previous_and_next.html:28
+#: .\rest_wind\templates\rest_framework\pagination\previous_and_next.html:37
+#: .\rest_wind\templates\rest_framework\pagination\previous_and_next.html:41
+#: .\rest_wind\templates\rest_framework\pagination\previous_and_next.html:50
+msgid "Next"
+msgstr "Sonraki"
+
+#: .\rest_wind\templates\rest_framework\vertical\radio.html:1
+msgid "None"
+msgstr "Yok"
+
+#: .\rest_wind\templates\rest_framework\vertical\select_multiple.html:1
+msgid "No items to select."
+msgstr "Seçilecek öğe yok."
+
+#: .\rest_wind\templatetags\rest_wind.py:37
+msgid "Log in"
+msgstr "Giriş yap"
+
+#: .\rest_wind\templatetags\rest_wind.py:70
+msgid "Log out"
+msgstr "Çıkış yap"

@@ -22,7 +22,7 @@ customizable UI solutions with minimal coding effort.
   contemporary design.
 - **Diverse Themes**: Offers a selection of visually appealing themes to choose
   from.
-- **Responsive Design**: Adapts seamlessly to various screen sizes for optimal
+- **Responsive Design and RTL Support**: Adapts seamlessly to various screen sizes and locales for optimal
   user experience.
 - **Accessibility**: Built with accessibility as a priority.
 - **Code Highlighting**: Integrates Highlight.js for enhanced code visibility.
@@ -41,11 +41,11 @@ customizable UI solutions with minimal coding effort.
 
 ## Screenshots
 
-![API Root](https://github.com/user-attachments/assets/86706c8c-392b-447d-8380-d852fd3b04df)
+![API Root](https://github.com/user-attachments/assets/8fb41d88-bf9c-4e3f-bdb4-83f334c90d05)
 
-![List View](https://github.com/user-attachments/assets/f0f966f7-3d2e-4eba-9147-247b2d588194)
+![List View](https://github.com/user-attachments/assets/3edb4b6e-cada-4e24-b621-b0ad16f43e0d)
 
-![Detail View](https://github.com/user-attachments/assets/52d79530-2b0d-4f1b-9924-4923d2070704)
+![Detail View](https://github.com/user-attachments/assets/7428301f-6417-4709-aebc-89f42b0499ef)
 
 ## Quick Start Guide
 
@@ -281,16 +281,6 @@ To remove the theme selector, update your `api.html`:
 {% block theme_selector %}{% endblock %}
 ```
 
-### Updating `View` documentation styles
-
-To update `View` documentation **typography** styles, update your `api.html`:
-
-```html
-{% extends 'rest_framework/base.html' %}
-
-{% block markdown_styles %}lg:prose-xl{% endblock %}
-```
-
 ### Removing the search bar
 
 To remove the search bar, update your `api.html`:
@@ -298,7 +288,7 @@ To remove the search bar, update your `api.html`:
 ```html
 {% extends 'rest_framework/base.html' %}
 
-{% block searchbar %}{% endblock %}
+{% block navbar_center %}{% endblock %}
 ```
 
 ### Removing theme toggle
@@ -308,12 +298,8 @@ To remove theme toggle, update your `api.html`:
 ```html
 {% extends 'rest_framework/base.html' %}
 
-{% block searchbar_right %}{% endblock %}
-{% block sidebar_styles %}lg:h-[calc(100dvh-1rem)] lg:max-h-[calc(100dvh-1rem)]{% endblock %}
-{% block content_styles %}lg:h-[calc(100dvh-1rem)] lg:max-h-[calc(100dvh-1rem)]{% endblock %}
+{% block theme_toggle %}{% endblock %}
 ```
-
-**Note**: This also removes the theme selector.
 
 ### Customizing the Brand and Adding Links
 
@@ -327,38 +313,52 @@ To change the brand name and add custom links, modify your `api.html`:
 <!-- Branding -->
 {% block branding %}
 <li
-  class="tooltip tooltip-right tooltip-primary"
+  class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
   data-tip="{% trans 'YOUR_BRAND' %}"
 >
   <a
-    href="https://www.django-rest-framework.org/"
+    href="https://your.domain.com/"
     class="btn btn-sm btn-square btn-ghost lg:btn-md"
   >
-    <i data-lucide="graduation-cap" class="size-4 lg:size-6"></i>
-    <span class="sr-only">{% trans 'YOUR_BRAND' %}</span>
+    <img 
+      class="size-8 2xl:size-10" 
+      alt="{% trans 'YOUR_BRAND' %}"
+      src="{% static 'path/to/your/logo.png' %}"
+    />
   </a>
 </li>
 {% endblock %}
 
 <!-- Add your brand text -->
-{% block branding_text %}
-<h1 class="hidden text-xl font-semibold text-primary lg:block">
-  {% trans 'YOUR_BRAND' %}
-</h1>
-
-<!-- Or an empty div to center the search bar -->
-<div class="hidden lg:block"></div>
-{% endblock %} {% block userlinks %}
+{% block drawer_branding %}
 <li
-  class="tooltip tooltip-right tooltip-secondary"
-  data-tip="{% trans 'Home' %}"
+  class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
+  data-tip="{% trans 'YOUR_BRAND' %}"
 >
   <a
-    href="https://www.django-rest-framework.org/"
+    href="https://your.domain.com/"
     class="btn btn-sm btn-square btn-ghost lg:btn-md"
   >
-    <i data-lucide="house" class="size-4 lg:size-6"></i>
-    <span class="sr-only">{% trans 'Home' %}</span>
+    <img 
+      class="size-8 2xl:size-10" 
+      alt="{% trans 'YOUR_BRAND' %}"
+      src="{% static 'path/to/your/logo.png' %}"
+    />
+  </a>
+</li>
+{% endblock %}
+
+<!-- Add your links -->
+{% block userlinks %}
+<li
+  class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+  data-tip="{% trans 'Home' %}"
+>
+  <a href="https://your.domain.com/">
+    <i data-lucide="home" class="size-4 lg:size-6"></i>
+    <span class="is-drawer-close:sr-only">
+      {% trans 'Home' %}
+    </span>
   </a>
 </li>
 {% endblock %}
@@ -371,11 +371,16 @@ To add menu items to profile menu, modify your `api.html`:
 ```html
 {% extends 'rest_framework/base.html' %}{% load i18n %}
 
-{% block profile_menu %}
-<li>
-  <a href="/users/me" class="flex items-center gap-4">
+{% block profile_links %}
+<li
+  class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+  data-tip="{% trans 'Profile' %}"
+>
+  <a href="https://your.domain.com/me/">
     <i data-lucide="user" class="size-4 lg:size-6"></i>
-    <span>{% translate 'Profile' %}</span>
+    <span class="is-drawer-close:sr-only">
+      {% trans 'Profile' %}
+    </span>
   </a>
 </li>
 {% endblock %}
@@ -386,7 +391,7 @@ To add menu items to profile menu, modify your `api.html`:
 To generate the CSS styles, run:
 
 ```console
-cd /rest_wind/static/rest_wind
+cd rest_wind/static/rest_wind
 
 # Install deps
 npm install

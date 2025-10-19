@@ -4,6 +4,7 @@ from django import template
 from django.urls import NoReverseMatch, reverse
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 
 
 # Create your template tags here.
@@ -23,13 +24,17 @@ def optional_login(request) -> str:
     return mark_safe(
         format_html(
             """
-            <li>
-              <a href="{href}?next={next}" class="flex items-center gap-4">
+            <li
+              class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+              data-tip="{label}"
+            >
+              <a href="{href}?next={next}">
                 <i data-lucide="log-in" class="size-4 lg:size-6"></i>
-                <span>Login</span>
+                <span class="is-drawer-close:sr-only">{label}</span>
               </a>
             </li>
             """,
+            label=_("Log in"),
             href=login_url,
             next=escape(request.path),
         )
@@ -49,17 +54,20 @@ def optional_logout(request, user, csrf_token) -> str:
     return mark_safe(
         format_html(
             """
-            <li>
-              <form id="logoutForm" class="hidden" method="post" action="{href}?next={next}">
+            <li
+              class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+              data-tip="{label} - {user}"
+            >
+              <form id="logout" class="hidden" method="post" action="{href}?next={next}">
                 <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
               </form>
-
-              <button type="submit" form="logoutForm" class="flex items-center gap-4">
+              <button type="submit" form="logout">
                 <i data-lucide="log-out" class="size-4 lg:size-6"></i>
-                <span>Logout</span>
+                <span class="is-drawer-close:sr-only">{label}</span>
               </button>
             </li>
             """,
+            label=_("Log out"),
             user=escape(user),
             href=logout_url,
             next=escape(request.path),

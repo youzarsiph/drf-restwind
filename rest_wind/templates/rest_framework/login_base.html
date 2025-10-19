@@ -1,37 +1,35 @@
-{% extends "rest_framework/base.html" %}
-<!-- prettier ignore -->
-{% load i18n %}
-<!-- prettier ignore -->
+{% extends "rest_framework/base.html" %}{% load i18n %}
+
+<!---->
 {% block title %}{{ block.super }} | {% trans 'Login' %}{% endblock %}
 
-<!-- prettier ignore -->
-{% block searchbar %}{% endblock %}
-
-<!-- prettier ignore -->
+<!---->
 {% block content %}
-<section
-  class="flex h-full w-full items-center justify-center rounded-box bg-base-100 lg:p-40"
->
+<section class="flex items-center justify-center size-full p-4">
   <div
-    class="card gap-12 mx-2 max-w-md card-body w-full rounded-box bg-base-200 py-12 shadow-xl"
+    class="card card-sm bg-base-100 border border-base-300 shadow-xl w-full max-w-xl md:card-md xl:card-xl 2xl:card-xl"
   >
-    <h1 class="text-ptimary text-4xl font-serif font-black">{% trans 'Login' %}</h1>
+    <div class="card-body container-prose">
+      <h1>{% trans 'Login' %}</h1>
 
-    {% if next %}
-    {% if user.is_authenticated %}
-    <p>
-      <!-- prettier ignore -->
-      {% blocktranslate %}
-      Your account doesn't have access to this page. To
-      proceed, please login with an account that has access.
-      {% endblocktranslate %}
-    </p>
-    {% else %}
-    <p>{% trans 'Please login to continue.' %}</p>
-    {% endif %}
-    {% endif %}
-    <!-- prettier ignore -->
-    {% include 'rest_framework/components/form.html' %}
+      {% if next %}
+      <!---->
+      {% if user.is_authenticated %}
+      <p>
+        {% blocktrans trimmed %}Your account doesn't have access to this page.
+        To proceed, please login with an account that has access.
+        <!---->
+        {% endblocktrans %}
+      </p>
+      {% else %}
+      <p>{% trans 'Please login to continue.' %}</p>
+      {% endif %}
+      <!---->
+      {% endif %}
+
+      <!---->
+      {% include 'rest_framework/components/form.html' %}
+    </div>
   </div>
 </section>
 {% endblock %}

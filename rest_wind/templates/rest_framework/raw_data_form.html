@@ -1,15 +1,50 @@
-<!-- prettier ignore -->
 {% load rest_framework %}
+
+<!---->
 {{ form.non_field_errors }}
-<!-- prettier ignore -->
-{% for field in form %}
-<fieldset class="fieldset">
-  {{ field.label_tag|add_class:"fieldset-label-text" }}
 
-  <div class="grid gap-2">
-    {{ field|add_class:"input w-full" }}
+<!---->
+{{ form }}
 
-    <span class="fieldset-help-text">{{ field.help_text|safe }}</span>
-  </div>
-</fieldset>
-{% endfor %}
+<script>
+  // Style containers and labels
+  document
+    .querySelectorAll("form > div")
+    .forEach((e) => e.classList.add("fieldset"));
+  document
+    .querySelectorAll("form > div > label")
+    .forEach((e) => e.classList.add("fieldset-legend"));
+  document
+    .querySelectorAll("form > div > .helptext")
+    .forEach((e) => e.classList.add("fieldset-label"));
+
+  // Style inputs
+  document
+    .querySelectorAll("form > div > input")
+    .forEach((e) => e.classList.add("input", "w-full", "validator"));
+  document
+    .querySelectorAll("form > div > input[type=checkbox]")
+    .forEach((e) => {
+      e.classList.remove("input", "w-full");
+      e.classList.add("checkbox");
+    });
+  document.querySelectorAll("form > div > input[type=radio]").forEach((e) => {
+    e.classList.remove("input", "w-full");
+    e.classList.add("radio");
+  });
+  document.querySelectorAll("form > div > input[type=file]").forEach((e) => {
+    e.classList.remove("input");
+    e.classList.add("file-input");
+  });
+  document
+    .querySelectorAll("form > div > textarea")
+    .forEach((e) => e.classList.add("textarea", "w-full", "validator"));
+  document
+    .querySelectorAll("form > div > select")
+    .forEach((e) => e.classList.add("select", "w-full", "validator"));
+
+  // Style error lists
+  document
+    .querySelectorAll("form > div > .errorlist")
+    .forEach((e) => e.classList.add("validator-hint", "text-error", "visible"));
+</script>

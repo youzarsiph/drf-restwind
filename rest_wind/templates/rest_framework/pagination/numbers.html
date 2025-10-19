@@ -1,72 +1,91 @@
-<!-- prettier ignore -->
 {% load i18n %}
 
-<ol class="join flex-wrap">
-  <!-- prettier ignore -->
+<ol class="flex items-center gap-2 lg:gap-4">
   {% if previous_url %}
-  <li
-    class="tooltip tooltip-top tooltip-primary"
-    data-tip="{% trans 'Previous' %}"
-  >
-    <a href="{{ previous_url }}" class="btn btn-soft btn-primary join-item">
-      <i data-lucide="chevron-left" class="size-4 lg:size-6"></i>
+  <li class="tooltip tooltip-primary" data-tip="{% trans 'Previous' %}">
+    <a
+      href="{{ previous_url }}"
+      class="btn btn-square btn-sm btn-ghost lg:btn-md 2xl:btn-lg"
+    >
+      <i data-lucide="chevron-left" class="size-4 lg:size-6 rtl:rotate-180"></i>
       <span class="sr-only">{% trans 'Previous' %}</span>
     </a>
   </li>
   {% else %}
-  <li class="tooltip tooltip-top" data-tip="{% trans 'Previous' %}">
-    <button disabled class="btn btn-soft btn-primary join-item">
-      <i data-lucide="chevron-left" class="size-4 lg:size-6"></i>
+  <li class="tooltip" data-tip="{% trans 'Previous' %}">
+    <button
+      disabled
+      class="btn btn-square btn-sm btn-ghost lg:btn-md 2xl:btn-lg"
+    >
+      <i data-lucide="chevron-left" class="size-4 lg:size-6 rtl:rotate-180"></i>
       <span class="sr-only">{% trans 'Previous' %}</span>
     </button>
   </li>
   {% endif %}
-  <!-- prettier ignore -->
-  {% for page_link in page_links %} {% if page_link.is_break %}
+
+  <!---->
+  {% for page_link in page_links %}
+  <!---->
+  {% if page_link.is_break %}
   <li>
-    <button disabled class="btn btn-ghost join-item">
+    <button
+      disabled
+      class="btn btn-sm btn-ghost lg:btn-md 2xl:btn-lg btn-ghost"
+    >
       <i data-lucide="ellipsis" class="size-4 lg:size-6"></i>
       <span class="sr-only">...</span>
     </button>
   </li>
   {% else %}
-  <!-- prettier ignore -->
+  <!---->
   {% if page_link.is_active %}
-  <li
-    class="tooltip tooltip-top tooltip-accent"
-    data-tip="{% trans 'Current - Page' %} {{ page_link.number }}"
-  >
-    <a href="{{ page_link.url }}" class="btn btn-soft btn-accent join-item"
-      >{{ page_link.number }}</a
+  <li class="tooltip" data-tip="{% trans 'Current' %} {{ page_link.number }}">
+    <a
+      href="{{ page_link.url }}"
+      class="btn btn-active btn-sm btn-ghost lg:btn-md 2xl:btn-lg"
     >
+      {{ page_link.number }}
+    </a>
   </li>
   {% else %}
-  <li
-    class="tooltip tooltip-top"
-    data-tip="{% trans 'Page' %} {{ page_link.number }}"
-  >
-    <a href="{{ page_link.url }}" class="btn btn-ghost join-item"
-      >{{ page_link.number }}</a
+  <li class="tooltip" data-tip="{% trans 'Page' %} {{ page_link.number }}">
+    <a
+      href="{{ page_link.url }}"
+      class="btn btn-sm btn-ghost lg:btn-md 2xl:btn-lg btn-ghost"
     >
+      {{ page_link.number }}
+    </a>
   </li>
   {% endif %}
+  <!---->
   {% endif %}
+  <!---->
   {% endfor %}
-  <!-- prettier ignore -->
+
+  <!---->
   {% if next_url %}
-  <li
-    class="tooltip tooltip-top tooltip-primary"
-    data-tip="{% trans 'Next' %}"
-  >
-    <a href="{{ next_url }}" class="btn btn-soft btn-primary join-item">
-      <i data-lucide="chevron-right" class="size-4 lg:size-6"></i>
+  <li class="tooltip" data-tip="{% trans 'Next' %}">
+    <a
+      href="{{ next_url }}"
+      class="btn btn-square btn-sm btn-ghost lg:btn-md 2xl:btn-lg"
+    >
+      <i
+        data-lucide="chevron-right"
+        class="size-4 lg:size-6 rtl:rotate-180"
+      ></i>
       <span class="sr-only">{% trans 'Next' %}</span>
     </a>
   </li>
   {% else %}
-  <li class="tooltip tooltip-top" data-tip="{% trans 'Next' %}">
-    <button disabled class="btn btn-soft btn-primary join-item">
-      <i data-lucide="chevron-right" class="size-4 lg:size-6"></i>
+  <li class="tooltip" data-tip="{% trans 'Next' %}">
+    <button
+      disabled
+      class="btn btn-square btn-sm btn-ghost lg:btn-md 2xl:btn-lg"
+    >
+      <i
+        data-lucide="chevron-right"
+        class="size-4 lg:size-6 rtl:rotate-180"
+      ></i>
       <span class="sr-only">{% trans 'Next' %}</span>
     </button>
   </li>

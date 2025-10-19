@@ -1,19 +1,17 @@
-<!-- prettier ignore -->
 {% load i18n %}
 
-<h2>{% trans "Search" %}</h2>
+<h4>{% trans "Search" %}</h4>
 
-<form class="join">
-  <input
-    type="search"
-    class="input input-primary join-item grow"
-    name="{{ param }}"
-    value="{{ term }}"
-    placeholder="{% trans 'Search...' %}"
-  />
-
-  <button class="btn btn-soft btn-primary join-item" type="submit">
-    <i data-lucide="search" class="size-4 lg:size-6"></i>
-    {% trans "Search" %}
-  </button>
+<form method="get" class="w-full">
+  <label class="input mx-auto w-full 2xl:input-lg">
+    <i data-lucide="search" class="size-4 text-primary lg:size-6"></i>
+    <input
+      required
+      type="search"
+      name="{{ param }}"
+      value="{{ term }}"
+      class="placeholder-primary grow"
+      placeholder="{% trans 'Search' %}"
+    />
+  </label>
 </form>
