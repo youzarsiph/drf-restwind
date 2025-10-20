@@ -80,7 +80,7 @@
                         class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                       >
                         <i data-lucide="menu" class="size-4 lg:size-6"></i>
-                        <span class="sr-only"> {% trans 'Open drawer' %} </span>
+                        <span class="sr-only">{% trans 'Open drawer' %}</span>
                       </label>
                     </li>
                     {% endblock %}
@@ -140,45 +140,77 @@
                   <ul class="navbar-end gap-4">
                     {% block navbar_end %}
                     <!---->
+                    {% if extra_actions %}
+                    <li
+                      class="tooltip tooltip-left rtl:tooltip-right"
+                      data-tip="{% trans 'Actions' %}"
+                    >
+                      <button
+                        popovertarget="actions"
+                        style="anchor-name: --actions"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
+                      >
+                        <i
+                          data-lucide="circle-plus"
+                          class="size-4 lg:size-6"
+                        ></i>
+                        <span class="sr-only">{% trans 'Actions' %}</span>
+                      </button>
+
+                      <ul
+                        popover
+                        id="actions"
+                        style="position-anchor: --actions; max-height: 20rem"
+                        class="menu dropdown dropdown-left bg-base-100/50 rounded-box shadow-lg backdrop-blur-3xl rtl:dropdown-right"
+                      >
+                        <li class="menu-title">{% trans 'Extra Actions' %}</li>
+                        {% for action_name, url in extra_actions|items %}
+                        <li><a href="{{ url }}">{{ action_name }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                    {% endif %}
+
+                    <!---->
                     {% if delete_form %}
-                    <div
+                    <li
                       data-tip="{% trans 'Delete' %}"
                       class="tooltip tooltip-left tooltip-error rtl:tooltip-right"
                     >
                       <button
                         type="button"
                         onclick="deleteDialog.showModal()"
-                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-error 2xl:btn-md"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-error"
                       >
                         <i data-lucide="trash-2" class="size-4 lg:size-6"></i>
-                        <span class="sr-only"> {% trans 'Delete' %} </span>
+                        <span class="sr-only">{% trans 'Delete' %}</span>
                       </button>
-                    </div>
+                    </li>
                     {% endif %}
 
                     <!---->
                     {% if filter_form %}
-                    <div
+                    <li
                       class="tooltip tooltip-left rtl:tooltip-right"
                       data-tip="{% trans 'Filters' %}"
                     >
                       <button
                         type="button"
                         onclick="filtersDialog.showModal()"
-                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                       >
                         <i
                           data-lucide="list-filter"
                           class="size-4 lg:size-6"
                         ></i>
-                        <span class="sr-only"> {% trans 'Filters' %} </span>
+                        <span class="sr-only">{% trans 'Filters' %}</span>
                       </button>
-                    </div>
+                    </li>
 
                     {{ filter_form }}
                     <!---->
                     {% endif %}
-                    
+
                     <!---->
                     {% block theme_toggle %}
                     <li
@@ -191,7 +223,7 @@
                         <input
                           type="checkbox"
                           class="theme-controller"
-                          value="{% block toggle_theme %}light{% endblock %}"
+                          value="{% block toggle_theme %}luxury{% endblock %}"
                           value="luxury"
                         />
                         <i
@@ -284,7 +316,7 @@
                             class="btn btn-sm lg:btn-md 2xl:btn-lg btn-copy btn-ghost btn-square"
                             data-clipboard-text="{{ content }}"
                           >
-                            <span class="sr-only"> {% trans 'Copy' %} </span>
+                            <span class="sr-only">{% trans 'Copy' %}</span>
                             <i data-lucide="copy" class="size-4 lg:size-5"></i>
                           </button>
                         </div>
@@ -347,13 +379,13 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                       <a
                         rel="nofollow"
                         href="{{ request.get_full_path }}"
-                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-primary 2xl:btn-md"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-primary"
                       >
                         <i
                           data-lucide="refresh-ccw"
                           class="size-4 lg:size-6"
                         ></i>
-                        <span class="sr-only"> {% trans 'GET request' %} </span>
+                        <span class="sr-only">{% trans 'GET request' %}</span>
                       </a>
                     </div>
                     {% if api_settings.URL_FORMAT_OVERRIDE %}
@@ -365,7 +397,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                         type="button"
                         popoverTarget="formats"
                         style="anchor-name: --formats"
-                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                       >
                         <i
                           data-lucide="grid-2x2-plus"
@@ -413,7 +445,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                   >
                     <button
                       type="submit"
-                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                     >
                       <i data-lucide="info" class="size-4 lg:size-6"></i>
                       <span class="sr-only">
@@ -430,13 +462,13 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                     <button
                       type="button"
                       onclick="usageDialog.showModal()"
-                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                     >
                       <i
                         data-lucide="notebook-text"
                         class="size-4 lg:size-6"
                       ></i>
-                      <span class="sr-only"> {% trans 'Usage' %} </span>
+                      <span class="sr-only">{% trans 'Usage' %}</span>
                     </button>
                   </div>
 
@@ -447,10 +479,10 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                     <label
                       for="sidebar"
                       aria-label="{% trans 'close sidebar' %}"
-                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                      class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                     >
                       <i data-lucide="x" class="size-4 lg:size-6"></i>
-                      <span class="sr-only"> {% trans 'Close' %} </span>
+                      <span class="sr-only">{% trans 'Close' %}</span>
                     </label>
                   </div>
                 </div>
@@ -703,7 +735,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
               >
                 <a
                   href="https://github.com/youzarsiph/drf-restwind/"
-                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-primary 2xl:btn-md"
+                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-primary"
                 >
                   <i data-lucide="github" class="size-4 lg:size-6"></i>
                   <span class="sr-only">{% trans 'Github' %}</span>
@@ -716,7 +748,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
               >
                 <a
                   href="https://github.com/youzarsiph/drf-restwind/"
-                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-success 2xl:btn-md"
+                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-success"
                 >
                   <i data-lucide="package-check" class="size-4 lg:size-6"></i>
                   <span class="sr-only">{% trans 'Package' %}</span>
@@ -730,7 +762,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
               >
                 <label
                   for="main-drawer"
-                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost 2xl:btn-md"
+                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                 >
                   <i data-lucide="x" class="size-4 lg:size-6"></i>
                   <span class="sr-only">{% trans 'Close' %}</span>

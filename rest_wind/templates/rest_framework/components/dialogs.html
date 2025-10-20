@@ -1,7 +1,7 @@
 {% load i18n %}
 
-<dialog id="deleteDialog" class="modal">
-  <section class="modal-box w-full max-w-2xl">
+<dialog id="deleteDialog" class="modal p-4">
+  <section class="modal-box w-full max-w-3xl">
     <header class="flex items-center justify-between gap-4">
       <h1 class="text-lg font-semibold lg:text-2xl">
         {% trans 'Delete' %} {{ name }}
@@ -55,7 +55,7 @@
 </dialog>
 
 <dialog id="docsDialog" class="relative modal">
-  <section class="modal-box w-full max-w-2xl">
+  <section class="modal-box w-full max-w-3xl">
     <header class="flex items-center justify-between gap-4 py-4">
       <h1 class="text-lg font-semibold lg:text-2xl">{% trans 'Docs' %}</h1>
 
@@ -87,8 +87,8 @@
   </section>
 </dialog>
 
-<dialog id="usageDialog" class="modal">
-  <section class="modal-box w-full max-w-2xl">
+<dialog id="usageDialog" class="modal p-4">
+  <section class="modal-box w-full max-w-3xl">
     <header class="flex items-center justify-between gap-4">
       <h1 class="text-lg font-semibold lg:text-2xl">{% trans 'Examples' %}</h1>
 

@@ -271,6 +271,16 @@ Can not find what you are looking for? Create your own theme:
 
 Now, you have a theme that matches your brand.
 
+### Removing package details
+
+Update your `api.html`:
+
+```html
+{% extends 'rest_framework/base.html' %}
+
+{% block package %}{% endblock %}
+```
+
 ### Removing theme selector
 
 To remove the theme selector, update your `api.html`:
