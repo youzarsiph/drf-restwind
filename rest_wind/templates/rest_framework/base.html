@@ -49,21 +49,21 @@
     class="bg-base-300 font-sans h-dvh overflow-hidden md:p-1 lg:p-2 rtl:font-kufi"
   >
     <div
-      class="drawer h-dvh bg-base-100 overflow-hidden md:rounded-box md:drawer-open lg:max-h-[calc(100dvh-1rem)]"
+      class="drawer h-dvh bg-base-100 overflow-hidden md:rounded-box md:drawer-open md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
     >
       <input id="main-drawer" type="checkbox" class="drawer-toggle" />
 
       <section
-        class="drawer-content size-full max-h-dvh lg:max-h-[calc(100dvh-1rem)]"
+        class="drawer-content size-full max-h-dvh md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
       >
         {% block content %}
         <div
-          class="drawer max-h-dvh lg:max-h-[calc(100dvh-1rem)] lg:drawer-open"
+          class="drawer max-h-dvh md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)] lg:drawer-open"
         >
           <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
           <section
-            class="drawer-content max-h-dvh lg:max-h-[calc(100dvh-1rem)]"
+            class="drawer-content max-h-dvh md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
           >
             <div class="relative size-full">
               <header class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl">
@@ -254,7 +254,7 @@
               </header>
 
               <div
-                class="size-full max-h-dvh overflow-y-auto px-4 py-24 lg:max-h-[calc(100dvh-1rem)]"
+                class="size-full max-h-dvh overflow-y-auto px-4 py-24 md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
               >
                 <main class="container mx-auto grid gap-8">
                   <!---->
@@ -336,7 +336,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
           </section>
 
           <section
-            class="drawer-side z-50 max-h-dvh lg:max-h-[calc(100dvh-1rem)]"
+            class="drawer-side z-50 max-h-dvh md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
           >
             <label
               for="sidebar"
@@ -489,7 +489,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
               </header>
 
               <div
-                class="flex size-full max-h-dvh flex-col gap-4 overflow-y-auto py-20 lg:max-h-[calc(100dvh-1rem)]"
+                class="flex size-full max-h-dvh flex-col gap-4 overflow-y-auto py-20 md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
               >
                 <form method="get" class="px-4 lg:hidden">
                   <label
@@ -689,7 +689,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
       </section>
 
       <section
-        class="drawer-side is-drawer-close:overflow-visible z-50 md:z-40 lg:z-50 max-h-dvh lg:max-h-[calc(100dvh-1rem)]"
+        class="drawer-side is-drawer-close:overflow-visible z-50 md:z-40 lg:z-50 max-h-dvh md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
       >
         <label
           for="main-drawer"
@@ -698,7 +698,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
         ></label>
 
         <div
-          class="is-drawer-close:w-18 is-drawer-close:lg:w-20 is-drawer-open:w-full md:is-drawer-open:w-sm bg-base-100 border-base-300 flex h-full flex-col items-center gap-4 p-4 md:border-r lg:border-r-0 lg:max-h-[calc(100dvh-1rem)]"
+          class="is-drawer-close:w-18 is-drawer-close:lg:w-20 is-drawer-open:w-full md:is-drawer-open:w-sm bg-base-100 border-base-300 flex h-full flex-col items-center gap-4 p-4 md:border-r lg:border-r-0 md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
         >
           <header class="flex w-full items-center justify-between gap-4">
             {% block drawer_branding %}
