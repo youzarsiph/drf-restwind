@@ -5,7 +5,92 @@
 
 <!---->
 {% block content %}
-<section class="flex items-center justify-center size-full p-4">
+<section class="flex items-center justify-center size-full p-4 pt-20">
+  <header class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl">
+    <nav class="navbar p-4">
+      <ul class="navbar-start gap-4">
+        {% block navbar_start %}
+        <li
+          class="tooltip tooltip-right rtl:tooltip-left tooltip-primary lg:hidden"
+          data-tip="{% trans 'Open drawer' %}"
+        >
+          <label
+            for="drawer"
+            aria-label="{% trans 'close sidebar' %}"
+            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
+          >
+            <i data-lucide="menu" class="size-4 lg:size-6"></i>
+            <span class="sr-only">{% trans 'Open drawer' %}</span>
+          </label>
+        </li>
+        {% endblock %}
+
+        <!---->
+        {% block branding %}
+        <li
+          class="tooltip tooltip-right rtl:tooltip-left tooltip-primary md:hidden"
+          data-tip="{% trans 'Django REST Framework' %}"
+        >
+          <h1 class="relative">
+            <a
+              href="https://www.django-rest-framework.org/"
+              class="btn btn-square btn-primary lg:btn-lg 2xl:btn-lg"
+            >
+              <div
+                class="btn btn-square btn-primary rotate-45 p-0 shadow-none lg:btn-lg 2xl:btn-lg"
+              >
+                <i
+                  data-lucide="braces"
+                  class="-rotate-45 lg:size-8 2xl:size-10"
+                ></i>
+              </div>
+              <span class="sr-only"> {% trans 'Django REST Framework' %} </span>
+            </a>
+          </h1>
+        </li>
+        {% endblock %}
+      </ul>
+
+      <ul class="navbar-center hidden gap-4 lg:block">
+        {% block navbar_center %}{% endblock %}
+      </ul>
+
+      <ul class="navbar-end gap-4">
+        {% block navbar_end %}
+        <!---->
+        {% block theme_toggle %}
+        <li
+          class="tooltip tooltip-left rtl:tooltip-right"
+          data-tip="{% trans 'Toggle theme' %}"
+        >
+          <label
+            class="swap swap-rotate btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
+          >
+            <input
+              type="checkbox"
+              class="theme-controller"
+              value="{% block toggle_theme %}luxury{% endblock %}"
+              value="luxury"
+            />
+            <i data-lucide="sun" class="swap-off size-4 lg:size-6"></i>
+            <i data-lucide="moon-star" class="swap-on size-4 lg:size-6"></i>
+            <span class="sr-only"> {% trans 'Toggle theme' %} </span>
+          </label>
+        </li>
+        {% endblock %}
+
+        <!---->
+        {% block theme_selector %}
+        <!---->
+        {% include 'rest_framework/components/theme.html' %}
+        <!---->
+        {% endblock %}
+        <!---->
+        {% endblock %}
+      </ul>
+    </nav>
+  </header>
+
   <div
     class="card card-sm bg-base-100 border border-base-300 shadow-xl w-full max-w-xl md:card-md xl:card-xl 2xl:card-xl"
   >

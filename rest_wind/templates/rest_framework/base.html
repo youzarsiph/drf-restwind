@@ -51,7 +51,7 @@
     <div
       class="drawer h-dvh bg-base-100 overflow-hidden md:rounded-box md:drawer-open md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
     >
-      <input id="main-drawer" type="checkbox" class="drawer-toggle" />
+      <input id="drawer" type="checkbox" class="drawer-toggle" />
 
       <section
         class="drawer-content size-full max-h-dvh md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
@@ -356,7 +356,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                     data-tip="{% trans 'Open drawer' %}"
                   >
                     <label
-                      for="main-drawer"
+                      for="drawer"
                       aria-label="{% trans 'close sidebar' %}"
                       class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                     >
@@ -692,7 +692,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
         class="drawer-side is-drawer-close:overflow-visible z-50 md:z-40 lg:z-50 max-h-dvh md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
       >
         <label
-          for="main-drawer"
+          for="drawer"
           aria-label="close sidebar"
           class="drawer-overlay"
         ></label>
@@ -747,7 +747,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                 data-tip="{% trans 'Package' %}"
               >
                 <a
-                  href="https://github.com/youzarsiph/drf-restwind/"
+                  href="https://pypi.com/project/drf-restwind/"
                   class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-success"
                 >
                   <i data-lucide="package-check" class="size-4 lg:size-6"></i>
@@ -761,7 +761,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                 data-tip="{% trans 'Close' %}"
               >
                 <label
-                  for="main-drawer"
+                  for="drawer"
                   class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                 >
                   <i data-lucide="x" class="size-4 lg:size-6"></i>
@@ -845,7 +845,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
               data-tip="{% trans 'Open drawer' %}"
             >
-              <label for="main-drawer" class="drawer-button">
+              <label for="drawer" class="drawer-button">
                 <i
                   data-lucide="sidebar-open"
                   class="is-drawer-open:hidden size-4 lg:size-6 rtl:rotate-180"
