@@ -4,6 +4,6 @@
 
 {% with form=filter.form %}
 <!---->
-{% include 'rest_framework/components/form.html' with method='get' %}
+{% include 'rest_framework/components/form.html' with method='get' csrf=False %}
 <!---->
 {% endwith %}

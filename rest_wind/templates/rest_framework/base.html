@@ -1,10 +1,10 @@
 {% load i18n static rest_framework rest_wind %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html
   lang="{{ LANGUAGE_CODE }}"
   dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
-  data-theme="{% block theme %}default{% endblock %}"
+  data-theme="{% block theme %}cupcake{% endblock %}"
 >
   <head>
     {% block head %}
@@ -71,7 +71,7 @@
                   <ul class="navbar-start gap-4">
                     {% block navbar_start %}
                     <li
-                      class="tooltip tooltip-right rtl:tooltip-left tooltip-primary lg:hidden"
+                      class="tooltip tooltip-right rtl:tooltip-left lg:hidden"
                       data-tip="{% trans 'Open drawer' %}"
                     >
                       <label
@@ -118,17 +118,17 @@
                     <li>
                       <form method="get">
                         <label
-                          class="input input-ghost input-primary 2xl:input-lg mx-auto w-full max-w-xl bg-transparent"
+                          class="input input-ghost 2xl:input-lg w-full bg-transparent"
                         >
                           <i
                             data-lucide="search"
-                            class="size-4 text-primary lg:size-6"
+                            class="size-4 opacity-50 lg:size-6"
                           ></i>
                           <input
                             required
                             type="search"
                             name="search"
-                            class="placeholder-primary grow"
+                            class="grow"
                             placeholder="{% trans 'Search' %}"
                           />
                         </label>
@@ -345,14 +345,14 @@ HTTP {{ response.status_code }} {{ response.status_text }}
             ></label>
 
             <div
-              class="bg-base-100 border-base-300 border-y-base-100 relative flex size-full flex-col overflow-hidden overflow-y-auto border lg:min-w-sm lg:max-w-sm 2xl:min-w-md 2xl:max-w-md"
+              class="bg-base-100 border-base-300 relative flex size-full flex-col overflow-hidden overflow-y-auto border-r rtl:border-l lg:min-w-sm lg:max-w-sm 2xl:min-w-md 2xl:max-w-md"
             >
               <header
                 class="absolute inset-x-0 top-0 z-10 flex items-center justify-between gap-4 p-4 backdrop-blur-3xl"
               >
                 <div class="flex items-center gap-2 lg:gap-4">
                   <div
-                    class="tooltip tooltip-right rtl:tooltip-left tooltip-primary md:hidden"
+                    class="tooltip tooltip-right rtl:tooltip-left md:hidden"
                     data-tip="{% trans 'Open drawer' %}"
                   >
                     <label
@@ -373,13 +373,13 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                   {% if 'GET' in allowed_methods %}
                   <form method="get" class="flex items-center gap-2 lg:gap-4">
                     <div
-                      class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
+                      class="tooltip tooltip-right rtl:tooltip-left"
                       data-tip="{% trans 'GET request' %}"
                     >
                       <a
                         rel="nofollow"
                         href="{{ request.get_full_path }}"
-                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-primary"
+                        class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                       >
                         <i
                           data-lucide="refresh-ccw"
@@ -395,7 +395,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                     >
                       <button
                         type="button"
-                        popoverTarget="formats"
+                        popovertarget="formats"
                         style="anchor-name: --formats"
                         class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                       >
@@ -493,17 +493,17 @@ HTTP {{ response.status_code }} {{ response.status_text }}
               >
                 <form method="get" class="px-4 lg:hidden">
                   <label
-                    class="input input-ghost input-primary 2xl:input-lg mx-auto w-full max-w-xl bg-transparent"
+                    class="input input-ghost 2xl:input-lg w-full bg-transparent"
                   >
                     <i
                       data-lucide="search"
-                      class="size-4 text-primary lg:size-6"
+                      class="size-4 opacity-50 lg:size-6"
                     ></i>
                     <input
                       required
                       type="search"
                       name="search"
-                      class="placeholder-primary grow"
+                      class="grow"
                       placeholder="{% trans 'Search' %}"
                     />
                   </label>
@@ -533,7 +533,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                       {% csrf_token %}{{ post_form }}
 
                       <div
-                        class="tooltip tooltip-top tooltip-primary"
+                        class="tooltip tooltip-primary"
                         data-tip="{% trans 'POST request' %}"
                       >
                         <button
@@ -567,7 +567,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                       {% include "rest_framework/raw_data_form.html" %}
 
                       <div
-                        class="tooltip tooltip-top tooltip-primary"
+                        class="tooltip tooltip-primary"
                         data-tip="{% trans 'POST request' %}"
                       >
                         <button
@@ -641,7 +641,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                       <div class="flex items-center gap-4">
                         {% if raw_data_put_form %}
                         <div
-                          class="tooltip tooltip-top tooltip-primary grow"
+                          class="tooltip tooltip-primary grow"
                           data-tip="{% trans 'PUT request' %}"
                         >
                           <button
@@ -659,7 +659,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                         <!---->
                         {% if raw_data_patch_form %}
                         <div
-                          class="tooltip tooltip-top tooltip-secondary grow"
+                          class="tooltip tooltip-secondary grow"
                           data-tip="{% trans 'PATCH request' %}"
                         >
                           <button
@@ -698,7 +698,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
         ></label>
 
         <div
-          class="is-drawer-close:w-18 is-drawer-close:lg:w-20 is-drawer-open:w-full md:is-drawer-open:w-sm bg-base-100 border-base-300 flex h-full flex-col items-center gap-4 p-4 md:border-r lg:border-r-0 md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
+          class="is-drawer-close:w-18 is-drawer-close:lg:w-20 is-drawer-open:w-full md:is-drawer-open:w-sm bg-base-100 border-base-300 flex h-full flex-col items-center gap-4 p-4 border-r rtl:border-l md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
         >
           <header class="flex w-full items-center justify-between gap-4">
             {% block drawer_branding %}
@@ -730,12 +730,12 @@ HTTP {{ response.status_code }} {{ response.status_text }}
             <div class="is-drawer-close:hidden flex items-center gap-4">
               {% block package %}
               <div
-                class="tooltip tooltip-left tooltip-primary rtl:tooltip-right"
+                class="tooltip tooltip-left rtl:tooltip-right"
                 data-tip="{% trans 'Github' %}"
               >
                 <a
                   href="https://github.com/youzarsiph/drf-restwind/"
-                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-primary"
+                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                 >
                   <i data-lucide="github" class="size-4 lg:size-6"></i>
                   <span class="sr-only">{% trans 'Github' %}</span>
@@ -743,12 +743,12 @@ HTTP {{ response.status_code }} {{ response.status_text }}
               </div>
 
               <div
-                class="tooltip tooltip-left tooltip-success rtl:tooltip-right"
+                class="tooltip tooltip-left rtl:tooltip-right"
                 data-tip="{% trans 'Package' %}"
               >
                 <a
                   href="https://pypi.com/project/drf-restwind/"
-                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-success"
+                  class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                 >
                   <i data-lucide="package-check" class="size-4 lg:size-6"></i>
                   <span class="sr-only">{% trans 'Package' %}</span>
@@ -895,11 +895,11 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                 if (e.innerHTML.startsWith('"http')) {
                   e.innerHTML = `<a href="${e.innerHTML.slice(
                     1,
-                    e.innerHTML.length - 1
+                    e.innerHTML.length - 1,
                   )}">${e.innerHTML}</a>`;
                 }
               }),
-          100
+          100,
         );
       </script>
 

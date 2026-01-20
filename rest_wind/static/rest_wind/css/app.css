@@ -32,6 +32,6 @@
   }
 
   .container-prose {
-    @apply prose w-full mx-auto prose-sm prose-video:rounded-box xl:prose-lg 2xl:prose-xl prose-headings:text-primary prose-img:rounded-box prose-img:w-full prose-a:link prose-a:link-hover prose-a:link-info prose-a:font-semibold;
+    @apply prose w-full mx-auto prose-sm prose-video:rounded-box xl:prose-lg 2xl:prose-xl prose-img:rounded-box prose-img:w-full prose-a:link prose-a:link-hover prose-a:link-info prose-a:font-semibold;
   }
 }

@@ -16,7 +16,7 @@
         type="radio"
         id="{{ field.name }}"
         name="{{ field.name }}"
-        class="radio radio-primary"
+        class="radio checked:radio-primary"
         {% if field.required %}required{% endif %}
         {% if field.value %}checked{% endif %}
       />
@@ -41,7 +41,7 @@
           value="{{ key }}"
           id="{{ field.name }}_{{ key }}"
           name="{{ field.name }}"
-          class="radio radio-primary"
+          class="radio"
           {% if key|as_string="" == "field.value|as_string" %}checked{% endif %}
         />
       </label>

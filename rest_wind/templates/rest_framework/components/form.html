@@ -27,7 +27,9 @@
 
   <!---->
   {% if btn|default_if_none:True %}
-  <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+  <button type="submit" class="btn btn-sm btn-primary lg:btn-md 2xl:btn-lg">
+    {% trans 'Submit' %}
+  </button>
   {% endif %}
 </form>
 
