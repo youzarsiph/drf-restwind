@@ -70,7 +70,6 @@
               type="checkbox"
               class="theme-controller"
               value="{% block toggle_theme %}luxury{% endblock %}"
-              value="luxury"
             />
             <i data-lucide="sun" class="swap-off size-4 lg:size-6"></i>
             <i data-lucide="moon-star" class="swap-on size-4 lg:size-6"></i>
@@ -82,7 +81,7 @@
         <!---->
         {% block theme_selector %}
         <!---->
-        {% include 'rest_framework/components/theme.html' %}
+        {% include 'rest_framework/components/themes.html' %}
         <!---->
         {% endblock %}
         <!---->

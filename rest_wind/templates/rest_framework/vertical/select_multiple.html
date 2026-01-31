@@ -15,7 +15,7 @@
       multiple
       id="{{ field.name }}"
       name="{{ field.name }}"
-      class="select w-full min-h-56 overflow-auto"
+      class="select w-full min-h-56 overflow-auto focus:select-primary active:select-primary"
       {% if field.required %}required{% endif %}
       {% if style.autofocus %}autofocus{% endif %}
       {% if field.max_length %}maxlength="{{ field.max_length }}"{% endif %}

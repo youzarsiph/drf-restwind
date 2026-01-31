@@ -60,6 +60,10 @@
       </div>
     </main>
   </section>
+
+  <button class="modal-backdrop" onclick="deleteDialog.close()">
+    {% trans 'close' %}
+  </button>
 </dialog>
 
 <dialog id="docsDialog" class="modal">
@@ -87,12 +91,14 @@
       class="pt-12 max-h-dvh overflow-y-auto md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
     >
       <div class="container-prose p-4 lg:p-8">
-        <h1>{% trans 'Docs' %}</h1>
-
         {% block description %}{{ description }}{% endblock %}
       </div>
     </main>
   </section>
+
+  <button class="modal-backdrop" onclick="docsDialog.close()">
+    {% trans 'close' %}
+  </button>
 </dialog>
 
 <dialog id="usageDialog" class="modal">
@@ -268,4 +274,8 @@ response.then(r => console.log(r.ok))</code></pre>
       {% endif %}
     </div>
   </section>
+
+  <button class="modal-backdrop" onclick="usageDialog.close()">
+    {% trans 'close' %}
+  </button>
 </dialog>

@@ -1,27 +1,31 @@
 {% load i18n %}
 
-<h4>{% trans "Search" %}</h4>
+<section>
+  <h4>{% trans "Search" %}</h4>
 
-<form method="get" class="flex items-center gap-2 w-full">
-  <label class="grow input 2xl:input-lg">
-    <i data-lucide="search" class="size-4 opacity-50 lg:size-6"></i>
-    <input
-      required
-      type="search"
-      name="{{ param }}"
-      value="{{ term }}"
-      class="grow"
-      placeholder="{% trans 'Search' %}"
-    />
-  </label>
+  <form method="get" class="flex items-center gap-2 w-full">
+    <label
+      class="grow input focus:input-primary active:input-primary 2xl:input-lg"
+    >
+      <i data-lucide="search" class="size-4 opacity-50 lg:size-6"></i>
+      <input
+        required
+        type="search"
+        name="{{ param }}"
+        value="{{ term }}"
+        class="grow"
+        placeholder="{% trans 'Search' %}"
+      />
+    </label>
 
-  <div class="tooltip" data-tip="{% trans 'Search' %}">
-    <button type="submit" class="btn btn-sm btn-primary lg:btn-md 2xl:btn-lg">
-      <span class="sr-only lg:not-sr-only">{% trans 'Search' %}</span>
-      <i
-        data-lucide="chevron-right"
-        class="size-4 rtl:rotate-180 lg:size-6"
-      ></i>
-    </button>
-  </div>
-</form>
+    <div class="tooltip" data-tip="{% trans 'Search' %}">
+      <button type="submit" class="btn btn-sm btn-primary lg:btn-md 2xl:btn-lg">
+        <span class="sr-only lg:not-sr-only">{% trans 'Search' %}</span>
+        <i
+          data-lucide="chevron-right"
+          class="size-4 rtl:rotate-180 lg:size-6"
+        ></i>
+      </button>
+    </div>
+  </form>
+</section>

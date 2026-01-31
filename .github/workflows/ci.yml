@@ -7,28 +7,27 @@ on:
     branches: ["main"]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
 
       - name: Install Dependencies
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          python -m pip install --upgrade pip
-          python -m pip install poetry
-          python -m poetry install
-          python -m poetry run python -m django startproject core
-          mv rest_wind core
-          echo "INSTALLED_APPS += ['rest_wind', 'rest_framework']" >> core/settings.py
+          pip install --upgrade pip
+          pip install poetry
+          poetry install
 
       - name: Run checks
         run: |
           source .venv/bin/activate
-          python -m poetry run python core/manage.py check
+          django-admin startproject core
+          mv rest_wind core
+          echo "INSTALLED_APPS += ['rest_wind', 'rest_framework']" >> core/settings.py
+          python core/manage.py check

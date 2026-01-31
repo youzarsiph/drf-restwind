@@ -15,7 +15,7 @@
       id="{{ field.name }}"
       name="{{ field.name }}"
       type="{{ style.input_type }}"
-      class="input w-full"
+      class="input w-full focus:input-primary active:input-primary"
       {% if field.required %}required{% endif %}
       {% if field.value %}value="{{ field.value }}"{% endif %}
       {% if field.max_length %}maxlength="{{ field.max_length }}"{% endif %}
@@ -28,7 +28,7 @@
       id="{{ field.name }}"
       name="{{ field.name }}"
       type="{{ style.input_type }}"
-      class="file-input w-full"
+      class="file-input w-full focus:file-input-primary active:file-input-primary"
       {% if field.required %}required{% endif %}
       {% if field.value %}value="{{ field.value }}"{% endif %}
       {% if field.max_length %}maxlength="{{ field.max_length }}"{% endif %}

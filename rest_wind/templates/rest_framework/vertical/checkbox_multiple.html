@@ -18,7 +18,7 @@
         type="checkbox"
         name="{{ field.name }}"
         value="{{ key }}"
-        class="checkbox checked:checkbox-primary"
+        class="checkbox focus:checkbox-primary active:checkbox-primary checked:checkbox-primary"
         {% if key|as_string in field.value|as_list_of_strings %}checked{% endif %}
       />
       {{ text }}

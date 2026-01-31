@@ -48,27 +48,59 @@
   // Style inputs
   document
     .querySelectorAll("form > div > input")
-    .forEach((e) => e.classList.add("input", "w-full", "validator"));
+    .forEach((e) =>
+      e.classList.add(
+        "input",
+        "w-full",
+        "validator",
+        "focus:input-primary",
+        "active:input-primary",
+      ),
+    );
   document
     .querySelectorAll("form > div > input[type=checkbox]")
     .forEach((e) => {
       e.classList.remove("input", "w-full");
-      e.classList.add("checkbox");
+      e.classList.add(
+        "checkbox",
+        "focus:checkbox-primary",
+        "active:checkbox-primary",
+      );
     });
   document.querySelectorAll("form > div > input[type=radio]").forEach((e) => {
     e.classList.remove("input", "w-full");
-    e.classList.add("radio");
+    e.classList.add("radio", "focus:radio-primary", "active:radio-primary");
   });
   document.querySelectorAll("form > div > input[type=file]").forEach((e) => {
     e.classList.remove("input");
-    e.classList.add("file-input");
+    e.classList.add(
+      "file-input",
+      "focus:file-input-primary",
+      "active:file-input-primary",
+    );
   });
   document
     .querySelectorAll("form > div > textarea")
-    .forEach((e) => e.classList.add("textarea", "w-full", "validator"));
+    .forEach((e) =>
+      e.classList.add(
+        "textarea",
+        "w-full",
+        "validator",
+        "focus:textarea-primary",
+        "active:textarea-primary",
+      ),
+    );
   document
     .querySelectorAll("form > div > select")
-    .forEach((e) => e.classList.add("select", "w-full", "validator"));
+    .forEach((e) =>
+      e.classList.add(
+        "select",
+        "w-full",
+        "validator",
+        "focus:select-primary",
+        "active:select-primary",
+      ),
+    );
 
   // Style error lists
   document

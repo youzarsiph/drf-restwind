@@ -1,0 +1,12 @@
+{% if messages %}
+<div class="toast toast-top toast-end top-24 right-8 z-10">
+  <ol class="grid gap-4 max-w-2xl mx-auto">
+    {% for message in messages %}
+    <li class="alert alert-horizontal alert-{{ message.tags }}">
+      <i data-lucide="circle-check" class="size-4 lg:size-6"></i>
+      <p>{{ message }}</p>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}

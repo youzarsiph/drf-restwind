@@ -1,23 +1,25 @@
 {% load i18n rest_framework %}
 
-<h4>{% trans "Ordering" %}</h4>
+<section>
+  <h4>{% trans "Ordering" %}</h4>
 
-<ul class="not-prose menu menu-sm w-full lg:menu-md">
-  {% for key, label in options %}
-  <li>
-    <a href="{% add_query_param request param key %}">
-      <i
-        data-lucide="{% cycle 'arrow-down-0-1' 'arrow-up-1-0' %}"
-        class="size-4 lg:size-6"
-      ></i>
+  <ul class="not-prose menu menu-sm w-full lg:menu-md">
+    {% for key, label in options %}
+    <li>
+      <a href="{% add_query_param request param key %}">
+        <i
+          data-lucide="{% cycle 'arrow-down-0-1' 'arrow-up-1-0' %}"
+          class="size-4 lg:size-6"
+        ></i>
 
-      {{ label }}
+        {{ label }}
 
-      <!---->
-      {% if key == current %}
-      <i data-lucide="check" class="size-4 lg:size-6"></i>
-      {% endif %}
-    </a>
-  </li>
-  {% endfor %}
-</ul>
+        <!---->
+        {% if key == current %}
+        <i data-lucide="check" class="size-4 lg:size-6"></i>
+        {% endif %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

@@ -1,9 +1,11 @@
 {% load i18n %}
 
-<h4>{% trans 'Field filters' %}</h4>
+<section>
+  <h4>{% trans 'Field filters' %}</h4>
 
-{% with form=filter.form %}
-<!---->
-{% include 'rest_framework/components/form.html' with method='get' csrf=False %}
-<!---->
-{% endwith %}
+  {% with form=filter.form %}
+  <!---->
+  {% include 'rest_framework/components/form.html' with method='get' csrf=False %}
+  <!---->
+  {% endwith %}
+</section>

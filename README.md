@@ -2,9 +2,6 @@
 
 [![CI](https://github.com/youzarsiph/drf-restwind/actions/workflows/ci.yml/badge.svg)](https://github.com/youzarsiph/drf-restwind/actions/workflows/ci.yml)
 [![CD](https://github.com/youzarsiph/drf-restwind/actions/workflows/cd.yml/badge.svg)](https://github.com/youzarsiph/drf-restwind/actions/workflows/cd.yml)
-[![Code Style: Black](https://github.com/youzarsiph/drf-restwind/actions/workflows/black.yml/badge.svg)](https://github.com/youzarsiph/drf-restwind/actions/workflows/black.yml)
-[![Code Linting: Ruff](https://github.com/youzarsiph/drf-restwind/actions/workflows/ruff.yml/badge.svg)](https://github.com/youzarsiph/drf-restwind/actions/workflows/ruff.yml)
-[![Code Testing](https://github.com/youzarsiph/drf-restwind/actions/workflows/tests.yml/badge.svg)](https://github.com/youzarsiph/drf-restwind/actions/workflows/tests.yml)
 [![PyPI - Version](https://img.shields.io/pypi/v/drf-restwind?logo=pypi&logoColor=white)](https://pypi.org/project/drf-restwind/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/drf-restwind?logo=python&logoColor=white)](https://pypi.org/project/drf-restwind/)
 [![PyPI - License](https://img.shields.io/pypi/l/drf-restwind?logo=pypi&logoColor=white)](https://pypi.org/project/drf-restwind/)
@@ -108,6 +105,93 @@ To customize `drf-restwind`, follow these steps:
    ```
 
 Now you can proceed with the following customization guides.
+
+### Customizing the Brand and Adding Links
+
+To change the brand name and add custom links, modify your `api.html`:
+
+```html
+{% extends 'rest_framework/base.html' %}{% load i18n %}
+
+{% block title %}{% trans 'YOUR_BRAND' %}{% endblock %}
+
+<!-- Branding -->
+{% block branding %}
+<li
+  class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
+  data-tip="{% trans 'YOUR_BRAND' %}"
+>
+  <a
+    href="https://your.domain.com/"
+    class="btn btn-sm btn-square btn-ghost lg:btn-md"
+  >
+    <img 
+      class="size-8 2xl:size-10" 
+      alt="{% trans 'YOUR_BRAND' %}"
+      src="{% static 'path/to/your/logo.png' %}"
+    />
+  </a>
+</li>
+{% endblock %}
+
+<!-- Add your brand text -->
+{% block drawer_branding %}
+<li
+  class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
+  data-tip="{% trans 'YOUR_BRAND' %}"
+>
+  <a
+    href="https://your.domain.com/"
+    class="btn btn-sm btn-square btn-ghost lg:btn-md"
+  >
+    <img 
+      class="size-8 2xl:size-10" 
+      alt="{% trans 'YOUR_BRAND' %}"
+      src="{% static 'path/to/your/logo.png' %}"
+    />
+  </a>
+</li>
+{% endblock %}
+
+<!-- Add your links -->
+{% block userlinks %}
+<li
+  class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
+  data-tip="{% trans 'Home' %}"
+>
+  <a href="https://your.domain.com/">
+    <i data-lucide="home" class="size-4 lg:size-6"></i>
+    <span class="is-drawer-close:sr-only">
+      {% trans 'Home' %}
+    </span>
+  </a>
+</li>
+{% endblock %}
+```
+
+```html
+<!-- rest_framework/login.html -->
+{% extends 'rest_framework/login_base.html' %}
+
+<!-- Branding -->
+{% block branding %}
+<li
+  class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
+  data-tip="{% trans 'YOUR_BRAND' %}"
+>
+  <a
+    href="https://your.domain.com/"
+    class="btn btn-sm btn-square btn-ghost lg:btn-md"
+  >
+    <img 
+      class="size-8 2xl:size-10" 
+      alt="{% trans 'YOUR_BRAND' %}"
+      src="{% static 'path/to/your/logo.png' %}"
+    />
+  </a>
+</li>
+{% endblock %}
+```
 
 ### Changing the Theme
 
@@ -322,93 +406,6 @@ To remove theme toggle, update your `api.html`:
 {% extends 'rest_framework/login_base.html' %}
 
 {% block theme_selector %}{% endblock %}
-```
-
-### Customizing the Brand and Adding Links
-
-To change the brand name and add custom links, modify your `api.html`:
-
-```html
-{% extends 'rest_framework/base.html' %}{% load i18n %}
-
-{% block title %}{% trans 'YOUR_BRAND' %}{% endblock %}
-
-<!-- Branding -->
-{% block branding %}
-<li
-  class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
-  data-tip="{% trans 'YOUR_BRAND' %}"
->
-  <a
-    href="https://your.domain.com/"
-    class="btn btn-sm btn-square btn-ghost lg:btn-md"
-  >
-    <img 
-      class="size-8 2xl:size-10" 
-      alt="{% trans 'YOUR_BRAND' %}"
-      src="{% static 'path/to/your/logo.png' %}"
-    />
-  </a>
-</li>
-{% endblock %}
-
-<!-- Add your brand text -->
-{% block drawer_branding %}
-<li
-  class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
-  data-tip="{% trans 'YOUR_BRAND' %}"
->
-  <a
-    href="https://your.domain.com/"
-    class="btn btn-sm btn-square btn-ghost lg:btn-md"
-  >
-    <img 
-      class="size-8 2xl:size-10" 
-      alt="{% trans 'YOUR_BRAND' %}"
-      src="{% static 'path/to/your/logo.png' %}"
-    />
-  </a>
-</li>
-{% endblock %}
-
-<!-- Add your links -->
-{% block userlinks %}
-<li
-  class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
-  data-tip="{% trans 'Home' %}"
->
-  <a href="https://your.domain.com/">
-    <i data-lucide="home" class="size-4 lg:size-6"></i>
-    <span class="is-drawer-close:sr-only">
-      {% trans 'Home' %}
-    </span>
-  </a>
-</li>
-{% endblock %}
-```
-
-```html
-<!-- rest_framework/login.html -->
-{% extends 'rest_framework/login_base.html' %}
-
-<!-- Branding -->
-{% block branding %}
-<li
-  class="tooltip tooltip-right tooltip-primary rtl:tooltip-left"
-  data-tip="{% trans 'YOUR_BRAND' %}"
->
-  <a
-    href="https://your.domain.com/"
-    class="btn btn-sm btn-square btn-ghost lg:btn-md"
-  >
-    <img 
-      class="size-8 2xl:size-10" 
-      alt="{% trans 'YOUR_BRAND' %}"
-      src="{% static 'path/to/your/logo.png' %}"
-    />
-  </a>
-</li>
-{% endblock %}
 ```
 
 ### Adding menu items to profile menu

@@ -16,7 +16,7 @@
         type="radio"
         id="{{ field.name }}"
         name="{{ field.name }}"
-        class="radio checked:radio-primary"
+        class="radio focus:radio-primary active:radio-primary checked:radio-primary"
         {% if field.required %}required{% endif %}
         {% if field.value %}checked{% endif %}
       />
@@ -34,17 +34,15 @@
     </label>
   
     {% for key, text in field.choices|items %}
-    <div class="form-check">
-      <label class="fieldset-label flex items-center gap-4">
-        <input
-          type="radio"
-          value="{{ key }}"
-          id="{{ field.name }}_{{ key }}"
-          name="{{ field.name }}"
-          class="radio"
-          {% if key|as_string="" == "field.value|as_string" %}checked{% endif %}
-        />
-      </label>
+    <div class="flex items-center gap-4">
+      <input
+        type="radio"
+        value="{{ key }}"
+        id="{{ field.name }}_{{ key }}"
+        name="{{ field.name }}"
+        class="radio focus:radio-primary active:radio-primary checked:radio-primary"
+        {% if key|as_string="" == "field.value|as_string" %}checked{% endif %}
+      />
 
       {% if field.label %}
       <label
