@@ -68,7 +68,8 @@
           >
             <div class="relative size-full">
               <header class="absolute inset-x-0 top-0 z-10 backdrop-blur-3xl">
-                <nav class="navbar p-4">
+                {% partialdef navbar inline %}
+                <nav class="navbar p-4 shadow-xs lg:shadow-none">
                   <ul class="navbar-start gap-4">
                     {% block navbar_start %}
                     <li
@@ -76,7 +77,7 @@
                       data-tip="{% trans 'Open drawer' %}"
                     >
                       <label
-                        for="sidebar"
+                        for="{{ for|default:'sidebar' }}"
                         aria-label="{% trans 'close sidebar' %}"
                         class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                       >
@@ -89,19 +90,20 @@
                     <!---->
                     {% block branding %}
                     <li
-                      class="tooltip tooltip-right rtl:tooltip-left tooltip-primary md:hidden"
+                      class="tooltip tooltip-right tooltip-primary before:bg-linear-90 before:from-primary before:to-secondary rtl:before:-bg-linear-90 rtl:tooltip-left md:hidden"
                       data-tip="{% trans 'Django REST Framework' %}"
                     >
+                      {% partialdef brand inline %}
                       <h1 class="relative">
                         <a
                           href="https://www.django-rest-framework.org/"
-                          class="btn btn-square btn-primary lg:btn-lg 2xl:btn-lg"
+                          class="btn btn-square btn-lg btn-primary bg-linear-0 from-primary to-secondary lg:btn-xl"
                         >
                           <div
-                            class="btn btn-square btn-primary rotate-45 p-0 shadow-none lg:btn-lg 2xl:btn-lg"
+                            class="btn btn-square btn-lg btn-primary bg-linear-0 from-primary to-secondary rotate-45 p-0 shadow-none lg:btn-xl"
                           >
                             <i
-                              data-lucide="braces"
+                              data-lucide="{% block icon %}braces{% endblock  %}"
                               class="-rotate-45 lg:size-8 2xl:size-10"
                             ></i>
                           </div>
@@ -110,6 +112,7 @@
                           </span>
                         </a>
                       </h1>
+                      {% endpartialdef %}
                     </li>
                     {% endblock %}
                   </ul>
@@ -117,23 +120,44 @@
                   <ul class="navbar-center hidden gap-4 lg:block">
                     {% block navbar_center %}
                     <li>
-                      <form method="get">
+                      {% partialdef search inline %}
+                      <form
+                        action="{{ search_url|default:'/search/' }}"
+                        class="w-full"
+                      >
                         <label
-                          class="input input-ghost w-full bg-transparent focus:input-primary active:input-primary 2xl:input-lg"
+                          class="input input-sm input-ghost bg-base-200/50 w-full rounded-box shadow-xs focus:input-primary active:input-primary lg:input-md {% if lg %} xl:input-lg 2xl:input-xl {% endif %}"
                         >
+                          <span class="sr-only">{% trans 'Search' %}</span>
                           <i
                             data-lucide="search"
                             class="size-4 opacity-50 lg:size-6"
                           ></i>
                           <input
-                            required
-                            type="search"
                             name="search"
-                            class="grow"
+                            type="search"
+                            class="peer grow"
+                            value="{{ search }}"
                             placeholder="{% trans 'Search' %}"
                           />
+                          <div
+                            class="tooltip tooltip-left flex peer-placeholder-shown:hidden rtl:tooltip-right"
+                            data-tip="{% trans 'Apply' %}"
+                          >
+                            <button
+                              type="submit"
+                              class="btn btn-xs btn-ghost bg-base-100/50 rounded-full shadow-xs hover:bg-base-100/50 {% if lg %} xl:btn-sm {% endif %}"
+                            >
+                              <i
+                                data-lucide="chevron-right"
+                                class="size-4 opacity-50 lg:size-5 rtl:rotate-180"
+                              ></i>
+                              <span class="sr-only">{% trans 'Apply' %}</span>
+                            </button>
+                          </div>
                         </label>
                       </form>
+                      {% endpartialdef %}
                     </li>
                     {% endblock %}
                   </ul>
@@ -182,10 +206,11 @@
                     {% endblock %}
                   </ul>
                 </nav>
+                {% endpartialdef %}
               </header>
 
               <div
-                class="size-full max-h-dvh overflow-y-auto px-4 py-16 md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
+                class="size-full max-h-dvh overflow-y-auto px-4 py-20 md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
               >
                 <main class="container mx-auto grid gap-8">
                   <!---->
@@ -363,12 +388,16 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                       aria-label="{% trans 'close sidebar' %}"
                       class="btn btn-sm lg:btn-md 2xl:btn-lg btn-square btn-ghost"
                     >
-                      <i
-                        data-lucide="panel-left-open"
-                        class="size-4 lg:size-6"
-                      ></i>
+                      <i data-lucide="menu" class="size-4 lg:size-6"></i>
                       <span class="sr-only">{% trans 'Open drawer' %}</span>
                     </label>
+                  </div>
+
+                  <div
+                    class="tooltip tooltip-right tooltip-primary before:bg-linear-90 before:from-primary before:to-secondary rtl:before:-bg-linear-90 rtl:tooltip-left lg:hidden"
+                    data-tip="{% trans 'Django REST Framework' %}"
+                  >
+                    {% partial brand %}
                   </div>
 
                   {% block request_forms %}
@@ -494,24 +523,6 @@ HTTP {{ response.status_code }} {{ response.status_text }}
               <div
                 class="flex size-full max-h-dvh flex-col gap-4 overflow-y-auto py-20 md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
               >
-                <form method="get" class="px-4 lg:hidden">
-                  <label
-                    class="input input-ghost w-full bg-transparent focus:input-primary active:input-primary 2xl:input-lg"
-                  >
-                    <i
-                      data-lucide="search"
-                      class="size-4 opacity-50 lg:size-6"
-                    ></i>
-                    <input
-                      required
-                      type="search"
-                      name="search"
-                      class="grow"
-                      placeholder="{% trans 'Search' %}"
-                    />
-                  </label>
-                </form>
-
                 {% if display_edit_forms %}
                 <section
                   role="tablist"
@@ -539,15 +550,19 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                         class="tooltip tooltip-primary"
                         data-tip="{% trans 'POST request' %}"
                       >
-                        <button
-                          class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                        <div
+                          class="aura aura-lg aura-rainbow w-full lg:aura-xl"
                         >
-                          <span>{% trans 'Send' %}</span>
-                          <i
-                            data-lucide="arrow-up-from-dot"
-                            class="size-4 lg:size-6"
-                          ></i>
-                        </button>
+                          <button
+                            class="btn btn-sm btn-primary w-full lg:btn-md 2xl:btn-lg"
+                          >
+                            <span>{% trans 'Send' %}</span>
+                            <i
+                              data-lucide="arrow-up-from-dot"
+                              class="size-4 lg:size-6"
+                            ></i>
+                          </button>
+                        </div>
                       </div>
                     </form>
                     {% endwith %}
@@ -573,15 +588,19 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                         class="tooltip tooltip-primary"
                         data-tip="{% trans 'POST request' %}"
                       >
-                        <button
-                          class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                        <div
+                          class="aura aura-lg aura-rainbow w-full lg:aura-xl"
                         >
-                          <span>{% trans 'Send' %}</span>
-                          <i
-                            data-lucide="arrow-up-from-dot"
-                            class="size-4 lg:size-6"
-                          ></i>
-                        </button>
+                          <button
+                            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                          >
+                            <span>{% trans 'Send' %}</span>
+                            <i
+                              data-lucide="arrow-up-from-dot"
+                              class="size-4 lg:size-6"
+                            ></i>
+                          </button>
+                        </div>
                       </div>
                     </form>
                     {% endwith %}
@@ -611,15 +630,19 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                         class="tooltip tooltip-top"
                         data-tip="{% trans 'PUT request' %}"
                       >
-                        <button
-                          class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                        <div
+                          class="aura aura-lg aura-rainbow w-full lg:aura-xl"
                         >
-                          <span>{% trans 'Send' %}</span>
-                          <i
-                            data-lucide="arrow-up-right"
-                            class="size-4 lg:size-6"
-                          ></i>
-                        </button>
+                          <button
+                            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                          >
+                            <span>{% trans 'Send' %}</span>
+                            <i
+                              data-lucide="arrow-up-right"
+                              class="size-4 lg:size-6"
+                            ></i>
+                          </button>
+                        </div>
                       </div>
                     </form>
                     {% endwith %}
@@ -647,15 +670,19 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                           class="tooltip tooltip-primary grow"
                           data-tip="{% trans 'PUT request' %}"
                         >
-                          <button
-                            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                          <div
+                            class="aura aura-lg aura-rainbow w-full lg:aura-xl"
                           >
-                            <span>{% trans 'Send' %}</span>
-                            <i
-                              data-lucide="arrow-up-right"
-                              class="size-4 lg:size-6"
-                            ></i>
-                          </button>
+                            <button
+                              class="btn btn-sm lg:btn-md 2xl:btn-lg btn-primary w-full"
+                            >
+                              <span>{% trans 'Send' %}</span>
+                              <i
+                                data-lucide="arrow-up-right"
+                                class="size-4 lg:size-6"
+                              ></i>
+                            </button>
+                          </div>
                         </div>
                         {% endif %}
 
@@ -665,16 +692,20 @@ HTTP {{ response.status_code }} {{ response.status_text }}
                           class="tooltip tooltip-secondary grow"
                           data-tip="{% trans 'PATCH request' %}"
                         >
-                          <button
-                            class="btn btn-sm lg:btn-md 2xl:btn-lg btn-secondary w-full"
-                            data-method="PATCH"
+                          <div
+                            class="aura aura-lg aura-rainbow w-full lg:aura-xl"
                           >
-                            <span>{% trans 'Send' %}</span>
-                            <i
-                              data-lucide="arrow-up-right"
-                              class="size-4 lg:size-6"
-                            ></i>
-                          </button>
+                            <button
+                              class="btn btn-sm lg:btn-md 2xl:btn-lg btn-secondary w-full"
+                              data-method="PATCH"
+                            >
+                              <span>{% trans 'Send' %}</span>
+                              <i
+                                data-lucide="arrow-up-right"
+                                class="size-4 lg:size-6"
+                              ></i>
+                            </button>
+                          </div>
                         </div>
                         {% endif %}
                       </div>
@@ -701,32 +732,15 @@ HTTP {{ response.status_code }} {{ response.status_text }}
         ></label>
 
         <div
-          class="is-drawer-close:w-18 is-drawer-close:lg:w-20 is-drawer-open:w-full md:is-drawer-open:w-sm bg-base-100 border-base-300 flex h-full flex-col items-center gap-4 p-4 border-r rtl:border-l md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
+          class="is-drawer-close:w-20 is-drawer-close:lg:w-22 is-drawer-open:w-full md:is-drawer-open:w-sm bg-base-100 border-base-300 flex h-full flex-col items-center gap-4 p-4 border-r rtl:border-l md:max-h-[calc(100dvh-0.5rem)] lg:max-h-[calc(100dvh-1rem)]"
         >
           <header class="flex w-full items-center justify-between gap-4">
             {% block drawer_branding %}
             <div
-              class="tooltip tooltip-right rtl:tooltip-left tooltip-primary"
+              class="tooltip tooltip-right tooltip-primary before:bg-linear-90 before:from-primary before:to-secondary rtl:before:-bg-linear-90 rtl:tooltip-left"
               data-tip="{% trans 'Django REST Framework' %}"
             >
-              <h1 class="relative">
-                <a
-                  href="https://www.django-rest-framework.org/"
-                  class="btn btn-square btn-primary lg:btn-lg 2xl:btn-lg"
-                >
-                  <div
-                    class="btn btn-square btn-primary rotate-45 p-0 shadow-none lg:btn-lg 2xl:btn-lg"
-                  >
-                    <i
-                      data-lucide="braces"
-                      class="-rotate-45 lg:size-8 2xl:size-10"
-                    ></i>
-                  </div>
-                  <span class="sr-only">
-                    {% trans 'Django REST Framework' %}
-                  </span>
-                </a>
-              </h1>
+              {% partial brand %}
             </div>
             {% endblock %}
 
@@ -774,7 +788,27 @@ HTTP {{ response.status_code }} {{ response.status_text }}
             </div>
           </header>
 
-          <ul class="menu w-full grow gap-2 p-0">
+          <div class="w-full px-2 is-drawer-close:md:hidden">
+            {% partial search %}
+          </div>
+
+          <div
+            class="group tooltip tooltip-left hidden lg:flex is-drawer-open:lg:hidden is-drawer-close:lg:tooltip-right rtl:tooltip-right is-drawer-close:rtl:lg:tooltip-left"
+            data-tip="{% trans 'Search' %}"
+          >
+            <label
+              for="drawer"
+              class="btn btn-sm btn-ghost bg-base-200/50 rounded-box shadow-xs hover:bg-base-200/50 lg:btn-md"
+            >
+              <i
+                data-lucide="search"
+                class="size-4 opacity-50 group-hover:opacity-100 lg:size-6"
+              ></i>
+              <span class="sr-only">{% trans 'Search' %}</span>
+            </label>
+          </div>
+
+          <ul class="menu w-full grow gap-2 p-0 lg:menu-lg">
             {% block user_links %}
             <li
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
@@ -818,19 +852,19 @@ HTTP {{ response.status_code }} {{ response.status_text }}
 
             <li
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
-              data-tip="{% trans 'DRF Repository' %}"
+              data-tip="{% trans 'Repo' %}"
             >
               <a href="https://github.com/encode/django-rest-framework/">
                 <i data-lucide="folder-git-2" class="size-4 lg:size-6"></i>
                 <span class="is-drawer-close:sr-only">
-                  {% trans 'DRF Repository' %}
+                  {% trans 'Repo' %}
                 </span>
               </a>
             </li>
             {% endblock %}
           </ul>
 
-          <ul class="menu w-full gap-2 p-0">
+          <ul class="menu w-full gap-2 p-0 lg:menu-lg">
             {% block profile_links %}{% endblock %}
 
             <!---->
@@ -846,7 +880,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
 
             <li
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right rtl:is-drawer-close:tooltip-left"
-              data-tip="{% trans 'Open drawer' %}"
+              data-tip="{% trans 'close drawer' %}"
             >
               <label for="drawer" class="drawer-button">
                 <i
@@ -907,6 +941,7 @@ HTTP {{ response.status_code }} {{ response.status_text }}
       </script>
 
       <script src="https://unpkg.com/lucide@latest"></script>
+      <script src="{% static 'rest_wind/l.js' %}"></script>
       <script>
         lucide.createIcons();
       </script>

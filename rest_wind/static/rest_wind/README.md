@@ -12,6 +12,7 @@ To generate the styles:
 
 ```console
 npm install
+cd rest_wind/static/rest_wind
 npx @tailwindcss/cli -i ../static/rest_wind/css/app.css -o ../static/rest_wind/css/styles.css --cwd ../../templates -m -w
 ```
 

@@ -1,12 +1,12 @@
 {
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.18",
-    "tailwindcss": "^4.1.18"
+    "@tailwindcss/cli": ">=4.3.3",
+    "tailwindcss": ">=4.3.3"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19",
-    "daisyui": "^5.5.14",
-    "prettier": "^3.8.0",
-    "prettier-plugin-tailwindcss": "^0.7.2"
+    "@tailwindcss/typography": ">=0.5.19",
+    "daisyui": "^5.7.50",
+    "prettier": ">=3.8.3",
+    "prettier-plugin-tailwindcss": ">=0.8.0"
   }
 }

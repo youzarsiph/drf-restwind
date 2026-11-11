@@ -63,6 +63,8 @@ db.sqlite3-journal
 core/
 app/
 manage.py
+l.js
+icons.html
 
 # Flask stuff:
 instance/
